@@ -15,7 +15,7 @@
 </a>
 </div>
 <div class="pageTitle">
-Discover
+Dashboard
 </div>
 <div class="right">
 <a href="#" class="headerButton toggle-searchbox">

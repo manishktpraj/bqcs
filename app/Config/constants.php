@@ -9,9 +9,9 @@ if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost' || isset($
 {
    $strPath ='bpi/';
 }else{
-   $strPath ='bqcs/';
+   $strPath ='bpi/';
 }
-define('SITE_TITLE',"BQCS");
+define('SITE_TITLE',"BPI");
 
 define('SITE_ABS_PATH',$strPath);
 define('SITE_PATH',$_SERVER['DOCUMENT_ROOT'].'/'.SITE_ABS_PATH);
