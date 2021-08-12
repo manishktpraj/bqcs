@@ -6,11 +6,11 @@
 <div>
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-<li class="breadcrumb-item"><a href="#">Faculty</a></li>
-<li class="breadcrumb-item active" aria-current="page">Faculty Role</li>
+<li class="breadcrumb-item"><a href="#">Technician</a></li>
+<li class="breadcrumb-item active" aria-current="page">Roles</li>
 </ol>
 </nav>
-<h4 class="mg-b-0 tx-spacing--1">Manage Faculty Role</h4>
+<h4 class="mg-b-0 tx-spacing--1">Manage Roles</h4>
 </div>
 <div class="d-none d-md-block"></div>
 </div>
@@ -18,7 +18,7 @@
 <div class="col-lg-4">
 <div class="card mg-b-15">
 <div class="card-header d-flex align-items-center justify-content-between">
-<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Add New Faculty Role</h6>
+<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Add New Roles</h6>
 </div>
 <form method="post" action="<?php echo e(route('roleproccess')); ?>" enctype="multipart/form-data">
 <?php echo csrf_field(); ?>
@@ -29,8 +29,6 @@
 <input type="text" class="form-control" name="role_name" required="" value="<?php echo isset($resfacroleData->role_name)?$resfacroleData->role_name:''?>">
 <span class="tx-color-03" style="font-size: 11px;">This name is appears on your site</span>
 </div>
-
-
 </div>
 <div class="card-footer" style="padding: 0.75rem 1rem;">
 <button type="submit" class="btn btn-lg btn-success btn-block">Save</button>
@@ -41,7 +39,7 @@
 <div class="col-lg-8">
 <div class="card mg-b-15">
 <div class="card-header d-flex align-items-center justify-content-between">
-<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Faculty Role Listings</h6>
+<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Roles Listings</h6>
 </div>
 <div class="card-body">
 <?php echo $__env->make('Csadmin.bulkaction', ['status' => 'FILTER_ROLE'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

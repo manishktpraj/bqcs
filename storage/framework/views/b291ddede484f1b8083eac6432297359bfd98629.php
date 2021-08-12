@@ -113,27 +113,8 @@
 </div>
 </div>
 </div>
-
-
 </div>
 </fieldset>
-
-
-
-
-<fieldset class="form-fieldset">
-<legend style="font-size:13px">Tax Options</legend>
-<div class="row row-xs">
-<div class="col-lg-12">
-<div class="form-group">
-<label>If the checkbox below is selected all taxes will be calculated using this formula: Tax = ((GST inclusive Price) / (100 + Tax Rate))*Tax Rate Example Rs 2.00 at 5% VAT will be Rs 0.10 (rounded).</label>
-<input type="checkbox" name="theme_tax_option" value="1"  <?php echo (isset($rowStoreData->theme_tax_option) && $rowStoreData->theme_tax_option==1)?'checked':''?> >
-If price are all inclusive of taxes
-</div>
-</div>
-</div>
-</fieldset>
-
 </div>
 </div>
 <div class="card-footer" style="padding: 0.75rem 1rem;">

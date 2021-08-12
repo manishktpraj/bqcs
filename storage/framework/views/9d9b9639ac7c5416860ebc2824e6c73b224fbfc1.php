@@ -1,3 +1,7 @@
+<?php  
+$value = Session::get('ADMIN');
+//print_r($value);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +17,7 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 <link rel="icon" type="image/png" href="<?php echo SITE_ASSETS_URL?>img/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon/192x192.png">
 <link rel="stylesheet" href="<?php echo SITE_ASSETS_URL?>css/style.css">
-<link rel="manifest" href="__manifest.json">
+<link rel="manifest" href="<?php echo SITE_URL;?>__manifest.json">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
@@ -31,7 +35,7 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 </a>
 </div>
 <div class="pageTitle">
-Dashboard
+<?php echo $title;?>
 </div>
 <div class="right">
 <a href="#" class="headerButton toggle-searchbox">
@@ -41,13 +45,11 @@ Dashboard
 </div>
 <!-- * App Header -->
 
-
-
-
+<?php echo $__env->yieldContent('content'); ?>
 
 <!-- App Bottom Menu -->
 <div class="appBottomMenu">
-<a href="index.html" class="item active">
+<a href="<?php echo e(route('dash-board')); ?>" class="item active">
 <div class="col">
 <ion-icon name="home-outline"></ion-icon>
 </div>
@@ -83,13 +85,12 @@ Dashboard
 <!-- profile box -->
 <div class="profileBox">
 <div class="image-wrapper">
-<img src="<?php echo SITE_ASSETS_URL;?>/img/sample/avatar/avatar1.jpg" alt="image" class="imaged rounded">
+<img src="<?php echo isset($value->faculty_img)?SITE_UPLOAD_URL.SITE_FACULTY_IMAGE.$value->faculty_img:SITE_NO_IMAGE_PATH?>" alt="image" class="imaged rounded">
 </div>
 <div class="in">
-<strong>Julian Gruber</strong>
+<strong><?php echo $value->faculty_first_name." ".$value->faculty_last_name?></strong>
 <div class="text-muted">
-<ion-icon name="location"></ion-icon>
-California
+<?php if($value->faculty_role_id==4){echo "Technician";}elseif($value->faculty_role_id==3){echo "admin";} ?>
 </div>
 </div>
 <a href="#" class="close-sidebar-button" data-bs-dismiss="modal">
@@ -100,6 +101,26 @@ California
 
 <ul class="listview flush transparent no-line image-listview mt-2">
 <li>
+<a href="<?php echo e(route('dash-board')); ?>" class="item">
+<div class="icon-box bg-primary">
+<ion-icon name="home-outline"></ion-icon>
+</div>
+<div class="in">
+Dashboard
+</div>
+</a>
+</li>
+<li>
+<a href="<?php echo e(route('calendar')); ?>" class="item">
+<div class="icon-box bg-primary">
+<ion-icon name="calendar"></ion-icon>
+</div>
+<div class="in">
+Calendar
+</div>
+</a>
+</li>
+<li>
 <a href="<?php echo e(route('job')); ?>" class="item">
 <div class="icon-box bg-primary">
 <ion-icon name="home-outline"></ion-icon>
@@ -109,7 +130,7 @@ Jobs
 </div>
 </a>
 </li>
-<li>
+<!-- <li>
 <a href="<?php echo e(route('job-question')); ?>" class="item">
 <div class="icon-box bg-primary">
 <ion-icon name="cube-outline"></ion-icon>
@@ -118,7 +139,7 @@ Jobs
 Job Question
 </div>
 </a>
-</li>
+</li> -->
 <!-- <li>
 <a href="app-pages.html" class="item">
 <div class="icon-box bg-primary">
@@ -159,7 +180,7 @@ id="darkmodesidebar">
 </div>
 <!-- sidebar buttons -->
 <div class="sidebar-buttons">
-<a href="#" class="button">
+<a href="<?php echo e(route('profile')); ?>" class="button">
 <ion-icon name="person-outline"></ion-icon>
 </a>
 <a href="#" class="button">
@@ -168,7 +189,7 @@ id="darkmodesidebar">
 <a href="#" class="button">
 <ion-icon name="settings-outline"></ion-icon>
 </a>
-<a href="#" class="button">
+<a href="<?php echo e(route('bpilogout')); ?>" class="button">
 <ion-icon name="log-out-outline"></ion-icon>
 </a>
 </div>
@@ -191,6 +212,16 @@ id="darkmodesidebar">
 <!-- Base Js File -->
 <script src="<?php echo SITE_ASSETS_URL;?>js/base.js"></script>
 
+<!-- Base Js File -->
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/jquery/jquery.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/jqueryui/jquery-ui.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/feather-icons/feather.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/moment/min/moment.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/fullcalendar/fullcalendar.min.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/calendar-events.js"></script>
+<script src="<?php echo SITE_ASSETS_URL?>js/dashforge.calendar.js"></script>
 <script>
 // Trigger welcome notification after 5 seconds
 setTimeout(() => {

@@ -6,16 +6,21 @@ use Hash;
 use Session;
 use App\Http\Model\Csdmin;
 use App\Http\Model\CsFaculty;
-use App\Http\Model\CsFacultyRole;
+use App\Http\Model\CsServices;
 use App\Http\Model\CsPermission;
 use App\Http\Model\CsRolePermissions;
-
+use App\Http\Model\CsQuestion;
+use App\Http\Model\CsFacultyRole;
 
 
 use Validator;
 
+
 class ServicesController extends Controller
 {
+
+/**********************************************************************************************************************************************************************/
+
   public function index(Request $request)
   {
     $user=Session::get("CS_ADMIN");
@@ -24,7 +29,7 @@ class ServicesController extends Controller
         if($request->get('reset')==1)
         {
         Session::forget('FILTER_FACULTY');
-        return redirect()->route('faculty');   
+        return redirect()->route('technician');   
         }
      /***********************Reset Filter Session ************/
      
@@ -38,23 +43,22 @@ class ServicesController extends Controller
         if($intBulkAction==1)
         {
             CsFaculty::whereIn('faculty_id', $aryIds)->delete();
-            return redirect()->route('faculty')->with('status', 'Entry Deleted Successfully');
+            return redirect()->route('technician')->with('status', 'Entry Deleted Successfully');
         }
         if($intBulkAction==2)
         {
             CsFaculty::whereIn('faculty_id', $aryIds)->update(['faculty_status' => 1]);
-            return redirect()->route('faculty')->with('status', 'Entry Updated Successfully');
+            return redirect()->route('technician')->with('status', 'Entry Updated Successfully');
         }
         if($intBulkAction==3)
         {
             CsFaculty::whereIn('faculty_id',$aryIds)->update(['faculty_status' => 0]);
-            return redirect()->route('faculty')->with('status', 'Entry Updated Successfully');
+            return redirect()->route('technician')->with('status', 'Entry Updated Successfully');
         }
         endIf;
       /***********************Bulk Action ************/
-     
-        
-           /***********************Apply Condition ************/
+             
+      /***********************Apply Condition ************/
    
         if($request->get('filter_keyword')!='')
         {
@@ -74,22 +78,17 @@ class ServicesController extends Controller
                     $resfacultyData = CsFaculty::paginate(20);
                 }else{
                     $resfacultyData = CsFaculty::where('faculty_institute','=',$user->user_id)->paginate(20);
-    
                 }
             }   
-               
-      
-    $title='Faculty';
+    $title='Manage Technician';
     return view('Csadmin.Services.index',compact('title','resfacultyData'));
   }
-  
 
-
-  
+  /************************************************************************************************************************************************************************/
    
   public function facultyStatus($intCategoryId)
     {
-        $rowCategoryData = CsFaculty::where('faculty_id',$intCategoryId)->first();
+       $rowCategoryData = CsFaculty::where('faculty_id',$intCategoryId)->first();
        // print_r($rowCategoryData);die;
         if($rowCategoryData->faculty_status==1){
             $status = 0;
@@ -97,39 +96,33 @@ class ServicesController extends Controller
             $status = 1;
         }
         CsFaculty::where('faculty_id', $intCategoryId)->update(array('faculty_status' => $status));
-        return redirect()->route('faculty')->with('status', 'Entry Edited Successfully');
+        return redirect()->route('technician')->with('status', 'Entry Edited Successfully');
     }
-  
-   function facultyProccess(Request $request)
-    {    $user=Session::get("CS_ADMIN");
 
+/***************************************************************************************************************************************************************************/
+
+function facultyProccess(Request $request)
+    {   
+        $user=Session::get("CS_ADMIN");
         $aryPostData = $request->all();
         if(isset($aryPostData['faculty_id']) && $aryPostData['faculty_id']>0)
         {
-            $postobj = CsFaculty::where('faculty_id',$aryPostData['faculty_id'])->first();
+           $postobj = CsFaculty::where('faculty_id',$aryPostData['faculty_id'])->first();
         }else{
             $postobj = new CsFaculty;
         }   
-        
-        
         $postobj->faculty_institute = $user->user_id;
-        
-        $postobj->faculty_role = $aryPostData['faculty_role'];
-
+        $postobj->faculty_role_id = $aryPostData['faculty_role'];
         $postobj->faculty_status = 1;
         $postobj->faculty_first_name = $aryPostData['faculty_first_name'];
         $postobj->faculty_last_name = $aryPostData['faculty_last_name'];
-        $postobj->faculty_gender = $aryPostData['faculty_gender'];
-        $postobj->faculty_dob = $aryPostData['faculty_dob'];
         $postobj->faculty_email = $aryPostData['faculty_email'];
         $postobj->faculty_about = $aryPostData['faculty_about'];
-        
-       if(isset($aryPostData['faculty_new_password']) && isset($aryPostData['faculty_confirm_password']) && $aryPostData['faculty_confirm_password']==$aryPostData['faculty_new_password']){
-               
-             $postobj->faculty_password = $aryPostData['faculty_new_password'];
-           } 
-        
         $postobj->faculty_phone = $aryPostData['faculty_phone'];
+
+       if(isset($aryPostData['faculty_new_password']) && isset($aryPostData['faculty_confirm_password']) && $aryPostData['faculty_confirm_password']==$aryPostData['faculty_new_password']){
+           $postobj->faculty_password = $aryPostData['faculty_new_password'];
+           } 
         
         if($request->hasFile('faculty_img'))
         {
@@ -142,45 +135,49 @@ class ServicesController extends Controller
 
         if($postobj->save())    
         {
-            return redirect()->route('faculty')->with('status', 'Entry Saved Successfully.');   
+            return redirect()->route('technician')->with('status', 'Entry Saved Successfully.');   
         }else{
-            return redirect()->route('faculty')->with('error', 'Server Not Responed');
+            return redirect()->route('technician')->with('error', 'Server Not Responed');
         }
     }
-    
-    public function addNewFaculty($intfacultyId=0)
+        
+    /************************************************************************************************************************************************************************/
+
+    public function addNewTechnician($intfacultyId=0)
   {
     $user=Session::get("CS_ADMIN");
+    $resroleData = CsFacultyRole::get();
+    $resfacultyData = array();
+    if($intfacultyId>0){
+    if($user->role_type==0){
+      $resfacultyData = CsFaculty::where('faculty_id','=',$intfacultyId)->first();
+    }else{
+      $resfacultyData = CsFaculty::where('faculty_id','=',$intfacultyId)->where('faculty_institute','=',$user->user_id)->first();
+         }}
 
-    $resroleData = CsFacultyRole::where('role_ins_id','=',$user->user_id)->get();
-//print_r($resroleData);
-       $resfacultyData = array();
-        if($intfacultyId>0){
-            if($user->role_type==0){
-                $resfacultyData = CsFaculty::where('faculty_id','=',$intfacultyId)->first();
-            }else{
-                $resfacultyData = CsFaculty::where('faculty_id','=',$intfacultyId)->where('faculty_institute','=',$user->user_id)->first();
-    
-                }
-            }
-
-
-        
-    $title='Add New Faculty';
-    return view('Csadmin.Services.addNewFaculty' ,compact('title','resfacultyData','resroleData'));
+    $title='Add New Technician';
+    return view('Csadmin.Services.addNewTechnician' ,compact('title','resfacultyData','resroleData'));
   }
   
+  /*************************************************************************************************************************************************************************/
+
    public function facultyDelete($intCategoryId)
     {
         CsFaculty::where('faculty_id', $intCategoryId)->delete();
-        return redirect()->route('faculty')->with('status', 'Entry Deleted Successfully');
+        return redirect()->route('technician')->with('status', 'Entry Deleted Successfully');
     }
+
+   /***********************************************************************************************************************************************************************/
+
    public function viewFaculty($intfacultyId=0)
   {
     
-    $title='View Faculty';
+    $title='View Technician';
     return view('Csadmin.Services.viewFaculty' ,compact('title'));
   }
+
+  /***********************************************************************************************************************************************************************/
+
   public function services(Request $request, $intid=0){
 
 /***********************Reset Filter Session ************/
@@ -201,121 +198,105 @@ $intBulkAction = $aryPostData['bulkaction'];
 
 if($intBulkAction==1)
 {
-    CsFacultyRole::whereIn('role_id', $aryIds)->delete();
+    CsServices::whereIn('role_id', $aryIds)->delete();
     return redirect()->route('services')->with('status', 'Entry Deleted Successfully');
 }
 if($intBulkAction==2)
 {
-    CsFacultyRole::whereIn('role_id', $aryIds)->update(['role_status' => 1]);
+    CsServices::whereIn('role_id', $aryIds)->update(['role_status' => 1]);
     return redirect()->route('services')->with('status', 'Entry Updated Successfully');
 }
 if($intBulkAction==3)
 {
-    CsFacultyRole::whereIn('role_id',$aryIds)->update(['role_status' => 0]);
+    CsServices::whereIn('role_id',$aryIds)->update(['role_status' => 0]);
     return redirect()->route('services')->with('status', 'Entry Updated Successfully');
 }
 endIf;
 /***********************Bulk Action ************/
 
-
-   /***********************Apply Condition ************/
+/***********************Apply Condition ************/
 
    if($request->get('filter_keyword')!='')
    {
-
    Session::put('FILTER_ROLE', $request->get('filter_keyword'));
    Session::save(); 
-
-
    }
    /***********************Apply Condition ************/
-
+   $intSelectParent=0;
 if(session()->has('FILTER_ROLE')){
 $strFilterKeyword = Session::get('FILTER_ROLE');
-$resroleData = CsFacultyRole::where('role_name', 'LIKE', "%{$strFilterKeyword}%")->paginate(20);
+$resroleData =CsServices::where('role_name', 'LIKE', "%{$strFilterKeyword}%")->get();
+      $tree = $this->buildTree($resroleData);
+      $strEntryHtml1 = $this->getCatgoryHtml($tree,'',0,$intSelectParent);  
 }else{
-    $resroleData = CsFacultyRole::paginate(20);
+    $resroleData =CsServices::get();
+    $tree = $this->buildTree($resroleData);
+    $strEntryHtml1 =$this->getCatgoryHtml($tree);;  
 }    
     $resfacroleData ='';
     if($intid>0){
-        $resfacroleData = CsFacultyRole::where('role_id','=',$intid)->first();
+        $resfacroleData = CsServices::where('role_id','=',$intid)->first();
     }
-//print_r($resroleData);die;
-
-
-  $title='Manage Roles';
-  return view('Csadmin.Services.services' ,compact('title','resroleData','resfacroleData'));
+  $title='Manage Services';
+  return view('Csadmin.Services.services' ,compact('title','resroleData','resfacroleData','strEntryHtml1'));
   }
-  
-  public function roleproccess(Request $request){
-    
+
+/**************************************************************************************************************************************************************************/
+
+  public function servicesDelete($intCategoryId)
+    {
+        CsServices::where('role_id', $intCategoryId)->delete();
+        return redirect()->route('services')->with('status', 'Entry Deleted Successfully');
+    }
+
+/***************************************************************************************************************************************************************************/
+  public function serviceproccess(Request $request){
     $user=Session::get("CS_ADMIN");
     $aryPostData = $request->all();
     if(isset($aryPostData['role_id']) && $aryPostData['role_id']>0)
     {
-        $postobj = CsFacultyRole::where('role_id',$aryPostData['role_id'])->first();
+        $postobj = CsServices::where('role_id',$aryPostData['role_id'])->first();
     }else{
-        $postobj = new CsFacultyRole;
+        $postobj = new CsServices;
     }   
     $postobj->role_ins_id = $user->user_id;
     $postobj->role_status = 1;
     $postobj->role_name = $aryPostData['role_name'];
-    
+    $postobj->role_parent = $aryPostData['role_parent'];
     if($postobj->save())    
         {
             return redirect()->route('services')->with('status', 'Entry Saved Successfully.');   
         }else{
             return redirect()->route('services')->with('error', 'Server Not Responed');
         }
-    
     }
 
+/****************************************************************************************************************************************************************************/
     public function roleStatus($intCategoryId)
     {
-        $rowCategoryData = CsFacultyRole::where('role_id',$intCategoryId)->first();
-       // print_r($rowCategoryData);die;
+        $rowCategoryData = CsServices::where('role_id',$intCategoryId)->first();
         if($rowCategoryData->role_status==1){
             $status = 0;
         }else{
             $status = 1;
         }
-        CsFacultyRole::where('role_id', $intCategoryId)->update(array('role_status' => $status));
+        CsServices::where('role_id', $intCategoryId)->update(array('role_status' => $status));
         return redirect()->route('services')->with('status', 'Entry Edited Successfully');
     }
-  
-    public function facultypermission($intCategoryId)
-    {
-
-     $permissionData=   CsPermission::get();
-     $rowPermission=   CsRolePermissions::where('rp_role_id', $intCategoryId)->get();
-
-// print_r($rowPermissionChecked);
-
-        $title='Permission';
-    return view('Csadmin.Services.facultypermission' ,compact('title','permissionData','intCategoryId','rowPermission'));
-    }
-
-    public function permissionProccess(Request $request)
+  /***************************************************************************************************************************************************************************/
+   
+public function permissionProccess(Request $request)
     {
         $aryPostData = $request->all();
-        //   print_r($aryPostData);die;;
-        
-    
         $id=$aryPostData['rp_role_id'];
-
         CsRolePermissions::where('rp_role_id', $id)->delete();
-
         foreach($aryPostData['permission'] as $key=>$label)
         {
-           // print_r($aryPostData);
            $postobj = new CsRolePermissions;
-
-            $postobj->rp_role_id=$id;
- 
-      $postobj->rp_permission_id =$key;
-      $postobj->rp_edit_status =0;
-      $postobj->rp_aprrove_status =0;
-
+           $postobj->rp_role_id=$id;
+           $postobj->rp_permission_id =$key;
+           $postobj->rp_edit_status =0;
+           $postobj->rp_aprrove_status =0;
       
       if(in_array(1,$label))
       {
@@ -336,14 +317,218 @@ $resroleData = CsFacultyRole::where('role_name', 'LIKE', "%{$strFilterKeyword}%"
           $postobj->rp_view_status =0;
       }
       $postobj->save();
-      //print_r($postobj);
-        }
-       
-         return redirect()->route('services')->with('status', 'Entry Saved Successfully.');   
-       
-     
-
+      }
+      return redirect()->route('services')->with('status', 'Entry Saved Successfully.');   
     }
 
+    /************************************************************************************************************************************************************************/
+   
+    public function addNewService($intfacultyId=0)
+    {
+        $intSelectParent=0;
+        $rowCategoryData=array();
+        if($intfacultyId>0)
+        {
+            $rowCategoryData = CsServices::where('role_id',$intfacultyId)->first();
+            $intSelectParent = $rowCategoryData->role_parent;
+        } 
+      $resCategoryListData =CsServices::get();
+      $tree = $this->buildTree($resCategoryListData);
+      $strEntryHtml = $this->getCatgoryEntryChildHtml($tree,'',0,$intSelectParent);          
+      $title='Add New Service';
+      return view('Csadmin.Services.addNewService' ,compact('title','strEntryHtml','rowCategoryData'));
+    }
+
+  /***************************************************************************************************************************************************************************/  
+    function buildTree($elements, $parentId = 0) 
+    {
+        $branch = array();
+        foreach ($elements as $element) {
+           if ($element['role_parent'] == $parentId) {
+                $children = $this->buildTree($elements, $element['role_id']);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            } 
+        }
+        return $branch;
+    }
+
+  /****************************************************************************************************************************************************************************/  
   
+  function getCatgoryEntryChildHtml($tree,$strExtraHtml='',$intLevel=0,$intSelectParent)
+  {
+   $strHtml=$strExtraHtml;
+   $intExtraLevel = $intLevel;
+        foreach($tree as $key=>$label)
+          {
+              $strStyle='';
+              if($label['role_parent']!=0)
+              {
+              $strStyle=' style="background:#eaeaea"';
+             
+              }
+               if($label['role_parent']==0)
+              {
+                   $intLevel=0;
+              }
+              $strExtraData = '';
+              for($i=0;$i<$intLevel;$i++)
+              {
+                   $strExtraData .='-';
+              }
+             $strselect ='';
+             if($label['role_id']==$intSelectParent)
+             {   
+                 $strselect ='selected="selected"';
+             }
+            $strHtml .='<option '.$strselect.' value="'.$label['role_id'].'">'.$strExtraData.$label['role_name'].'</option>';
+
+
+if(isset($label->children) && $intLevel!=2)
+{
+    $intLevel++;
+    $strHtml =$this->getCatgoryEntryChildHtml($label->children,$strHtml,$intLevel,$intSelectParent);
+    $intLevel = $intExtraLevel;
+
+}
+}
+   
+   return $strHtml;
+       exit();
+  }
+
+ 
+
+/****************************************************************************************************************************************************************************/
+
+    function getCatgoryHtml($tree,$strExtraHtml='',$intLevel=0){
+            
+        $strHtml=$strExtraHtml;
+        if(count($tree)>0){
+        foreach($tree as $key=>$label){
+            $strStyle ='';
+            if($label['role_parent']==0){
+                $intLevel=0;
+            }else{
+              $intLevel = self::getcategorylevel($label);
+            }
+            $strExtraData = '';
+            for($i=0;$i<$intLevel;$i++){
+                $strExtraData .='<i data-feather="minus"></i>';
+            }
+            // $strHtml .='<tr>
+            //                 <td scope="row" style="text-align:center;vertical-align: middle;"><input type="checkbox" id="selectAll" class="clsSelectSingle" name="icat_id[]" value="'.$label['icat_id'].'">
+            //             </td>';
+            $strHtml .='<tr>
+            <td><p class="mg-b-0 tx-medium">'.$strExtraData.$label['role_name'].'</p></td>'; 
+            // $strHtml .='<td style="text-align:center">0</td>';
+            if($label['icat_id']==16)
+            {                $strHtml .='<td colspan="1" style="text-align:center"></td>';
+  }else
+            {
+            $strHtml .='<td>
+                            <div class="d-flex align-self-center justify-content-center">
+                            <nav class="nav nav-icon-only">
+                            <a href="'.route('question',$label['role_id']).'"  class="btn btn-info btn-icon mg-r-5" title="Questions" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
+                            <a href="'.route('add-new-service',$label['role_id']).'" onclick="return confirm(\'Are you sure?\')" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+                            <a href="'.route('servicesDelete',$label['role_id']).'" onclick="return confirm(\'Are you sure?\')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
+                        </nav>
+                            </div>
+                        </td></tr>';}
+            if(isset($label->children)){
+                $intLevel++;
+                $strHtml =$this->getCatgoryHtml($label->children,$strHtml,$intLevel);
+            }
+        } } else{
+            $strHtml = '<td colspan="6" style="text-align:center">No Result Found</td>';
+        } 
+        return $strHtml;
+        exit();     
+    }
+
+/*******************************************************************************************************************************************************************************/ 
+    function getcategorylevel($aryCategory)
+    {
+        if($aryCategory['role_parent']==0)
+        {
+            return 0;
+        }else{
+          $res = CsServices::where('role_id','=',$aryCategory['role_parent'])->first();
+            if($res->role_parent==0)
+            {
+                return 1;
+            }else{
+               return 2; 
+            }
+        }
+    }
+
+   /**************************************************************************************************************************************************************************/ 
+   public function facultyrole(Request $request, $intid=0){
+
+    /***********************Reset Filter Session ************/
+    if($request->get('reset')==1)
+    {
+    Session::forget('FILTER_ROLE');
+    return redirect()->route('faculty-role');   
+    }
+    /***********************Reset Filter Session ************/
+    
+    /***********************Bulk Action ************/
+    $aryPostData = $request->all();
+    //print_r($aryPostData);
+    if(isset($aryPostData['bulkvalue']) && $aryPostData['bulkvalue']!=''):
+      $aryPostData =$_POST;
+     $aryIds = explode(',',$aryPostData['bulkvalue']);
+    $intBulkAction = $aryPostData['bulkaction'];
+    
+    if($intBulkAction==1)
+    {
+        CsServices::whereIn('role_id', $aryIds)->delete();
+        return redirect()->route('faculty-role')->with('status', 'Entry Deleted Successfully');
+    }
+    if($intBulkAction==2)
+    {
+        CsServices::whereIn('role_id', $aryIds)->update(['role_status' => 1]);
+        return redirect()->route('faculty-role')->with('status', 'Entry Updated Successfully');
+    }
+    if($intBulkAction==3)
+    {
+        CsServices::whereIn('role_id',$aryIds)->update(['role_status' => 0]);
+        return redirect()->route('faculty-role')->with('status', 'Entry Updated Successfully');
+    }
+    endIf;
+    /***********************Bulk Action ************/
+    
+    
+       /***********************Apply Condition ************/
+    
+       if($request->get('filter_keyword')!='')
+       {
+    
+       Session::put('FILTER_ROLE', $request->get('filter_keyword'));
+       Session::save(); 
+    
+    
+       }
+       /***********************Apply Condition ************/
+    
+    if(session()->has('FILTER_ROLE')){
+    $strFilterKeyword = Session::get('FILTER_ROLE');
+    $resroleData = CsServices::where('role_name', 'LIKE', "%{$strFilterKeyword}%")->paginate(20);
+    }else{
+        $resroleData = CsServices::paginate(20);
+    }    
+        $resfacroleData ='';
+        if($intid>0){
+            $resfacroleData = CsServices::where('role_id','=',$intid)->first();
+        }
+    //print_r($resroleData);die;
+    
+    
+      $title='Manage Roles';
+      return view('Csadmin.Services.facultyrole' ,compact('title','resroleData','resfacroleData'));
+      }
 }

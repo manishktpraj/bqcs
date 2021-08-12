@@ -11,7 +11,6 @@ class LoginController extends Controller
 {
   public function AdminLogin(Request $request)
   {
-  ///echo Hash::make('123456');
      if(Session::has('CS_ADMIN')){
         return redirect()->route('dashboard');    
     }
@@ -19,10 +18,13 @@ class LoginController extends Controller
   }
   public function adminLoginCheck(Request $request)
   {	
+ 
   	    $email = $request->user_email;
           $password =$request->user_password;
-     
+    ///   echo $password;
+       /// echo Hash::make($password);
         $adminLoginCheck = CsadminView::where('staff_email','=',$email)->first();
+       //print_r($adminLoginCheck);
         if($adminLoginCheck){
        ////   print_r($adminLoginCheck->staff_password);
           if (Hash::check($password, $adminLoginCheck->staff_password)) {

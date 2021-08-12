@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\DB;
 
 class CsFaculty extends Model
 {
-    protected $table="cs_faculty";
+    protected $table="cs_technician";
     protected $primaryKey = 'faculty_id';
 } 

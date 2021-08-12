@@ -27,6 +27,21 @@
             }
         }
     });
+    
+    $('#selectAll1').click(function()
+    {
+      if($(this).is(':checked')){$('.clsSelectSingle1').prop('checked',true);
+    }else{
+        $('.clsSelectSingle1').prop('checked',false);
+    }
+    });
+    $('#selectAll2').click(function()
+    {
+      if($(this).is(':checked')){$('.clsSelectSingle2').prop('checked',true);
+    }else{
+        $('.clsSelectSingle2').prop('checked',false);
+    }
+    });
     function showPreview(t, input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

@@ -3150,7 +3150,7 @@ textarea,
 .form-group {
   width: 100%; }
   .form-group .form-label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: #141515;
     display: block;
@@ -6275,8 +6275,17 @@ body.dark-mode-active {
 .mb-0{
 	margin-bottom:0px;
 }
+.mr-5{
+	margin-right:5px;
+}
 .tx-13{
     font-size:13px !Important;
+}
+.tx-14{
+    font-size:14px !Important;
+}
+.tx-16{
+    font-size:16px;
 }
 .tx-18{
     font-size:18px;
@@ -6303,6 +6312,10 @@ body.dark-mode-active {
 	background: #ccc;
     width: 100%;
     height: 15px;
+}
+.flex-class{
+	display:flex;
+	align-items:center;
 }
 /*========================================*/
 .lisbox{
@@ -6397,8 +6410,44 @@ overflow: scroll;
 	width:60px;
 	height:60px;
 }
-
-
+/*=====================================*/
+.wqtype{
+	width:100%;
+	position:relative;
+	margin:5px 0px 10px;
+}
+.wqtype ul{
+	margin:-5px -10px;
+	padding:0px;
+	list-style:none;
+	display:flex;
+	align-items:center;
+}
+.wqtype ul li{
+	margin:5px 10px;
+}
+.wqtype ul li::after{
+	display:none;
+}
+.wqtype-type{
+	display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+font-size: 13px !important;
+padding:0px !important;
+color: #141515 !important;
+font-weight: 500;
+}
+.wqtype-type a{
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+font-size: 13px !important;
+padding:0px !important;
+color: #4F5050;
+}
 
 
 

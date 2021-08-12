@@ -7,11 +7,11 @@
 <div>
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-<li class="breadcrumb-item"><a href="#">Faculties</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add New Faculties</li>
+<li class="breadcrumb-item"><a href="#">Technicians</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add New Technicians</li>
 </ol>
 </nav>
-<h4 class="mg-b-0 tx-spacing--1">Add New Faculty</h4>
+<h4 class="mg-b-0 tx-spacing--1">Add New Technician</h4>
 </div>
 </div>
 <form method="post" action="<?php echo e(route('facultyProccess')); ?>" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
 <div class="col-lg-8">
 <div class="card mg-b-15">
 <div class="card-header d-flex align-items-center justify-content-between">
-<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Faculty Details</h6>
+<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Technician Details</h6>
 </div>
 <div class="card-body">
 <div class="row row-xs">
@@ -35,22 +35,6 @@
 <div class="form-group" style="margin-bottom:15px">
 <label>Last Name:</label>
 <input type="text" class="form-control" required name="faculty_last_name" value="<?php echo isset($resfacultyData->faculty_last_name)?$resfacultyData->faculty_last_name:''?>">
-</div>
-</div>
-<div class="col-lg-6">
-<div class="form-group" style="margin-bottom:15px">
-<label>Date of Birth:</label>
-<input type="date" class="form-control" required name="faculty_dob" value="<?php echo isset($resfacultyData->faculty_dob)?$resfacultyData->faculty_dob:''?>">
-</div>
-</div>
-<div class="col-lg-6">
-<div class="form-group" style="margin-bottom:15px">
-<label>Gender:</label>
-<select class="custom-select" name="faculty_gender" required="">
-<option value="male">Male</option>
-<option value="female">Female</option>
-<option value="other">Other</option>
-</select>
 </div>
 </div>
 
@@ -80,7 +64,7 @@
 </div>
 <div class="col-lg-6">
 <div class="form-group" style="margin-bottom:15px">
-<label>New Password:</label>
+<label>Password:</label>
 <input type="password" class="form-control" name="faculty_new_password" id="txtPassword" value="">
 </div>
 </div>
@@ -119,7 +103,7 @@
 
 <div class="card mg-b-15">
 <div class="card-header d-flex align-items-center justify-content-between">
-<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Faculty Image</h6>
+<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Technician Image</h6>
 </div>
 <div class="card-body">
 <div class="form-group">

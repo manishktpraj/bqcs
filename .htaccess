@@ -9,7 +9,6 @@
 </IfModule>
 Options +SymLinksIfOwnerMatch
 RewriteEngine On
-
 #RewriteCond %{HTTP_HOST} ^coachingzon\.com [NC]
 #RewriteCond %{SERVER_PORT} 80
 #RewriteRule ^(.*)$ https://coachingzon.com/portal/$1 [R,L]

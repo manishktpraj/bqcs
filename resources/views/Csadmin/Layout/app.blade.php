@@ -1,21 +1,23 @@
 <?php 
-
+//print_r($resthemeData);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" type="image/x-icon" href="<?php if($user_role==0){(isset($session_user_data->staff_favicon) && $session_user_data->staff_favicon!="")?SITE_UPLOAD_URL.SITE_STAFF_IMAGE.$session_user_data->staff_favicon:SITE_NO_IMAGE_PATH;}else{echo (isset($session_user_data->ins_cover_image) && $session_user_data->ins_cover_image!="")?SITE_UPLOAD_URL.SITE_INSTITUTE_IMAGE.$session_user_data->ins_cover_image:SITE_NO_IMAGE_PATH;}?>">
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo (isset($resthemeData->theme_favicon) && $resthemeData->theme_favicon!="")?SITE_UPLOAD_URL.SITE_THEME_IMAGE.$resthemeData->theme_favicon:SITE_NO_IMAGE_PATH;?>">
 <title><?php echo $title;?></title>
 <link href="<?php echo ADMIN_ASSETS_URL?>lib/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="<?php echo ADMIN_ASSETS_URL?>lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 <link href="<?php echo ADMIN_ASSETS_URL?>lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+<link href="<?php echo ADMIN_ASSETS_URL?>lib/prismjs/themes/prism-vs.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>lib/select2/css/select2.min.css">
+<link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/skin.light.css">
 <link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/dashforge.css">
 <link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/dashforge.filemgr.css">
 <link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/dashforge.dashboard.css">
-<link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/skin.light.css">
+<link rel="stylesheet" href="<?php echo ADMIN_ASSETS_URL?>assets/css/dashforge.demo.css">
 </head>
 <body>
 <aside class="aside aside-fixed">
@@ -29,7 +31,7 @@
 <div class="aside-body">
 <div class="aside-loggedin">
 <div class="d-flex align-items-center justify-content-start">
-<a href="" class="avatar"><img src="<?php if($user_role==0){echo (isset($session_user_data->staff_logo) && $session_user_data->staff_logo!="")?SITE_UPLOAD_URL.SITE_STAFF_IMAGE.$session_user_data->staff_logo:SITE_NO_IMAGE_PATH;}else{ echo (isset($session_user_data->ins_logo) && $session_user_data->ins_logo!="")?SITE_UPLOAD_URL.SITE_INSTITUTE_IMAGE.$session_user_data->ins_logo:SITE_NO_IMAGE_PATH;}?>" class="rounded-circle" alt=""></a>
+<a href="" class="avatar"><img src="<?php if($user_role==0){echo (isset($resthemeData->theme_logo) && $resthemeData->theme_logo!="")?SITE_UPLOAD_URL.SITE_THEME_IMAGE.$resthemeData->theme_logo:SITE_NO_IMAGE_PATH;}else{ echo (isset($session_user_data->ins_logo) && $session_user_data->ins_logo!="")?SITE_UPLOAD_URL.SITE_INSTITUTE_IMAGE.$session_user_data->ins_logo:SITE_NO_IMAGE_PATH;}?>" class="rounded-circle" alt=""></a>
 <div class="aside-alert-link">
 <a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i data-feather="message-square"></i></a>
 <a href="{{route('notification')}}" class="new" data-toggle="tooltip" title="You have 4 new notifications"><i data-feather="bell"></i></a>
@@ -52,27 +54,62 @@
 </div>
 </div><!-- aside-loggedin -->
 <ul class="nav nav-aside">
-    
+
 <li class="nav-item <?php echo (isset($title) && $title == 'Dashboard')?'active':''; ?>"><a href="{{route('dashboard')}}" class="nav-link"><i data-feather="airplay"></i> <span>Dashboard</span></a></li>
 
-<li class="nav-item <?php echo (isset($title) &&  $title == 'Manage Roles')?'active':''; ?>"><a href="{{route('services')}}"  class="nav-link"><i data-feather="box"></i> <span>Services</span></a></li>
 
-
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Faculty' || $title == 'Add New Faculty')?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="user"></i> <span>Technicians</span></a>
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Appointment' || $title == 'Add New Appointment' || $title == 'Calender' )?'active show':''; ?>">
+<a href="#" class="nav-link"><i data-feather="calendar"></i> <span>Appointment</span></a>
 <ul>
-<li class="<?php echo (isset($title) && $title == 'Faculty')?'active':''; ?>"><a href="{{route('faculty')}}" >Manage Technician</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Faculty')?'active':''; ?>"><a href="{{route('add-new-faculty')}}" >Add New Technician</a></li>
+<li class="<?php echo (isset($title) && $title == 'Manage Appointment' || $title == 'View Appointment' )?'active':''; ?>"><a href="{{route('manageappointment')}}" >Manage Appointment</a></li>
+<li class="<?php echo (isset($title) && $title == 'Calender')?'active':''; ?>"><a href="{{route('calender')}}" >Calendar</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Appointment')?'active':''; ?>"><a href="#modaladdapponiment" data-toggle="modal" >Add New</a></li>
 </ul>
 </li>
 
 
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Slider' )?'active show':''; ?>">
+
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Customer' || $title == 'Add New Customer' )?'active show':''; ?>">
+<a href="#" class="nav-link"><i data-feather="users"></i> <span>Customers</span></a>
+<ul>
+<li class="<?php echo (isset($title) && $title == 'Manage Customer')?'active':''; ?>"><a href="{{route('managecustomer')}}" >Manage Customers</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Customer')?'active':''; ?>"><a href="#modaladdcustomers" data-toggle="modal" >Add New</a></li>
+</ul>
+</li>
+
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Services' || $title == 'Add New Service' || $title == 'Question')?'active show':''; ?>">
+<a href="#" class="nav-link"><i data-feather="briefcase"></i> <span>Services</span></a>
+<ul>
+<li class="<?php echo (isset($title) && $title == 'Manage Services' || $title == 'Question')?'active':''; ?>"><a href="{{route('services')}}" >Manage Services</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Service')?'active':''; ?>"><a href="{{route('add-new-service')}}" >Add New Service</a></li>
+</ul>
+</li>
+
+
+
+
+
+
+
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Technician' || $title == 'Add New Technician' || $title == 'View Technician'|| $title == 'Permission' || $title == 'Manage Roles' )?'active show':''; ?>">
+<a href="#" class="nav-link"><i data-feather="user"></i> <span>Technicians</span></a>
+<ul>
+<li class="<?php echo (isset($title) && $title == 'Manage Technician' || $title == 'View Technician' )?'active':''; ?>"><a href="{{route('technician')}}" >Manage Technician</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="{{route('add-new-technician')}}" >Add New Technician</a></li>
+<li class="<?php echo (isset($title) && $title == 'Manage Roles'|| $title == 'Permission')?'active':''; ?>"><a href="{{route('faculty-role')}}" >Roles</a></li>
+
+</ul>
+</li>
+
+
+
+
+<!-- <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Slider' )?'active show':''; ?>">
 <a href="#" class="nav-link"><i data-feather="gift"></i> <span>Appearance</span></a>
 <ul>
 <li class="<?php echo (isset($title) && $title == 'Slider')?'active':''; ?>"><a href="{{route('slider')}}" >Slider</a></li>
 </ul>
-</li>
+</li> -->
 
 <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Settings' || $title == 'Account Setting')?'active show':''; ?>">
 <a href="" class="nav-link"><i data-feather="settings"></i> <span>Settings</span></a>
@@ -83,6 +120,7 @@
 <li class="<?php echo (isset($title) && $title == 'Account Setting')?'active':''; ?>"><a href="{{route('account-setting')}}">Account Setting</a></li>
 </ul>
 </li>
+
 
 </ul>
 </div>
@@ -95,38 +133,105 @@
 </nav>
 <nav class="nav">
 <div class="aside-alert-link">
-<a href="<?php echo CHAT_URL;?>" class="btn btn-sm pd-x-15 btn-white  mg-r-5" style="padding:4px 10px 2px"><i data-feather="message-square"></i> Chat</a>
-
+<a href="#" class="btn btn-sm pd-x-15 btn-white  mg-r-5" style="padding:4px 10px 2px"><i data-feather="message-square"></i> Chat</a>
 <!--<a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i data-feather="message-square"></i></a>
 <a href="" class="new" data-toggle="tooltip" title="You have 4 new notifications"><i data-feather="bell"></i></a>
 <a href="{{route('adminLogout')}}" onclick="return confirm('Are you sure you want to logout?') "data-toggle="tooltip" title="Sign out"><i data-feather="log-out"></i></a>-->
 </div>
 </nav>
-
-
 </div><!-- content-header -->
 @yield('content')
 </div>
+
+@include('Csadmin.appointmentmodal',['resCustomerData'=>$resCustomerData,'resParentServicesData'=>$resParentServicesData,'resTechnicianData'=>$resTechnicianData])
+@include('Csadmin.customermodal')
+
+
+
+
 <script src="https://cdn.ckeditor.com/4.12.1/full-all/ckeditor.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jquery/jquery.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/feather-icons/feather.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="<?php echo ADMIN_ASSETS_URL?>lib/prismjs/prism.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jquery.flot/jquery.flot.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jquery.flot/jquery.flot.stack.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jquery.flot/jquery.flot.resize.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/chart.js/Chart.bundle.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jqvmap/jquery.vmap.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?php echo ADMIN_ASSETS_URL?>lib/select2/js/select2.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashforge.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashforge.aside.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashforge.sampledata.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashboard-one.js"></script>
-
 <!-- append theme customizer -->
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/js-cookie/js.cookie.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashforge.settings.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/admin.js"></script>
+<script>
+// Adding placeholder for search input
+(function($) {
+
+'use strict'
+
+var Defaults = $.fn.select2.amd.require('select2/defaults');
+
+$.extend(Defaults.defaults, {
+searchInputPlaceholder: ''
+});
+
+var SearchDropdown = $.fn.select2.amd.require('select2/dropdown/search');
+
+var _renderSearchDropdown = SearchDropdown.prototype.render;
+
+SearchDropdown.prototype.render = function(decorated) {
+
+// invoke parent method
+var $rendered = _renderSearchDropdown.apply(this, Array.prototype.slice.apply(arguments));
+
+this.$search.attr('placeholder', this.options.get('searchInputPlaceholder'));
+
+return $rendered;
+};
+
+})(window.jQuery);
+
+
+$(function(){
+'use strict'
+
+// Basic with search
+$('.select2').select2({
+placeholder: 'Choose one',
+searchInputPlaceholder: 'Search options'
+});
+
+// Disable search
+$('.select2-no-search').select2({
+minimumResultsForSearch: Infinity,
+placeholder: 'Choose one'
+});
+
+// Clearable selection
+$('.select2-clear').select2({
+minimumResultsForSearch: Infinity,
+placeholder: 'Choose one',
+allowClear: true
+});
+
+// Limit selection
+$('.select2-limit').select2({
+minimumResultsForSearch: Infinity,
+placeholder: 'Choose one',
+maximumSelectionLength: 2
+});
+
+});
+</script>
+
+
 
 </body>
 </html>

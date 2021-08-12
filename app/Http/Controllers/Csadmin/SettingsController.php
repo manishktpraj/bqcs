@@ -42,7 +42,7 @@ class SettingsController extends Controller
 
 
 
-
+ 
 
     $sess_var = Session::get('CS_ADMIN');
 //print_r($sess_var);
@@ -187,18 +187,6 @@ class SettingsController extends Controller
 
       $aryPostData = $request->all();
 //print_r($aryPostData);die;
-
-      // if(isset($aryPostData['student_id']) && $aryPostData['student_id']>0)
-      // {
-      //     $postobj = CsStudent::where('student_id',$aryPostData['student_id'])->first();
-      // }else{
-      //     $postobj = new CsStudent;
-      // }   
-
-
-
-
-
         $aryPostData = $request->all();
         if(isset($aryPostData['theme_id']) && $aryPostData['theme_id']>0)
         {
@@ -210,8 +198,7 @@ class SettingsController extends Controller
         $postobj->theme_state = $aryPostData['theme_state'];
         $postobj->theme_city = $aryPostData['theme_city'];
         $postobj->theme_postcode = $aryPostData['theme_postcode'];
-        $postobj->theme_tax_option = $aryPostData['theme_tax_option'];
-        if($request->hasFile('theme_logo'))
+          if($request->hasFile('theme_logo'))
         {
             $image = $request->file('theme_logo');
             $name = time().'.'.$image->getClientOriginalExtension();

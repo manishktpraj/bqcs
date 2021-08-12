@@ -17,12 +17,23 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+/*************************** Frontend ***************************/
+
+
 Route::any('/', 'WebLoginController@index')->name('index');
 Route::any('/dash-board', 'DashboardController@index')->name('dash-board');
 Route::any('/job', 'PagesController@job')->name('job');
 Route::any('/job-question', 'PagesController@jobque')->name('job-question');
+Route::any('/calendar', 'PagesController@calendar')->name('calendar');
+Route::any('/profile', 'PagesController@profile')->name('profile');
 
 
+/*************************** login logout***************************/
+
+Route::post('/login/logincheck', 'WebLoginController@logincheck')->name('logincheck');
+Route::any('/bpilogout', 'WebLoginController@logout')->name('bpilogout');
+
+ /*************************** ***************************/
 
 
 Route::any('/clear-cache', function() {
@@ -50,17 +61,43 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         
        
       /******Faculty Section*******/
-        Route::any('/faculty', 'ServicesController@index')->name('faculty');
-        Route::any('/add-new-faculty/{id?}', 'ServicesController@addNewFaculty')->name('add-new-faculty');
-        Route::any('/view-faculty/{id?}', 'ServicesController@viewFaculty')->name('view-faculty');
+        Route::any('/technician', 'ServicesController@index')->name('technician');
+        Route::any('/add-new-technician/{id?}', 'ServicesController@addNewTechnician')->name('add-new-technician');
+        Route::any('/view-technician/{id?}', 'ServicesController@viewFaculty')->name('view-technician');
         Route::any('/facultyStatus/{id}', 'ServicesController@facultyStatus')->name('facultyStatus');
         Route::any('/facultyProccess', 'ServicesController@facultyProccess')->name('facultyProccess');
         Route::any('/facultyDelete/{id}', 'ServicesController@facultyDelete')->name('facultyDelete');
         Route::any('/services/{id?}', 'ServicesController@services')->name('services');
-        Route::any('/roleproccess', 'ServicesController@roleproccess')->name('roleproccess');
+        Route::any('/serviceproccess', 'ServicesController@serviceproccess')->name('serviceproccess');
         Route::any('/roleStatus/{id}', 'ServicesController@roleStatus')->name('roleStatus');
         Route::any('/permission/{id}', 'ServicesController@facultypermission')->name('permission');
         Route::any('/permissionProccess', 'ServicesController@permissionProccess')->name('permissionProccess');
+        Route::any('/add-new-service/{id?}', 'ServicesController@addNewService')->name('add-new-service');
+        Route::any('/servicesDelete/{id}', 'ServicesController@servicesDelete')->name('servicesDelete');
+
+
+
+        /**********************Question Section ************************/
+
+        Route::any('/add-new-question/{id}/{id1?}', 'QuestionController@addNewQuestion')->name('add-new-question');
+        Route::any('/questionproccess', 'QuestionController@questionproccess')->name('questionproccess');
+        Route::any('/deleteQuestion/{id}/{id1?}', 'QuestionController@deleteQuestion')->name('deleteQuestion');
+        Route::any('/question/{id}', 'QuestionController@question')->name('question');
+
+        
+
+
+         /******Faculty Section*******/
+         Route::any('/faculty-role/{id?}', 'FacultyController@facultyrole')->name('faculty-role');
+         Route::any('/roleproccess', 'FacultyController@roleproccess')->name('roleproccess');
+       //  Route::any('/roleStatus/{id}', 'FacultyController@roleStatus')->name('roleStatus');
+         Route::any('/permission/{id}', 'FacultyController@facultypermission')->name('permission');
+         Route::any('/permissionProccess', 'FacultyController@permissionProccess')->name('permissionProccess');
+         
+
+             /*******************/ 
+
+        
         
         /******Settings Section*******/
         Route::any('/store-setting', 'SettingsController@index')->name('store-setting');
@@ -69,6 +106,9 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/passProccess', 'SettingsController@passProccess')->name('passProccess');
         Route::any('/anycityajax', 'SettingsController@anycityajax')->name('anycityajax');
         Route::any('/storeProccess', 'SettingsController@storeProccess')->name('storeProccess');
+
+
+
 
         /*****Appreance Section******/
     Route::group(['prefix'=>'appreance'], function(){
@@ -79,13 +119,34 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/sliderStatus/{id}', 'AppreanceController@sliderStatus')->name('sliderStatus');
 
     });
-
  
-    /*******************/
+    /*******************/ 
 
+    Route::group(['prefix'=>'appointment'], function(){
+        Route::any('/', 'AppointmentController@index')->name('manageappointment');
+        Route::any('/calender', 'AppointmentController@calender')->name('calender');
+        Route::post('/serviceCatProccessAjex', 'AppointmentController@serviceCatProccessAjex')->name('serviceCatProccessAjex');
+        Route::post('/addAppointmentProccess', 'AppointmentController@addAppointmentProccess')->name('addAppointmentProccess');
+        
+    });
 
 
     
     /*******************/
+
+
+
+     /******Customer Section*******/
+     Route::group(['prefix'=>'customer'], function(){
+     Route::any('/', 'CustomerController@index')->name('managecustomer');
+     Route::any('/customerProccess', 'CustomerController@customerProccess')->name('customerProccess');
+     Route::any('/customerDelete/{id}', 'CustomerController@customerDelete')->name('customerDelete');
+
+           
+  });
+
+
+             /*******************/ 
+
     });
 });

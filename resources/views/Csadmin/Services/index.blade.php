@@ -7,22 +7,22 @@
 <div>
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-<li class="breadcrumb-item"><a href="#">Faculties</a></li>
-<li class="breadcrumb-item active" aria-current="page">All Faculties</li>
+<li class="breadcrumb-item"><a href="#">Technicians</a></li>
+<li class="breadcrumb-item active" aria-current="page">All Technicians</li>
 </ol>
 </nav>
-<h4 class="mg-b-0 tx-spacing--1">Manage Faculty</h4>
+<h4 class="mg-b-0 tx-spacing--1">Manage Technician</h4>
 </div>
 <div class="d-none d-md-block">
 <a href="#" class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="file" class="wd-10 mg-r-5"></i>Export</a>
-<a href="{{route('add-new-faculty')}}" class="btn btn-sm pd-x-15 btn-primary btn-uppercase  mg-l-5"><i data-feather="plus" class="wd-10 mg-r-5"></i>Add New Faculty</a>
+<a href="{{route('add-new-technician')}}" class="btn btn-sm pd-x-15 btn-primary btn-uppercase  mg-l-5"><i data-feather="plus" class="wd-10 mg-r-5"></i>Add New Technician</a>
 </div>
 </div>
 <div class="row row-xs">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-header d-flex align-items-center justify-content-between">
-<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Faculties Lists</h6>
+<h6 class="mg-b-0" style="font-size: 1rem;font-weight: 600;">Technicians Lists</h6>
 <div class="d-flex tx-18">
 <a href="" class="link-03 lh-0"><i class="icon ion-md-refresh"></i></a>
 </div>
@@ -36,7 +36,7 @@
 <tr>
 <th scope="col" style="text-align:center;width:10px;"><input type="checkbox" id="selectAll"></th>
 <th scope="col" style="text-align:center;width:50px;">S.No.</th>
-<th scope="col">Faculty Details</th>
+<th scope="col">Technician Details</th>
 <th scope="col">Status</th>
 <th scope="col">Last Login</th>
 <th scope="col">Date</th>
@@ -69,8 +69,8 @@ foreach($resfacultyData as $faculty){?>
 <td>
 <div class="d-flex align-self-center justify-content-center">
 <nav class="nav nav-icon-only">
-<a href="{{route('view-faculty',$faculty->faculty_id )}}" class="btn btn-info btn-icon mg-r-5" title="View" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
-<a href="{{route('add-new-faculty',$faculty->faculty_id )}}" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+<a href="{{route('view-technician',$faculty->faculty_id )}}" class="btn btn-info btn-icon mg-r-5" title="View" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
+<a href="{{route('add-new-technician',$faculty->faculty_id )}}" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
 <a href="{{route('facultyDelete',$faculty->faculty_id )}}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
 </nav>
 </div>

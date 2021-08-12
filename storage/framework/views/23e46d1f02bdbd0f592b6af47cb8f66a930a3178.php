@@ -21,7 +21,7 @@
 <div class="mx-wd-600">
 <img src="<?php echo ADMIN_ASSETS_URL?>assets/img/img15.png" class="img-fluid" alt="">
 </div>
-</div>
+</div> 
 <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
 <div class="wd-100p">
 <form action="javascript:void(0);" id="login-form" method="post">
