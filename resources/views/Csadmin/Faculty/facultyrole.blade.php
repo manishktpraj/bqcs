@@ -49,7 +49,7 @@
 <div class="table-responsive">
 <table class="table mg-b-0">
 <thead>
-<tr>
+<tr> 
 <th style="width:5%;text-align:center;width:10px;"><input type="checkbox" id="selectAll" style="vertical-align: middle;"></th>
 <th scope="col" style="width:400px;">Role</th>
 <th scope="col">Status</th>

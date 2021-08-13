@@ -18,7 +18,6 @@ use Validator;
 
 class QuestionController extends Controller
 {
-
   
   /***************************************************************************************************************************************************************************/
     public function question($intCategoryId)
@@ -92,7 +91,7 @@ if(isset($label->children) && $intLevel!=2)
    return $strHtml;
        exit();
   }
-
+   
  /**************************************************************************************************************************************************************************/ 
  
  public function addNewQuestion($service_id,$intfacultyId=0)
@@ -105,12 +104,31 @@ if(isset($label->children) && $intLevel!=2)
         $rowCategoryData = CsQuestion::where('question_id',$intfacultyId)->first();
      } 
 
-    $title='Add New Question';
+    $title='Question';
     return view('Csadmin.Question.addNewQuestion' ,compact('title','service_id','rowCategoryData'));
   }
 
   /*************************************************************************************************************************************************************************/
  
+
+   /**************************************************************************************************************************************************************************/ 
+ 
+ public function childquestion($intfacultyId=0)
+ {
+  
+   $intSelectParent=0;
+   $rowCategoryData=array();
+   if($intfacultyId>0)
+   {
+       $rowCategoryData = CsQuestion::where('question_id',$intfacultyId)->first();
+    } 
+
+   $title='Question';
+   return view('Csadmin.Question.childquestion' ,compact('title','rowCategoryData'));
+ }
+
+ /*************************************************************************************************************************************************************************/
+
   public function questionproccess(Request $request){
     
     $user=Session::get("CS_ADMIN");
@@ -124,7 +142,13 @@ if(isset($label->children) && $intLevel!=2)
     $postobj->service_id = $aryPostData['service_id'];
     $postobj->question_status = 1;
     $postobj->question_name = $aryPostData['question_name'];
+    //$postobj->question_type = $aryPostData['question_type'];
+    $postobj->question_parent = $aryPostData['service_id'];
+    //$postobj->question_label = $aryPostData['question_label'];
+    //$postobj->question_option = $aryPostData['question_option'];
 
+
+    
     if($postobj->save())    
         {
             return redirect()->route('question',$aryPostData['service_id'])->with('status', 'Entry Saved Successfully.');   
@@ -206,5 +230,17 @@ if(isset($label->children) && $intLevel!=2)
         }
     }
 
-   
+    function updateorder(Request $request)
+	{
+        $aryPostData = $request->all();
+
+
+	    foreach($aryPostData['sliderid'] as $key=>$label)
+	    {
+            CsQuestion::where('question_id', '=', $id)->update(array('question_sequence' => $aryPostData['ordernum']));
+	        //CsServices::updateAll(['question_sequence'=>$aryPostData['ordernum'][$key]],['stage_id'=>$label]);  
+	    }
+	    echo 'ok';
+	    exit;
+	}  
 }

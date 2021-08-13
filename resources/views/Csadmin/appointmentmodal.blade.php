@@ -25,7 +25,7 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
             <div class="modal-body pd-25">
                 <form method="post" action="{{route('addAppointmentProccess')}}" enctype="multipart/form-data">  
                 @csrf 
-                <div>
+                <div id="editAppointment">
                     <div class="form-group">
                         <select class="custom-select" name="ca_app_type">
                             <option value="">Select</option>
@@ -36,11 +36,16 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
                         </select>
                     </div>
                     <div class="form-group">
-                        <select class="custom-select" style="width: 100%;" name="ca_customer_id">
+                        <select class="custom-select" style="width: 100%;" name="ca_customer_id" onchange="getCustomerAddress(this.value)">
                             <option value="">Select Customer</option>
                             <?php foreach($resCustomerData as $value){?>
                             <option value="<?php echo $value->customer_id?>"><?php echo $value->customer_fname?> <?php echo $value->customer_lname?></option>
                             <?php }?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="address_hide" style="display:none">
+                        <select class="custom-select" style="width: 100%;" name="ca_customer_address_id" id="addressData">
+                            <option value="">Select Address</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -141,6 +146,14 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
 <script>var token = '<?php echo csrf_token(); ?>';</script>
 <script>
     var base_url = '<?php echo ADMIN_URL?>';
+    function getCustomerAddress(value)
+    {
+        var datastring = 'customer_id='+value+'&_token='+token;
+        $.post(base_url+'appointment/getCustomerAddressAjex',datastring,function(response){
+            $('#address_hide').show();
+            $('#addressData').html(response);
+        });
+    }
     function getServiceChild(value)
     {
         var service = $('#service_category').val();

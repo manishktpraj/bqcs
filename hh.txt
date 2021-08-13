@@ -1,0 +1,79 @@
+<div class="form-group boxed">
+<div class="input-wrapper">
+<label class="form-label">Select</label>
+<select class="form-control form-select">
+<option value="0">Select</option>
+<option value="1">Present</option>
+<option value="2">Not Present</option>
+<option value="3">N/A</option>
+</select>
+</div>
+</div>
+<div class="wqtype">
+<ul>
+<li>
+<div class="wqtype-type">
+<div class="form-check form-check-inline">
+<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+<label class="form-check-label" for="inlineCheckbox1"></label>
+</div>
+Yes 
+</div>                                 
+</li>
+<li>
+<div class="wqtype-type">
+<div class="form-check form-check-inline">
+<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+<label class="form-check-label" for="inlineCheckbox1"></label>
+</div>
+No 
+</div>                                 
+</li>
+<li>
+<div class="wqtype-type">
+<a href="#">
+<ion-icon name="camera-outline" class="tx-24"></ion-icon>
+Add Pic 
+</a>
+</div>                                 
+</li>
+<li>
+<div class="wqtype-type">
+<a href="#">
+<ion-icon name="create-outline" class="tx-24"></ion-icon>
+Add Comment
+</a>
+</div>                                 
+</li>
+</ul>
+</div>
+
+<div class="row">
+<div class="col-12">
+<div class="imgboxlist">
+<ul>
+<li>
+<a href="#">
+<div class="imgbox">
+<img src="<?php echo SITE_ASSETS_URL;?>img/187803-200.png">
+</div>
+</a>
+</li>
+<li>
+<a href="#">
+<div class="imgbox">
+<img src="<?php echo SITE_ASSETS_URL;?>img/187803-200.png">
+</div>
+</a>
+</li>
+<li>
+<a href="#">
+<div class="imgbox">
+<img src="<?php echo SITE_ASSETS_URL;?>img/187803-200.png">
+</div>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>

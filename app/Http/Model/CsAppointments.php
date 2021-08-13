@@ -16,4 +16,9 @@ class CsAppointments extends Model
     {
         return $this->hasOne(CsFaculty::class,"faculty_id","ca_technician_id");
     }
+
+    public function customerAddress()
+    {
+        return $this->hasOne(CsCustomerAddress::class,"id","ca_customer_address_id");
+    }
 } 

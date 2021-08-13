@@ -24,7 +24,7 @@
 </div>
 <form method="post" action="<?php echo e(route('serviceproccess')); ?>" enctype="multipart/form-data">
 <?php echo csrf_field(); ?>
-<input type="hidden" name="tc_id" value="<?php echo isset($rowCategoryData->tc_id)?$rowCategoryData->tc_id:'0'?>">
+<input type="hidden" name="role_id" value="<?php echo isset($rowCategoryData->role_id)?$rowCategoryData->role_id:'0'?>">
 <div class="card-body">
 <div class="form-group">
 <label>Service Name / Title: <span style="color:red">*</span></label>

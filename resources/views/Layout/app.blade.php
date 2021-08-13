@@ -37,46 +37,16 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 <div class="pageTitle">
 <?php echo $title;?>
 </div>
-<div class="right">
+<!-- <div class="right">
 <a href="#" class="headerButton toggle-searchbox">
 <ion-icon name="search-outline"></ion-icon>
 </a>
-</div>
+</div> -->
 </div>
 <!-- * App Header -->
 
 @yield('content')
 
-<!-- App Bottom Menu -->
-<div class="appBottomMenu">
-<a href="{{route('dash-board')}}" class="item active">
-<div class="col">
-<ion-icon name="home-outline"></ion-icon>
-</div>
-</a>
-<a href="app-components.html" class="item">
-<div class="col">
-<ion-icon name="cube-outline"></ion-icon>
-</div>
-</a>
-<a href="page-chat.html" class="item">
-<div class="col">
-<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-<span class="badge badge-danger">5</span>
-</div>
-</a>
-<a href="app-pages.html" class="item">
-<div class="col">
-<ion-icon name="layers-outline"></ion-icon>
-</div>
-</a>
-<a href="#" class="item" data-bs-toggle="modal" data-bs-target="#sidebarPanel">
-<div class="col">
-<ion-icon name="menu-outline"></ion-icon>
-</div>
-</a>
-</div>
-<!-- * App Bottom Menu -->
 <!-- App Sidebar -->
 <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
@@ -90,7 +60,7 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 <div class="in">
 <strong><?php echo $value->faculty_first_name." ".$value->faculty_last_name?></strong>
 <div class="text-muted">
-<?php if($value->faculty_role_id==4){echo "Technician";}elseif($value->faculty_role_id==3){echo "admin";} ?>
+<?php echo $value->role->role_name ?>
 </div>
 </div>
 <a href="#" class="close-sidebar-button" data-bs-dismiss="modal">
@@ -126,7 +96,7 @@ Calendar
 <ion-icon name="home-outline"></ion-icon>
 </div>
 <div class="in">
-Jobs
+Bookings
 </div>
 </a>
 </li>

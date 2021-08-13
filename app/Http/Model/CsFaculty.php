@@ -7,4 +7,9 @@ class CsFaculty extends Model
 {
     protected $table="cs_technician";
     protected $primaryKey = 'faculty_id';
+
+    public function role()
+    {
+        return $this->hasOne(CsFacultyRole::class,"role_id","faculty_role_id");
+    }
 } 

@@ -1,5 +1,5 @@
-@extends('Csadmin.Layout.app')
-@section ('content')
+
+<?php $__env->startSection('content'); ?>
 <?php //print_r($resfacultyData);?>
 <div class="content-body">
 <div class="container pd-x-0">
@@ -15,7 +15,7 @@
 </div>
 <div class="d-none d-md-block">
 <a href="#" class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="file" class="wd-10 mg-r-5"></i>Export</a>
-<a href="{{route('add-new-technician')}}" class="btn btn-sm pd-x-15 btn-primary btn-uppercase  mg-l-5"><i data-feather="plus" class="wd-10 mg-r-5"></i>Add New Technician</a>
+<a href="<?php echo e(route('add-new-technician')); ?>" class="btn btn-sm pd-x-15 btn-primary btn-uppercase  mg-l-5"><i data-feather="plus" class="wd-10 mg-r-5"></i>Add New Technician</a>
 </div>
 </div>
 <div class="row row-xs">
@@ -28,7 +28,7 @@
 </div>
 </div> 
 <div class="card-body">
-@include('Csadmin.bulkaction', ['status' => 'FILTER_FACULTY'])
+<?php echo $__env->make('Csadmin.bulkaction', ['status' => 'FILTER_FACULTY'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 <div class="table-responsive">
 <table class="table mg-b-0">
@@ -37,9 +37,9 @@
 <th scope="col" style="text-align:center;width:10px;"><input type="checkbox" id="selectAll"></th>
 <th scope="col" style="text-align:center;width:50px;">S.No.</th>
 <th scope="col">Technician Details</th>
+<th scope="col" style="text-align: center;">Role</th>
 <th scope="col">Status</th>
 <th scope="col">Last Login</th>
-<th scope="col">Date</th>
 <th scope="col" style="text-align:center">Action</th>
 </tr>
 </thead>
@@ -54,24 +54,24 @@ foreach($resfacultyData as $faculty){?>
 <div class="media align-items-center mg-b-0">
 <div class="avatar avatar-online" style="border:1px solid #ddd;"><img src="<?php echo (isset($faculty->faculty_img) && $faculty->faculty_img!="")?SITE_UPLOAD_URL.SITE_FACULTY_IMAGE.$faculty->faculty_img:SITE_NO_IMAGE_PATH;?>" class="rounded" alt=""></div>
 <div class="media-body pd-l-10">
-<h6 class="mg-b-3"><a href="#"><?php echo $faculty->faculty_first_name.$faculty->faculty_last_name ?></a></h6>
+<h6 class="mg-b-3"><a href="#"><?php echo $faculty->faculty_first_name." ".$faculty->faculty_last_name ?></a></h6>
 <span class="d-block tx-13 tx-color-03"><?php echo $faculty->faculty_email?></span>
 </div>
 </div>
 </td>
+<td style="text-align: center;"><?php echo $faculty->role->role_name;?></td>
 <td> <?php if($faculty->faculty_status==1){?>
-    <a href="{{route('facultyStatus',$faculty->faculty_id)}}" onclick="return confirm('Are you sure?')"><span class="badge badge-success">Active</span></a>
+    <a href="<?php echo e(route('technicianStatus',$faculty->faculty_id)); ?>" onclick="return confirm('Are you sure?')"><span class="badge badge-success">Active</span></a>
     <?php }else{?>
-    <a href="{{route('facultyStatus',$faculty->faculty_id)}}" onclick="return confirm('Are you sure?')"><span class="badge badge-danger">Inactive</span></a>
+    <a href="<?php echo e(route('technicianStatus',$faculty->faculty_id)); ?>" onclick="return confirm('Are you sure?')"><span class="badge badge-danger">Inactive</span></a>
     <?php }?></td>
 <td><span class="d-none d-sm-block tx-13 tx-color-03 align-self-start">5 hours ago</span></td>
-<td><?php echo date("d M Y",strtotime($faculty->created_at));?></td>
 <td>
 <div class="d-flex align-self-center justify-content-center">
 <nav class="nav nav-icon-only">
-<a href="{{route('view-technician',$faculty->faculty_id )}}" class="btn btn-info btn-icon mg-r-5" title="View" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
-<a href="{{route('add-new-technician',$faculty->faculty_id )}}" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
-<a href="{{route('facultyDelete',$faculty->faculty_id )}}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
+<a href="<?php echo e(route('view-technician',$faculty->faculty_id )); ?>" class="btn btn-info btn-icon mg-r-5" title="View" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
+<a href="<?php echo e(route('add-new-technician',$faculty->faculty_id )); ?>" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+<a href="<?php echo e(route('technicianDelete',$faculty->faculty_id )); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
 </nav>
 </div>
 </td>
@@ -88,11 +88,12 @@ foreach($resfacultyData as $faculty){?>
 <div class="card-footer d-flex align-items-center justify-content-between" style="align-items: center;">
 
 <span class="text-muted"><?php echo 'Showing '.$resfacultyData->firstItem().' to '.$resfacultyData->lastItem().' of '.$resfacultyData->total().' entries';?></span>
-<ul class="pagination pagination-filled mg-b-0">{{ $resfacultyData->links() }}</ul>
+<ul class="pagination pagination-filled mg-b-0"><?php echo e($resfacultyData->links()); ?></ul>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Csadmin.Layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Csadmin/Technician/index.blade.php ENDPATH**/ ?>

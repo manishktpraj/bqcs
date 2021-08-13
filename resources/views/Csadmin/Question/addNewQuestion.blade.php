@@ -32,20 +32,29 @@
 <input type="text" class="form-control" name="question_name" required="" value="<?php echo isset($rowCategoryData->question_name)?$rowCategoryData->question_name:''?>">
 <span class="tx-color-03" style="font-size: 11px;">This name is appears on your site</span>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
 <label>Question Type:</label>
-<select class="form-control select2" multiple="multiple" name="question_type" id="que_type" >
-<option value="0">Select Question Type</option>
-<option value="1">Text</option>
-<option value="2">Image</option>
-<option value="3">Textarea</option>
-<option value="4">Dropdown</option>
+<select class="form-control" name="question_type" id="que_type" onchange="checkdata(this.value)">
+<option >Select Question Type</option>
+<option value="1" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==1)?"selected":''?>>Text</option>
+<option value="3" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==3)?"selected":''?>>Textarea</option>
+<option value="4" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==4)?"selected":''?>>Dropdown</option>
+<option value="5" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==5)?"selected":''?>>Checkbox</option>
+<option value="6" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==6)?"selected":''?>>Radio</option>
+<option value="2" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==2)?"selected":''?>>Image</option>
+<option value="8" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==8)?"selected":''?>>Multiple Image</option>
+<option value="7" <?php echo (isset($rowCategoryData->question_type) && $rowCategoryData->question_type==7)?"selected":''?>>Add More Same Question</option>
+
 </select>
-</div> 
-<div class="form-group" id="option">
+</div>  -->
+<!-- <div class="form-group">
+<label>Label:</label>
+<input type="text" class="form-control" name="question_label"  value="<?php echo isset($rowCategoryData->question_label)?$rowCategoryData->question_label:''?>">
+</div> -->
+<!-- <div class="form-group" id="option" style="<?php echo (isset($rowCategoryData->question_type) && (in_array($rowCategoryData->question_type,array(4,5,6))))?"selected":'display:none'?>">
 <label>Option:</label>
-<textarea class="form-control" rows="2" name="question_option"><?php echo isset($rowCategoryData->question_name)?$rowCategoryData->question_name:''; ?></textarea>
-</div>
+<textarea class="form-control" rows="2" name="question_option"><?php echo isset($rowCategoryData->question_option)?$rowCategoryData->question_option:''; ?></textarea>
+</div> -->
 </div> 
 <div class="card-footer" style="padding: 0.75rem 1rem;">
 <button type="submit" class="btn btn-lg btn-success btn-block">Save</button>
@@ -58,5 +67,18 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
+    function checkdata(data)
+    {
+            if(data==4 || data==5 || data==6)
+            {
+                $('#option').show();
+            }else{
+                $('#option').hide();
+            
+            }
+
+    }
+</script>   
 @endsection

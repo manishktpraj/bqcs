@@ -64,7 +64,7 @@
 <thead>
 <tr>
 <th scope="col" style="width:50px;">ID</th>
-<th scope="col" style="width:100px;">Date</th>
+<th scope="col" style="width:104px;">Date</th>
 <th scope="col">Customer Details</th>
 <th scope="col">Technician</th>
 <th scope="col">Services</th>
@@ -77,30 +77,42 @@
 <?php if(count($resAppointentData)>0){ 
     $count = 1;
     foreach($resAppointentData as $value){
+        $services = DB::table('cs_services')
+         ->whereIn('role_id',explode(",",$value->ca_service_parent))
+         ->get();
+        $ser = array();
+        foreach($services as $valuee){
+            $ser[] = $valuee->role_name;
+        }
+        $serData = implode(", ",$ser);
     ?>
 <tr>
 <td><?php echo $count++?></td>
-<td><?php echo date("d M Y",strtotime($value->created_at))?></td>
+<td><?php echo date("d M Y",strtotime($value->ca_date))?></td>
 <td>
 <div class="media align-items-center mg-b-0">
 <div class="avatar"><img src="http://192.168.1.38/coachingzon/public/img/500.png" class="rounded" alt="" style="border:1px solid #ddd;"></div>
 <div class="media-body pd-l-10">
 <h6 class="mg-b-3" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: 200px;"><a href=""><?php echo $value->customer->customer_fname?> <?php echo $value->customer->customer_lname?></a></h6>
-<span class="d-block tx-13 tx-color-03" style="display:none">Willetton@#6 Barricade Court, Willetton WA</span>
+<span class="d-block tx-13 tx-color-03"><?php echo $value->customerAddress['customer_address']?></span>
 </div>
 </div> 
 </td>
 <td><span class="tx-13"><?php echo $value->technician->faculty_first_name?> <?php echo $value->technician->faculty_last_name?></span></td>
-<td><span class="tx-13">Flea Pest Control Treatment</span></td>
-<td><span class="tx-13">$250 GST</span></td>
+<td><span class="tx-13"><?php echo $serData?></span></td>
+<td><span class="tx-13">$<?php echo $value->ca_price?> GST</span></td>
 <td>
-<a href="#"><span class="badge badge-success">Active</span></a>
+<?php if($value->ca_status==1){?>
+<a href="<?php echo e(route('statusChangeAppointment',$value->ca_id)); ?>"><span class="badge badge-success">Active</span></a>
+<?php }else{?>
+<a href="<?php echo e(route('statusChangeAppointment',$value->ca_id)); ?>"><span class="badge badge-danger">Inactive</span></a>
+<?php }?>
 </td>
 <td style="width:105px;">
 <div class="d-flex align-self-center justify-content-center">
 <nav class="nav nav-icon-only">
-<a href="#" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
-<a href="#" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
+<a href="#modaladdapponiment" data-toggle="modal" onclick="editAppointment($(this),<?php echo $value->ca_id?>)" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+<a href="<?php echo e(route('deleteAppointment',$value->ca_id)); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
 </nav>
 </div>
 </td>
@@ -120,5 +132,15 @@
 </div>
 </div>
 </div>
+<script>var token = '<?php echo csrf_token(); ?>';</script>
+<script>
+    function editAppointment(obj,id)
+    {
+        var datastring = 'ca_id='+id+'&_token='+token;
+        $.post(base_url+'appointment/editAppointmentAjex',datastring,function(response){
+            $('#editAppointment').html(response);
+        });
+    }
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('Csadmin.Layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Csadmin/Appointment/index.blade.php ENDPATH**/ ?>

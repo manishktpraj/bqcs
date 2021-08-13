@@ -67,8 +67,6 @@
 </ul>
 </li>
 
-
-
 <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Customer' || $title == 'Add New Customer' )?'active show':''; ?>">
 <a href="#" class="nav-link"><i data-feather="users"></i> <span>Customers</span></a>
 <ul>
@@ -77,25 +75,22 @@
 </ul>
 </li>
 
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Services' || $title == 'Add New Service' || $title == 'Question')?'active show':''; ?>">
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Services' || $title == 'Add New Service' || $title == 'Service Question')?'active show':''; ?>">
 <a href="#" class="nav-link"><i data-feather="briefcase"></i> <span>Services</span></a>
 <ul>
-<li class="<?php echo (isset($title) && $title == 'Manage Services' || $title == 'Question')?'active':''; ?>"><a href="{{route('services')}}" >Manage Services</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Service')?'active':''; ?>"><a href="{{route('add-new-service')}}" >Add New Service</a></li>
+<li class="<?php echo (isset($title) && $title == 'Manage Services' || $title == 'Service Question')?'active':''; ?>"><a href="{{route('services')}}" >Manage Services</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Service')?'active':''; ?>"><a href="{{route('add-new-service')}}" >Add New</a></li>
 </ul>
 </li>
 
 
-
-
-
-
-
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Technician' || $title == 'Add New Technician' || $title == 'View Technician'|| $title == 'Permission' || $title == 'Manage Roles' )?'active show':''; ?>">
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Technician' || $title == 'Add New Technician' || $title == 'View Technician'|| $title == 'Permission' || $title == 'Manage Roles' ||  $title='Technician Group')?'active show':''; ?>">
 <a href="#" class="nav-link"><i data-feather="user"></i> <span>Technicians</span></a>
 <ul>
 <li class="<?php echo (isset($title) && $title == 'Manage Technician' || $title == 'View Technician' )?'active':''; ?>"><a href="{{route('technician')}}" >Manage Technician</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="{{route('add-new-technician')}}" >Add New Technician</a></li>
+<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="{{route('add-new-technician')}}" >Add New</a></li>
+<li class="<?php echo (isset($title) && $title == 'Technician Group')?'active':''; ?>"><a href="{{route('technician-group')}}" >Technician Group</a></li>
+
 <li class="<?php echo (isset($title) && $title == 'Manage Roles'|| $title == 'Permission')?'active':''; ?>"><a href="{{route('faculty-role')}}" >Roles</a></li>
 
 </ul>
@@ -170,6 +165,32 @@
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/js-cookie/js.cookie.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/dashforge.settings.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>assets/js/admin.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>var token = '<?php echo csrf_token(); ?>';</script>
+<script>
+    var base_url = '<?php echo ADMIN_URL?>';
+  $(function() {
+    $( "#sortable1").sortable({
+        connectWith: ".connectedSortable", 
+	    update:function(){ 
+		var aryOrderInfo = {'sliderid':[],'ordernum':[],'_token':[]};
+		$('.clsSingleSelectTr').each(function(){
+			
+			var intsliderid =$(this).attr('sliderid');
+			var intOrderNum = parseInt(1)+parseInt($(this).index());
+			aryOrderInfo['sliderid'].push(intsliderid);
+			aryOrderInfo['ordernum'].push(intOrderNum);
+            aryOrderInfo['_token'].push(token);
+		});  
+		$.post(base_url+'question/updateorder',aryOrderInfo,function(response){
+		    
+		    window.location.href=window.location.href;
+		});
+	  }
+    }).disableSelection();
+  });
+  
+  </script>
 <script>
 // Adding placeholder for search input
 (function($) {
@@ -204,6 +225,11 @@ $(function(){
 
 // Basic with search
 $('.select2').select2({
+placeholder: 'Choose one',
+searchInputPlaceholder: 'Search options'
+});
+
+$('.select3').select2({
 placeholder: 'Choose one',
 searchInputPlaceholder: 'Search options'
 });

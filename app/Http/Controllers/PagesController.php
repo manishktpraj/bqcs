@@ -4,71 +4,69 @@ use App\Http\Controllers\Controller;
 use DB;
 use Hash;
 use Session;
-use App\Http\Model\Csdmin;
+use App\Http\Model\CsAdmin;
+use App\Http\Model\CsAppointments;
 use App\Http\Model\CsQuestion;
-
-
-
 use Validator;
-
 
 class PagesController extends Controller
 {
-
     public function job(Request $request)
     {
         if($request->session()->has('ADMIN'))
         {
-        
-        $title='Jobs';
-    return view('Pages.job',compact('title'));
-    }else{
-        return redirect()->route('index');
+            $technicianId = Session::get("ADMIN")->faculty_id;
+            $resAppointmentsData = CsAppointments::where('ca_technician_id',$technicianId)->orderBy('ca_id','DESC')->get();
+            $title='Bookings';
+            return view('Pages.job',compact('title','resAppointmentsData'));
+        }else{
+            return redirect()->route('index');
+        }
     }
 
-}
-
-public function calendar(Request $request)
-{
-    if($request->session()->has('ADMIN'))
+    public function calendar(Request $request)
     {
-    
-    $title='Calendar';
-return view('Pages.calendar',compact('title'));
-}else{
-    return redirect()->route('index');
-}
-
-}
-
-    
-    public function jobque(Request $request)
-    {
-
         if($request->session()->has('ADMIN'))
         {
-          //  $resQuestionData = CsQuestion::get();  
-        $resQuestionData = CsQuestion::where('service_id',7)->get(); 
+            $title='Calendar';
+            return view('Pages.calendar',compact('title'));
+        }else{
+            return redirect()->route('index');
+        }
+    }
 
-       // $resQuestionData =CsQuestion::where('service_id','=',8)->get();
+    public function jobque($id)
+    {
 
-//print_r($resQuestionData);
+        if(session()->has('ADMIN'))
+        {
+            $technicianId = Session::get("ADMIN")->faculty_id;
+            $rowAppointmentsData = CsAppointments::where('ca_id',$id)->first();
+            $resQuestionData = CsQuestion::where('service_id',7)->get(); 
 
-        $title='Job Question';
-    return view('Pages.jobque',compact('title','resQuestionData'));
-    }else{
-        return redirect()->route('index');
-    }}
+            $services = DB::table('cs_services')
+            ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
+            ->get();
+            $resQuestionDataa = DB::table('cs_question')
+            ->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
+            ->get();
 
+
+            $title='Booking ID: '.$rowAppointmentsData->ca_id;
+            return view('Pages.jobque',compact('title','resQuestionData','rowAppointmentsData','resQuestionDataa','services'));
+        }else{
+            return redirect()->route('index');
+        }
+    }
 
     public function profile(Request $request)
     {
         if($request->session()->has('ADMIN'))
         {
-        $title='Profile';
-    return view('Pages.profile',compact('title'));
-    }else{
-        return redirect()->route('index');
-    }}
-
+            $title='Profile';
+            return view('Pages.profile',compact('title'));
+        }else{
+            return redirect()->route('index');
+        }
+    }
 }

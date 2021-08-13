@@ -43,7 +43,7 @@
 
 </tr>
 </thead>
-<tbody>
+<tbody id="sortable1" class="connectedSortable ui-sortable">
   <?php 
   if(count($questionData)>0){
   $i=1;
@@ -51,22 +51,19 @@
 
        //  $rowPermissionChecked = $rowPermission->where('rp_permission_id', $question->question_id)->first(); 
      ?>
-<tr>
+<tr class="clsSingleSelectTr ui-sortable-handle" sliderid="<?php echo e($question->question_id); ?>" sliderorder="<?php echo e($i); ?>">
        <td><?php echo $i++; ?></td>
 	  <td><?php echo $question->question_name;?></td>
        <td>
 <div class="d-flex align-self-center justify-content-center">
 <nav class="nav nav-icon-only">
+<!-- <a href="<?php echo e(route('childquestion',$question->question_id )); ?>" class="btn btn-info btn-icon mg-r-5" title="View" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a> -->
 <a href="<?php echo e(route('add-new-question',[$faculty_role->role_id,$question->question_id] )); ?>" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
-<a href="<?php echo e(route('deleteQuestion',[$faculty_role->role_id,$question->question_id])); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
+<!-- <a href="<?php echo e(route('deleteQuestion',[$faculty_role->role_id,$question->question_id])); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a> -->
 </nav>
 </div>
 </td>
 
-	  <!-- <td><input type="checkbox" <?php //if(isset($rowPermissionChecked->rp_entry_status) && $rowPermissionChecked->rp_entry_status==1) { echo 'checked'; } ?> name="permission[<?php //echo $permission->permission_id; ?>][]" value="1"></td>
-      <td><input type="checkbox" <?php // if(isset($rowPermissionChecked->rp_delete_status) && $rowPermissionChecked->rp_delete_status==1) { echo 'checked'; } ?> name="permission[<?php //echo $permission->permission_id; ?>][]" value="2"></td>
-      <td><input type="checkbox" <?php//if(isset($rowPermissionChecked->rp_view_status) && $rowPermissionChecked->rp_view_status==1) { echo 'checked'; } ?> name="permission[<?php // echo $permission->permission_id; ?>][]" value="3"></td>
-    </tr> -->
 <?php  }}else{ ?>
 
      <tr><td colspan="7" class="text-center">No Record Found</td></tr>

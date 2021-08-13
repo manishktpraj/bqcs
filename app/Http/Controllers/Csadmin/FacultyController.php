@@ -301,9 +301,7 @@ $resroleData = CsFacultyRole::where('role_name', 'LIKE', "%{$strFilterKeyword}%"
     public function permissionProccess(Request $request)
     {
         $aryPostData = $request->all();
-        //   print_r($aryPostData);die;;
-        
-    
+   
         $id=$aryPostData['rp_role_id'];
 
         CsRolePermissions::where('rp_role_id', $id)->delete();

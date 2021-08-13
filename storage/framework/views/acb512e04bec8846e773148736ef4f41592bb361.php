@@ -1,5 +1,5 @@
-@extends('Csadmin.Layout.app')
-@section ('content')
+
+<?php $__env->startSection('content'); ?>
 <?php //print_r($strCategory); echo "shikha";?>
 <div class="content-body">
 <div class="container pd-x-0">
@@ -14,8 +14,8 @@
 <h4 class="mg-b-0 tx-spacing--1">Add New Technician</h4>
 </div>
 </div>
-<form method="post" action="{{route('facultyProccess')}}" enctype="multipart/form-data">
-@csrf
+<form method="post" action="<?php echo e(route('technicianProccess')); ?>" enctype="multipart/form-data">
+<?php echo csrf_field(); ?>
 <input type="hidden" name="faculty_id" value="<?php echo isset($resfacultyData->faculty_id)?$resfacultyData->faculty_id:''?>">
 <div class="row row-xs">
 <div class="col-lg-8">
@@ -134,4 +134,5 @@
     CKEDITOR.config.allowedContent = true;
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Csadmin.Layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Csadmin/Technician/addNewTechnician.blade.php ENDPATH**/ ?>
