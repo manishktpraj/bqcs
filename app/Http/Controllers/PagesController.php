@@ -7,7 +7,9 @@ use Session;
 use App\Http\Model\CsAdmin;
 use App\Http\Model\CsAppointments;
 use App\Http\Model\CsQuestion;
+use App\Http\Model\CsQusAns;
 use Validator;
+use PDF;
 
 class PagesController extends Controller
 {
@@ -43,21 +45,72 @@ class PagesController extends Controller
             $technicianId = Session::get("ADMIN")->faculty_id;
             $rowAppointmentsData = CsAppointments::where('ca_id',$id)->first();
             $resQuestionData = CsQuestion::where('service_id',7)->get(); 
-
+            $resQuestionData = CsQusAns::get(); 
             $services = DB::table('cs_services')
             ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
             ->get();
             $resQuestionDataa = DB::table('cs_question')
             ->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
             ->get();
-
-
             $title='Booking ID: '.$rowAppointmentsData->ca_id;
-            return view('Pages.jobque',compact('title','resQuestionData','rowAppointmentsData','resQuestionDataa','services'));
+            return view('Pages.jobque',compact('title','resQuestionData','rowAppointmentsData','resQuestionDataa','services','resQuestionData'));
         }else{
             return redirect()->route('index');
         }
     }
+
+    function questionsSubmitRequest(Request $request)
+    {
+        $aryPostData = $request->all();
+         if ($request->isMethod('post')) 
+        {
+            CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->delete();
+            foreach($aryPostData['qa_value'] as $key=>$label)
+            {
+                if(!empty($label))
+                {
+                    
+                    foreach($label as $keyee=>$labele){
+
+                        foreach($labele as $keyeee=>$labelee){
+                         $postobj = new CsQusAns;
+                        $postobj->qa_question_id = str_replace('__','',str_replace('_','',$key));
+                        $postobj->qa_type = $keyee;
+                        $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
+                        $postobj->qa_value = $labelee;
+                        $postobj->save();
+                        }
+                    }
+                }
+            }
+          ////  echo '<pre>'; print_r($aryPostData);die;
+
+            return redirect()->back()->with('status', 'Entry Saved Successfully.');
+        }else{
+            return redirect()->back()->with('error', 'Server Not Responed');
+        }
+    }
+
+    public function uploadfiles(Request $request)
+    {
+        $aryResponse =array();
+       /*  echo "<pre>";
+        print_r($request->all());die; */
+        if($request->hasFile('qa_image_'))
+        {
+            $image = $request->file('qa_image_');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = SITE_UPLOAD_PATH.SITE_QUESTIONS_IMAGE_PATH;
+            $image->move($destinationPath, $filename);
+            $strData = SITE_UPLOAD_URL.SITE_QUESTIONS_IMAGE_PATH.$filename;
+            $aryResponse['message']='ok';
+            $aryResponse['notification']='Image Upload Successfully';
+            $aryResponse['url']	 = $strData;
+            $aryResponse['name'] = $filename;
+        } 
+        echo json_encode($aryResponse);
+        exit();
+    }    
 
     public function profile(Request $request)
     {
@@ -69,4 +122,22 @@ class PagesController extends Controller
             return redirect()->route('index');
         }
     }
+
+    public function createPDF($id) {
+        // retreive all records from db
+        $data = CsAppointments::where('ca_id',$id)->first();
+        $resQuestionDataa = DB::table('cs_question')
+            ->whereIn('service_id',explode(",",$data->ca_service))
+            ->get();
+            $resQuestionData = CsQusAns::get(); 
+           //// return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
+        // share data to view
+        $data['data'] = $data;
+        $data['resQuestionDataa'] = $resQuestionDataa;
+        $data['resQuestionData'] = $resQuestionData;
+        view()->share('pages.pdf_html',$data);
+      $pdf = PDF::loadView('pdf.pdf_view', $data);
+        // download PDF file with download method
+     return $pdf->download('pdf_file.pdf');
+      }
 }

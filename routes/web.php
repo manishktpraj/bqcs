@@ -25,9 +25,11 @@ Route::any('/dash-board', 'DashboardController@index')->name('dash-board');
 Route::any('/job', 'PagesController@job')->name('job');
 Route::any('/job-question', 'PagesController@jobque')->name('job-question');
 Route::any('/job-question/{id}', 'PagesController@jobque')->name('job-question-new');
-
+Route::any('/questionsSubmitRequest', 'PagesController@questionsSubmitRequest')->name('questionsSubmitRequest');
+Route::any('/uploadfiles', 'PagesController@uploadfiles')->name('uploadfiles');
 Route::any('/calendar', 'PagesController@calendar')->name('calendar');
 Route::any('/profile', 'PagesController@profile')->name('profile');
+Route::any('/createPDF/{id}', 'PagesController@createPDF')->name('createPDF');
 
 
 /*************************** login logout***************************/

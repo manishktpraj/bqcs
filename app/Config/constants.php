@@ -21,7 +21,13 @@ define('SITE_ASSETS_URL',SITE_URL.'public/assets/');
 define('SITE_UPLOAD_URL',SITE_URL.'public/img/uploads/');
 define('SITE_UPLOAD_PATH',SITE_PATH.'public/img/uploads/');
 define('SITE_NO_IMAGE_PATH',SITE_URL.'public/img/500.png');
+
+/* define('SITE_MPDF57',SITE_URL.'public/MPDF57/vendor/autoload.php');
+define('SITE_UPLOAD_REPORT_PATH',SITE_PATH.'public/pdf/');
+define('SITE_UPLOAD_REPORT_URL',SITE_URL.'public/pdf/'); */
+
 define('SITE_THEME_IMAGE','theme_images/');
+define('SITE_QUESTIONS_IMAGE_PATH','questions_images/');
 define('SITE_FACULTY_IMAGE','faculty_images/');
 define('CHAT_URL',SITE_URL.'chat/');
 define('SITE_SLIDER_IMAGE','slider_images/');
