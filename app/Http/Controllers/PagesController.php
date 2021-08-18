@@ -44,7 +44,6 @@ class PagesController extends Controller
         {
             $technicianId = Session::get("ADMIN")->faculty_id;
             $rowAppointmentsData = CsAppointments::where('ca_id',$id)->first();
-            $resQuestionData = CsQuestion::where('service_id',7)->get(); 
             $resQuestionData = CsQusAns::get(); 
             $services = DB::table('cs_services')
             ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
@@ -52,8 +51,11 @@ class PagesController extends Controller
             $resQuestionDataa = DB::table('cs_question')
             ->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
             ->get();
-            $title='Booking ID: '.$rowAppointmentsData->ca_id;
-            return view('Pages.jobque',compact('title','resQuestionData','rowAppointmentsData','resQuestionDataa','services','resQuestionData'));
+
+            $title=$rowAppointmentsData->customerAddress->customer_address;
+
+          //  $title='Booking ID: '.$rowAppointmentsData->ca_id;
+            return view('Pages.jobque',compact('title','technicianId','resQuestionData','rowAppointmentsData','resQuestionDataa','services','resQuestionData','id'));
         }else{
             return redirect()->route('index');
         }
@@ -62,6 +64,7 @@ class PagesController extends Controller
     function questionsSubmitRequest(Request $request)
     {
         $aryPostData = $request->all();
+        $technicianId = Session::get("ADMIN")->faculty_id;
          if ($request->isMethod('post')) 
         {
             CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->delete();
@@ -73,19 +76,21 @@ class PagesController extends Controller
                     foreach($label as $keyee=>$labele){
 
                         foreach($labele as $keyeee=>$labelee){
-                         $postobj = new CsQusAns;
+                        $postobj = new CsQusAns;
                         $postobj->qa_question_id = str_replace('__','',str_replace('_','',$key));
                         $postobj->qa_type = $keyee;
                         $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
                         $postobj->qa_value = $labelee;
+                        $postobj->qa_tech_id = $technicianId;
                         $postobj->save();
                         }
                     }
                 }
             }
-          ////  echo '<pre>'; print_r($aryPostData);die;
+            CsAppointments::where(array('ca_id' => $aryPostData['qa_ca_id']))->update(  array('ca_report_submit' => 1));
+          //  echo '<pre>'; print_r($aryPostData);die;
 
-            return redirect()->back()->with('status', 'Entry Saved Successfully.');
+            return redirect(route('job'))->with('status', 'Entry Saved Successfully.');
         }else{
             return redirect()->back()->with('error', 'Server Not Responed');
         }
@@ -125,11 +130,12 @@ class PagesController extends Controller
 
     public function createPDF($id) {
         // retreive all records from db
+        
         $data = CsAppointments::where('ca_id',$id)->first();
         $resQuestionDataa = DB::table('cs_question')
             ->whereIn('service_id',explode(",",$data->ca_service))
             ->get();
-            $resQuestionData = CsQusAns::get(); 
+        $resQuestionData = CsQusAns::get(); 
            //// return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
         // share data to view
         $data['data'] = $data;

@@ -67,7 +67,7 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
                                 <select class="custom-select" name="ca_technician_id">
                                     <option value="" selected="selected">Select Technician</option>
                                     <?php foreach($resTechnicianData as $value){?>
-                                        <option value="<?php echo $value->faculty_id?>"><?php echo $value->faculty_first_name?> <?php echo $value->faculty_last_name?></option>
+                                        <option value="<?php echo $value->faculty_id?>"><?php echo $value->faculty_first_name." ".$value->faculty_last_name?></option>
                                     <?php }?>
                                 </select>
                             </div>

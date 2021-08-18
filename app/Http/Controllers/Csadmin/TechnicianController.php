@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Csadmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
+use DB; 
 use Hash;
 use Session;
 use App\Http\Model\Csdmin;
@@ -186,11 +186,154 @@ Technician Section
 /*************************************************************************
 Role Section
  ***************************************************************************/
+public function techrole(Request $request, $intid=0){
 
+    /***********************Reset Filter Session ************/
+    if($request->get('reset')==1)
+    {
+    Session::forget('FILTER_ROLE');
+    return redirect()->route('faculty-role');   
+    }
+    /***********************Reset Filter Session ************/
+    
+    /***********************Bulk Action ************/
+    $aryPostData = $request->all();
+    //print_r($aryPostData);
+    if(isset($aryPostData['bulkvalue']) && $aryPostData['bulkvalue']!=''):
+      $aryPostData =$_POST;
+     $aryIds = explode(',',$aryPostData['bulkvalue']);
+    $intBulkAction = $aryPostData['bulkaction'];
+    
+    if($intBulkAction==1)
+    {
+        CsFacultyRole::whereIn('role_id', $aryIds)->delete();
+        return redirect()->route('faculty-role')->with('status', 'Entry Deleted Successfully');
+    }
+    if($intBulkAction==2)
+    {
+        CsFacultyRole::whereIn('role_id', $aryIds)->update(['role_status' => 1]);
+        return redirect()->route('faculty-role')->with('status', 'Entry Updated Successfully');
+    }
+    if($intBulkAction==3)
+    {
+        CsFacultyRole::whereIn('role_id',$aryIds)->update(['role_status' => 0]);
+        return redirect()->route('faculty-role')->with('status', 'Entry Updated Successfully');
+    }
+    endIf;
+    /***********************Bulk Action ************/
+    
+    
+       /***********************Apply Condition ************/
+    
+       if($request->get('filter_keyword')!='')
+       {
+    
+       Session::put('FILTER_ROLE', $request->get('filter_keyword'));
+       Session::save(); 
+    
+    
+       }
+       /***********************Apply Condition ************/
+    
+    if(session()->has('FILTER_ROLE')){
+    $strFilterKeyword = Session::get('FILTER_ROLE');
+    $resroleData = CsFacultyRole::where('role_name', 'LIKE', "%{$strFilterKeyword}%")->paginate(20);
+    }else{
+        $resroleData = CsFacultyRole::paginate(20);
+    }    
+        $resfacroleData ='';
+        if($intid>0){
+            $resfacroleData = CsFacultyRole::where('role_id','=',$intid)->first();
+        }
+    //print_r($resroleData);die;
+    
+    
+      $title='Manage Roles';
+      return view('Csadmin.Technician.techrole' ,compact('title','resroleData','resfacroleData'));
+      }
+      
+      public function roleproccess(Request $request){
+        
+        $user=Session::get("CS_ADMIN");
+        $aryPostData = $request->all();
+        if(isset($aryPostData['role_id']) && $aryPostData['role_id']>0)
+        {
+            $postobj = CsFacultyRole::where('role_id',$aryPostData['role_id'])->first();
+        }else{
+            $postobj = new CsFacultyRole;
+        }   
+        $postobj->role_ins_id = $user->user_id;
+        $postobj->role_status = 1;
+        $postobj->role_name = $aryPostData['role_name'];
+        
+        if($postobj->save())    
+            {
+                return redirect()->route('technician-role')->with('status', 'Entry Saved Successfully.');   
+            }else{
+                return redirect()->route('technician-role')->with('error', 'Server Not Responed');
+            }
+        
+        }
+    
+        public function roleStatus($intCategoryId)
+        {
+            $rowCategoryData = CsFacultyRole::where('role_id',$intCategoryId)->first();
+           // print_r($rowCategoryData);die;
+            if($rowCategoryData->role_status==1){
+                $status = 0;
+            }else{
+                $status = 1;
+            }
+            CsFacultyRole::where('role_id', $intCategoryId)->update(array('role_status' => $status));
+            return redirect()->route('technician-role')->with('status', 'Entry Edited Successfully');
+        }
+     
+        public function techpermission($intCategoryId)
+    {
 
+     $permissionData=   CsPermission::get();
+     $rowPermission=   CsRolePermissions::where('rp_role_id', $intCategoryId)->get();
 
-
-
+        $title='Permission';
+    return view('Csadmin.Technician.techpermission' ,compact('title','permissionData','intCategoryId','rowPermission'));
+    }
+        
+ 
+public function permissionProccess(Request $request)
+{
+    $aryPostData = $request->all();
+    $id=$aryPostData['rp_role_id'];
+    CsRolePermissions::where('rp_role_id', $id)->delete();
+    foreach($aryPostData['permission'] as $key=>$label)
+    {
+       $postobj = new CsRolePermissions;
+       $postobj->rp_role_id=$id;
+       $postobj->rp_permission_id =$key;
+       $postobj->rp_edit_status =0;
+       $postobj->rp_aprrove_status =0;
+  
+  if(in_array(1,$label))
+  {
+   $postobj->rp_entry_status =1;
+  }else{
+      $postobj->rp_entry_status =0;
+  }
+  if(in_array(2,$label))
+  {
+   $postobj->rp_delete_status =1;
+  }else{
+      $postobj->rp_delete_status =0;
+  }
+  if(in_array(3,$label))
+  {
+   $postobj->rp_view_status =1;
+  }else{
+      $postobj->rp_view_status =0;
+  }
+  $postobj->save();
+  }
+  return redirect()->route('technician-role')->with('status', 'Entry Saved Successfully.');   
+}
 
 
 

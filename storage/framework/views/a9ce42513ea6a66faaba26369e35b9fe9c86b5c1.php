@@ -6,7 +6,7 @@
 <div>
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-<li class="breadcrumb-item"><a href="#">Faculty</a></li>
+<li class="breadcrumb-item"><a href="#">Services</a></li>
 <li class="breadcrumb-item active" aria-current="page">Manage Question</li>
 </ol>
 </nav>

@@ -6278,6 +6278,9 @@ margin-bottom:0px;
 .mr-5{
 margin-right:5px;
 }
+.mr-10{
+margin-right:10px;
+}
 .tx-13{
 font-size:13px !Important;
 }
@@ -6587,8 +6590,20 @@ color: #4F5050;
 	border-radius: 50%;
 	background: white;
 }
-
-
+/*======================================*/
+.booking-details{
+	width:100%;
+	position:relative;
+}
+.booking-details ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.booking-details ul li{
+	display:flex;
+	align-items:center;
+}
 
 
 

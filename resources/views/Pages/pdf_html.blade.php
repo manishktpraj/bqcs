@@ -1,3 +1,4 @@
+<?php $technicianId = Session::get("ADMIN")->faculty_id;?>
 <style>
 th{padding:10px;background: #f5f5f5;border: 1px solid #ddd;width:50%;font-family: 'Open Sans', sans-serif;}
 td{padding:10px;border: 1px solid #ddd;width:50%;font-family: 'Open Sans', sans-serif;}
@@ -37,7 +38,7 @@ foreach($resQuestionDataa as $value)
     <?php if($value->question_id==11)
     {
         
-        $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         
         ?>
 
@@ -86,7 +87,7 @@ foreach($resQuestionDataa as $value)
 
 <?php 
         
-        $quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type',1);
+        $quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_type',1);
         
         ?>
 
@@ -101,7 +102,7 @@ foreach($resQuestionDataa as $value)
 <?php } ?>
 <?php }
 
-$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type',3);
+$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 ?>
 <br>
 <div class="imgboxlist">
@@ -110,8 +111,6 @@ $quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->wher
                             <li><a href="#">
                                 <div class="imgbox">
                                     <img src="<?php echo $img_name->qa_value;?>"  style="width:200px;height:200px">
-
-                              <!--- 3 for image --->
                                  </div>
                             </a>
                         </li>

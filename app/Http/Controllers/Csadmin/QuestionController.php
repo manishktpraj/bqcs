@@ -91,9 +91,9 @@ if(isset($label->children) && $intLevel!=2)
    return $strHtml;
        exit();
   }
-   
+    
  /**************************************************************************************************************************************************************************/ 
- 
+  
  public function addNewQuestion($service_id,$intfacultyId=0)
   {
    
@@ -104,7 +104,7 @@ if(isset($label->children) && $intLevel!=2)
         $rowCategoryData = CsQuestion::where('question_id',$intfacultyId)->first();
      } 
 
-    $title='Question';
+    $title='Add New Service Question';
     return view('Csadmin.Question.addNewQuestion' ,compact('title','service_id','rowCategoryData'));
   }
 

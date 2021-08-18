@@ -20,7 +20,14 @@
             <div class="flex-class"><span  class="tx-16 mr-5"><ion-icon name="calendar-clear-outline"></ion-icon></span> <span  class="tx-13"><?php echo e(date("d M",strtotime($value->ca_date))); ?>, <?php echo e(date("D",strtotime($value->ca_date))); ?> <?php echo e($value->ca_time); ?>-<?php echo e($value->ca_end_time); ?></span></div>
             <div class="mt-2">
                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
+                <?php if($value->ca_report_submit==1)
+                {?>
+                <a href="<?php echo e(route('createPDF',$value->ca_id)); ?>" class="btn btn-secondary btn-sm me-1">Report</a>
+                <a href="<?php echo e(route('job-question-new',$value->ca_id)); ?>" class="btn btn-secondary btn-sm me-1">Edit Inspection</a>
+               <?php  }else{ ?>
                 <a href="<?php echo e(route('job-question-new',$value->ca_id)); ?>" class="btn btn-secondary btn-sm me-1">Start Inspection</a>
+               <?php } ?>
+                 
             </div>
         </div>
     </div>
@@ -33,29 +40,14 @@
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h5 class="modal-title">Add Comment</h5>
+<h5 class="modal-title">Booking (Id: 456)</h5>
 <a href="#" id="ModalCommentdismiss" data-bs-dismiss="modal">Close</a>
 </div>
 <div class="modal-body">
-<div class="login-form">
-<div class="section mt-4 mb-5">
-<form action="javascript:void(0)" method="post" id="commentBox">
-<div class="form-group boxed">
-<div class="input-wrapper">
-<textarea   rows="5" class="form-control" name="comment" id="commentId"></textarea>
-<input type="hidden" name="rowId" value="" id="rowId">
-<input type="hidden" name="sq_stage_id" value="" id="sq_stage_id">
-<input type="hidden" name="sq_question_id" value="" id="sq_question_id">
-<i class="clear-input">
-<ion-icon name="close-circle"></ion-icon>
-</i>
-</div>
-</div>
-<div class="mt-2">
-<button type="button" class="btn btn-success  btn-block btn-lg">Submit</button>
-</div>
-</form>
-</div>
+<div class="booking-details">
+<ul>
+<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
+</ul>
 </div>
 </div>
 </div>

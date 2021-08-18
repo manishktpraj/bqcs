@@ -276,7 +276,7 @@ if(isset($label->children) && $intLevel!=2)
                             <div class="d-flex align-self-center justify-content-center">
                             <nav class="nav nav-icon-only">
                             <a href="'.route('question',$label['role_id']).'"  class="btn btn-info btn-icon mg-r-5" title="Questions" style="padding:0px 5px;"><i class="fas fa-copy" style="font-size:11px;"></i></a>
-                            <a href="'.route('add-new-service',$label['role_id']).'" onclick="return confirm(\'Are you sure?\')" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+                           <a href="'.route('add-new-service',$label['role_id']).'" onclick="return confirm(\'Are you sure?\')" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
                         </nav>
                             </div>
                         </td></tr>';}

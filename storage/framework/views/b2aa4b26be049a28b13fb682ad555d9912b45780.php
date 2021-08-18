@@ -1,6 +1,4 @@
-<?php 
-//print_r($resthemeData);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +26,10 @@
 <i data-feather="x"></i>
 </a>
 </div>
+<?php 
+echo $title;
+//print_r($resthemeData);
+?>
 <div class="aside-body">
 <div class="aside-loggedin">
 <div class="d-flex align-items-center justify-content-start">
@@ -54,73 +56,65 @@
 </div>
 </div><!-- aside-loggedin -->
 <ul class="nav nav-aside">
-
+<!------------------------->
 <li class="nav-item <?php echo (isset($title) && $title == 'Dashboard')?'active':''; ?>"><a href="<?php echo e(route('dashboard')); ?>" class="nav-link"><i data-feather="airplay"></i> <span>Dashboard</span></a></li>
-
+<!------------------------->
 
 <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Appointment' || $title == 'Add New Appointment' || $title == 'Calender' )?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="calendar"></i> <span>Appointment</span></a>
-<ul>
-<li class="<?php echo (isset($title) && $title == 'Manage Appointment' || $title == 'View Appointment' )?'active':''; ?>"><a href="<?php echo e(route('manageappointment')); ?>" >Manage Appointment</a></li>
-<li class="<?php echo (isset($title) && $title == 'Calender')?'active':''; ?>"><a href="<?php echo e(route('calender')); ?>" >Calendar</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Appointment')?'active':''; ?>"><a href="#modaladdapponiment" data-toggle="modal" >Add New</a></li>
-</ul>
+	<a href="#" class="nav-link"><i data-feather="calendar"></i> <span>Appointment</span></a>
+	<ul>
+		<li class="<?php echo (isset($title) && $title == 'Manage Appointment' || $title == 'View Appointment' )?'active':''; ?>"><a href="<?php echo e(route('manageappointment')); ?>" >Manage Appointment</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Calender')?'active':''; ?>"><a href="<?php echo e(route('calender')); ?>" >Calendar</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Add New Appointment')?'active':''; ?>"><a href="#modaladdapponiment" data-toggle="modal" >Add New</a></li>
+	</ul>
 </li>
+<!------------------------->
 
 <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Customer' || $title == 'Add New Customer' )?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="users"></i> <span>Customers</span></a>
-<ul>
-<li class="<?php echo (isset($title) && $title == 'Manage Customer')?'active':''; ?>"><a href="<?php echo e(route('managecustomer')); ?>" >Manage Customers</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Customer')?'active':''; ?>"><a href="#modaladdcustomers" data-toggle="modal" >Add New</a></li>
-</ul>
+	<a href="#" class="nav-link"><i data-feather="users"></i> <span>Customers</span></a>
+	<ul>
+		<li class="<?php echo (isset($title) && $title == 'Manage Customer')?'active':''; ?>"><a href="<?php echo e(route('managecustomer')); ?>" >Manage Customers</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Add New Customer')?'active':''; ?>"><a href="#modaladdcustomers" data-toggle="modal" >Add New</a></li>
+	</ul>
+</li> 
+<!------------------------->
+
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Services' || $title == 'Add New Service' || $title == 'Question' || $title == 'Add New Service Question')?'active show':''; ?>">
+	<a href="#" class="nav-link"><i data-feather="briefcase"></i> <span>Services</span></a>
+	<ul>
+		<li class="<?php echo (isset($title) && $title == 'Manage Services' || $title == 'Question' || $title == 'Add New Service Question' )?'active':''; ?>"><a href="<?php echo e(route('services')); ?>" >Manage Services</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Add New Service')?'active':''; ?>"><a href="<?php echo e(route('add-new-service')); ?>" >Add New</a></li>
+	</ul>
+</li>
+<!------------------------->
+
+<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Technician' || $title == 'Add New Technician'  || $title == 'View Technician' || $title=='Technician Group' || $title == 'Manage Roles' || $title == 'Permission')?'active show':''; ?>">
+	<a href="#" class="nav-link"><i data-feather="briefcase"></i> <span>Technician</span></a>
+	<ul>
+		<li class="<?php echo (isset($title) && $title == 'Manage Technician'  || $title == 'View Technician')?'active':''; ?>"><a href="<?php echo e(route('technician')); ?>" >Manage Technician</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="<?php echo e(route('add-new-technician')); ?>" >Add New Technician</a></li>
+		<li class="<?php echo (isset($title) && $title=='Technician Group')?'active':''; ?>"><a href="<?php echo e(route('technician-group')); ?>" >Technician Group</a></li>
+		<li class="<?php echo (isset($title) && $title == 'Manage Roles'|| $title == 'Permission')?'active':''; ?>"><a href="<?php echo e(route('technician-role')); ?>" >Roles</a></li>
+	</ul>
 </li>
 
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Services' || $title == 'Add New Service' || $title == 'Service Question')?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="briefcase"></i> <span>Services</span></a>
-<ul>
-<li class="<?php echo (isset($title) && $title == 'Manage Services' || $title == 'Service Question')?'active':''; ?>"><a href="<?php echo e(route('services')); ?>" >Manage Services</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Service')?'active':''; ?>"><a href="<?php echo e(route('add-new-service')); ?>" >Add New</a></li>
-</ul>
-</li>
 
-
-<li class="nav-item with-sub <?php echo (isset($title) && $title == 'Manage Technician' || $title == 'Add New Technician' || $title == 'View Technician'|| $title == 'Permission' || $title == 'Manage Roles' ||  $title='Technician Group')?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="user"></i> <span>Technicians</span></a>
-<ul>
-<li class="<?php echo (isset($title) && $title == 'Manage Technician' || $title == 'View Technician' )?'active':''; ?>"><a href="<?php echo e(route('technician')); ?>" >Manage Technician</a></li>
-<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="<?php echo e(route('add-new-technician')); ?>" >Add New</a></li>
-<li class="<?php echo (isset($title) && $title == 'Technician Group')?'active':''; ?>"><a href="<?php echo e(route('technician-group')); ?>" >Technician Group</a></li>
-
-<li class="<?php echo (isset($title) && $title == 'Manage Roles'|| $title == 'Permission')?'active':''; ?>"><a href="<?php echo e(route('faculty-role')); ?>" >Roles</a></li>
-
-</ul>
-</li>
-
-
-
-
-<!-- <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Slider' )?'active show':''; ?>">
-<a href="#" class="nav-link"><i data-feather="gift"></i> <span>Appearance</span></a>
-<ul>
-<li class="<?php echo (isset($title) && $title == 'Slider')?'active':''; ?>"><a href="<?php echo e(route('slider')); ?>" >Slider</a></li>
-</ul>
-</li> -->
+<!------------------------->
 
 <li class="nav-item with-sub <?php echo (isset($title) && $title == 'Settings' || $title == 'Account Setting')?'active show':''; ?>">
-<a href="" class="nav-link"><i data-feather="settings"></i> <span>Settings</span></a>
-<ul>
-<?php if($user_role==0){?>
-<li class="<?php echo (isset($title) && $title == 'Settings')?'active':''; ?>"><a href="<?php echo e(route('store-setting')); ?>">Store Setting</a></li>
-<?php } ?>
-<li class="<?php echo (isset($title) && $title == 'Account Setting')?'active':''; ?>"><a href="<?php echo e(route('account-setting')); ?>">Account Setting</a></li>
-</ul>
+	<a href="" class="nav-link"><i data-feather="settings"></i> <span>Settings</span></a>
+	<ul>
+		<?php if($user_role==0){?>
+		<li class="<?php echo (isset($title) && $title == 'Settings')?'active':''; ?>"><a href="<?php echo e(route('store-setting')); ?>">Store Setting</a></li>
+		<?php } ?>
+		<li class="<?php echo (isset($title) && $title == 'Account Setting')?'active':''; ?>"><a href="<?php echo e(route('account-setting')); ?>">Account Setting</a></li>
+	</ul>
 </li>
-
+<!------------------------->
 
 </ul>
 </div>
 </aside>
-
 <div class="content ht-100v pd-0">
 <div class="content-header">
 <nav class="nav">
@@ -134,16 +128,11 @@
 <a href="<?php echo e(route('adminLogout')); ?>" onclick="return confirm('Are you sure you want to logout?') "data-toggle="tooltip" title="Sign out"><i data-feather="log-out"></i></a>-->
 </div>
 </nav>
-</div><!-- content-header -->
+</div>
 <?php echo $__env->yieldContent('content'); ?>
 </div>
-
 <?php echo $__env->make('Csadmin.appointmentmodal',['resCustomerData'=>$resCustomerData,'resParentServicesData'=>$resParentServicesData,'resTechnicianData'=>$resTechnicianData], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('Csadmin.customermodal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-
-
-
 <script src="https://cdn.ckeditor.com/4.12.1/full-all/ckeditor.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/jquery/jquery.min.js"></script>
 <script src="<?php echo ADMIN_ASSETS_URL?>lib/bootstrap/js/bootstrap.bundle.min.js"></script>

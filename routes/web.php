@@ -63,7 +63,7 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/notification', 'DashboardController@notification')->name('notification');
         Route::any('/logout', 'LoginController@logout')->name('adminLogout');
         
-       
+        
       /******Technician Section*******/
         Route::any('/technician', 'TechnicianController@index')->name('technician');
         Route::any('/add-new-technician/{id?}', 'TechnicianController@addNewTechnician')->name('add-new-technician');
@@ -72,15 +72,11 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/technicianStatus/{id}', 'TechnicianController@technicianStatus')->name('technicianStatus');
         Route::any('/technicianProccess', 'TechnicianController@technicianProccess')->name('technicianProccess');
         Route::any('/technician-group', 'TechnicianController@techniciangroup')->name('technician-group');
-
-
-
-
-        Route::any('/faculty-role/{id?}', 'FacultyController@facultyrole')->name('faculty-role');
-
-        Route::any('/roleStatus/{id}', 'ServicesController@roleStatus')->name('roleStatus');
-        Route::any('/permission/{id}', 'ServicesController@facultypermission')->name('permission');
-        Route::any('/permissionProccess', 'ServicesController@permissionProccess')->name('permissionProccess');
+        Route::any('/technician-role/{id?}', 'TechnicianController@techrole')->name('technician-role');
+        Route::any('/roleproccess', 'TechnicianController@roleproccess')->name('roleproccess');
+        Route::any('/roleStatus/{id}', 'TechnicianController@roleStatus')->name('roleStatus');
+        Route::any('/permission/{id}', 'TechnicianController@techpermission')->name('permission');
+        Route::any('/permissionProccess', 'TechnicianController@permissionProccess')->name('permissionProccess');
      
 
         /******Service Section*******/
@@ -100,20 +96,8 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/question/{id}', 'QuestionController@question')->name('question');
         Route::post('/question/updateorder', 'QuestionController@updateorder')->name('updateorder');
 
-        
 
-
-         /******Faculty Section*******/
-         Route::any('/roleproccess', 'FacultyController@roleproccess')->name('roleproccess');
-       //  Route::any('/roleStatus/{id}', 'FacultyController@roleStatus')->name('roleStatus');
-         Route::any('/permission/{id}', 'FacultyController@facultypermission')->name('permission');
-         Route::any('/permissionProccess', 'FacultyController@permissionProccess')->name('permissionProccess');
-         
-
-             /*******************/ 
-
-        
-        
+               
         /******Settings Section*******/
         Route::any('/store-setting', 'SettingsController@index')->name('store-setting');
         Route::any('/account-setting', 'SettingsController@accountSetting')->name('account-setting');
