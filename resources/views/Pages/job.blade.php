@@ -12,12 +12,14 @@
                 $ser[] = $valuee->role_name;
             }
             $serData = implode(" + ",$ser);
+
+            // print_r($value);die;
         ?>
     <div class="section full">  
         <div class="wide-block pt-2 pb-2">
             <h5 class="fw700 tx-14" style="margin-bottom:5px">Booking ID: {{ $value->ca_id}} | {{$serData}}</h5>
-            <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13">{{ $value->customerAddress->customer_address}}</span></div>
-            <div class="flex-class"><span  class="tx-16 mr-5"><ion-icon name="calendar-clear-outline"></ion-icon></span> <span  class="tx-13">{{ date("d M",strtotime($value->ca_date))}}, {{ date("D",strtotime($value->ca_date))}} {{$value->ca_time}}-{{$value->ca_end_time}}</span></div>
+            <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13">{{ isset($value->customerAddress)?$value->customerAddress->customer_address:''}}</span></div>
+            <div class="flex-class"><span class="tx-16 mr-5"><ion-icon name="calendar-clear-outline"></ion-icon></span> <span  class="tx-13">{{ date("d M",strtotime($value->ca_date))}}, {{ date("D",strtotime($value->ca_date))}} {{$value->ca_time}}-{{$value->ca_end_time}}</span></div>
             <div class="mt-2">
                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
                 <?php if($value->ca_report_submit==1)

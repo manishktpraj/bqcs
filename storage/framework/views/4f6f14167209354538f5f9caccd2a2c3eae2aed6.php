@@ -13,7 +13,7 @@ $serData = implode(" + ",$ser);
         <div class="section-title">
             <div>
                 <h5 class="fw700 tx-14" style="margin-bottom:5px">Booking ID:<?php echo e($rowAppointmentsData->ca_id); ?> | <?php echo e($serData); ?></h5>
-                <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13"><?php echo e($rowAppointmentsData->customerAddress->customer_address); ?></span></div>
+                <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13"><?php echo e(isset($rowAppointmentsData->customerAddress)?$rowAppointmentsData->customerAddress->customer_address:''); ?></span></div>
                 <div class="flex-class"><span  class="tx-16 mr-5"><ion-icon name="calendar-clear-outline"></ion-icon></span> <span  class="tx-13"><?php echo e(date("d M",strtotime($rowAppointmentsData->ca_date))); ?>, <?php echo e(date("D",strtotime($rowAppointmentsData->ca_date))); ?> <?php echo e($rowAppointmentsData->ca_time); ?>-<?php echo e($rowAppointmentsData->ca_end_time); ?></span></div>
             </div>
         </div>
@@ -100,123 +100,88 @@ function showPreview(t, input, i,id)
         var form_data = new FormData();
         form_data.append('qa_image_',input.files[0]);
         form_data.append('_token',token);
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imageDivHidden'+i).show();
-                $('#showImage'+i).append('<li><a href="#"><div class="imgbox"><img src="'+e.target.result+'"></div></a></li>');
-            };
-            reader.readAsDataURL(input.files[0]);
-            $.ajax({
-                url: base_url+'uploadfiles/', // point to server-side PHP script 
-                dataType: 'text',  
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,                         
-                type: 'post',
-                success: function(php_script_response){
-                var jsondata = JSON.parse(php_script_response);
-                if(jsondata.message=='ok')
-                {
-
-                    if(id==20)
-                    {   
-
-                         if(t=='qa_image111002')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
-
-                        }else if(t=='qa_image11')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
-
-                        }else{
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
-                   
-                        }
-
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imageDivHidden'+i).show();
+            $('#showImage'+i).append('<li><a href="#" class="remove-img"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="'+e.target.result+'"></div></li>');
+        };
+        reader.readAsDataURL(input.files[0]);
+        $.ajax({
+            url: base_url+'uploadfiles/', // point to server-side PHP script 
+            dataType: 'text',  
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,                         
+            type: 'post',
+            success: function(php_script_response){
+            var jsondata = JSON.parse(php_script_response);
+            if(jsondata.message=='ok')
+            {
+                if(id==20)
+                {   
+                    if(t=='qa_image111002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image11')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
                     }else{
                         $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
-
                     }
-                    
-                    if(id==56)
-                    {   
-
-                         if(t=='qa_image11111002')
-                        {
-                            $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
-
-                        }else if(t=='qa_image1111')
-                        {
-                            $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
-
-                        }else{
-                            $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
-                   
-                        }
-
+                }else{
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                }
+                if(id==56)
+                {   
+                    if(t=='qa_image11111002')
+                    {
+                        $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image1111')
+                    {
+                        $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
                     }else{
                         $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
-
                     }
-
-                    if(id==67)
-                    {   
-
-                         if(t=='qa_image111002')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4_][]" value="'+jsondata.url+'">');
-
-                        }else if(t=='qa_image11')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4__][]" value="'+jsondata.url+'">');
-
-                        }else{
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4][]" value="'+jsondata.url+'">');
-                   
-                        }
-
+                }else{
+                    $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                }
+                if(id==67)
+                {   
+                        if(t=='qa_image111002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image11')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4__][]" value="'+jsondata.url+'">');
                     }else{
                         $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4][]" value="'+jsondata.url+'">');
-
                     }
-
-                    if(id==74)
-                    {   if(t=='qa_image181003')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5___][]" value="'+jsondata.url+'">');
-
-                        }else if(t=='qa_image181002')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5_][]" value="'+jsondata.url+'">');
-
-                        }else if(t=='qa_image18')
-                        {
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5__][]" value="'+jsondata.url+'">');
-
-                        }else{
-                            $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
-                   
-                        }
-
+                }else{
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][4][]" value="'+jsondata.url+'">');
+                }
+                if(id==74)
+                {   if(t=='qa_image181003')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5___][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image181002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image18')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5__][]" value="'+jsondata.url+'">');
                     }else{
                         $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
-
                     }
-
-
-
-
-
-
-
                 }else{
-                    $('#image-error').removeClass('hide');
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
+
                 }
-                }
-            });     
-        
+            }else{
+                $('#image-error').removeClass('hide');
+            }
+            }
+        });     
     }
 }
 

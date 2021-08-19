@@ -9,7 +9,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image" multiple="multiple" id="fileChoose<?php echo $i."1";?>" hidden onchange="showPreview('qa_image<?php echo $i.'1';?>',this,<?php echo $i.'1';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1';?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -35,21 +35,21 @@
         </div>
         <?php }?>
         <?php if($question->question_id==47){
-        $quest_data= $resQuestionData->where('qa_question_id',47)->where('qa_type',3);
-     
+        $quest_data= $resQuestionData->where('qa_question_id',47)->where('qa_type',"1__")->first();
+     //print_r($quest_data);
             ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                     <label class="form-label" for="address5">Year</label>
-                    <input type="text" class="form-control" id="composition_disabled" name="qa_value[<?php echo $question->question_id?>][1][]" value="<?php echo isset($qusAns)?$qusAns->qa_value:''?>">
+                    <input type="text" class="form-control" id="composition_disabled" name="qa_value[<?php echo $question->question_id?>][1][]" value="<?php echo isset($qusAns)?$qusAns->qa_value:''?>" <?php echo (isset($quest_data) && $quest_data['qa_value']=="Can't Determine")?' style="background:#f5f5f5" readonly="readonly"':''?>> 
                 
                     
                     </div>
             </div>
             <div class="wqtype-type">
                           <label class="container-checkbox"> 
-                              <input onclick="checkstatus($(this))" type="checkbox" name="qa_value[<?php echo $question->question_id?>][1][]" value="0" <?php echo (isset($qusAns) && $qusAns->qa_value=="0")?'checked="checked"':''?>>
+                              <input onclick="checkstatus($(this))" type="checkbox" name="qa_value[<?php echo $question->question_id?>][1__][]" value="Can't Determine" <?php echo (isset($quest_data) && $quest_data['qa_value']=="Can't Determine")?'checked="checked"':''?>  >
                               Can't Determine
                               <span class="checkmark"></span>
                           </label>
@@ -75,7 +75,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -114,7 +114,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -154,7 +154,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -194,7 +194,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -223,7 +223,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -236,8 +236,8 @@
                             ?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">    
- <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
-<?php } ?>   </ul>
+                        <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                        <?php } ?>   </ul>
                     </div>
                 </div>
             </div>
@@ -262,7 +262,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -300,7 +300,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -350,7 +350,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'1001';?>',this,<?php echo $i.$i.'1001';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -382,7 +382,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'2002';?>',this,<?php echo $i.$i.'2002';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -415,7 +415,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -454,7 +454,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -492,7 +492,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -520,7 +520,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -528,7 +528,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -539,7 +539,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -571,7 +571,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -579,7 +579,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -590,7 +590,7 @@
                             <li>
                                 <div class="wqtype-type">
                                 <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                                <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                                <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                             </li>         
                         </ul>
                     </div>
@@ -639,7 +639,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -681,7 +681,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -712,7 +712,7 @@
 
 
 
-        $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
               $qusAns3 = DB::table('cs_ques_ans')
@@ -723,9 +723,8 @@
               ->first();
 
             //  print_r($qusAns2);
-
-//              print_r($qusAns3);
-
+            //  print_r($qusAns3);
+            //  print_r($qusAns4);
 
        ?>
    <div class="wide-block pt-2 pb-2">
@@ -746,7 +745,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1001';?>',this,<?php echo $i.'1001';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -779,7 +778,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1002';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1002';?>',this,<?php echo $i.'1002';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1002';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1002';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -813,7 +812,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -849,7 +848,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1003';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1003';?>',this,<?php echo $i.'1003';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1003';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1003';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -892,7 +891,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -930,7 +929,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -970,7 +969,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1009,7 +1008,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1037,7 +1036,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1045,7 +1044,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1065,7 +1064,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Spray 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="0" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Spray" <?php echo (isset($qusAns) && $qusAns->qa_value=='Spray')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1073,7 +1072,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Batt
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="1" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Batt" <?php echo (isset($qusAns) && $qusAns->qa_value=='Batt')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1096,6 +1095,12 @@
 
 
 
+        $quest_data4= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5___");
+
+
+
+
+
         $qusAns2 = DB::table('cs_ques_ans')
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
@@ -1105,9 +1110,13 @@
               $qusAns4 = DB::table('cs_ques_ans')
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
               ->first();
+              $qusAns5 = DB::table('cs_ques_ans')
+              ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1____']])
+              ->first();
 
-            //  print_r($qusAns2);
-
+              
+             // print_r($qusAns4);
+//
 //              print_r($qusAns3);
 
 
@@ -1121,7 +1130,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1129,7 +1138,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1140,7 +1149,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1171,7 +1180,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1179,7 +1188,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1190,7 +1199,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1220,7 +1229,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="Yes" <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1228,7 +1237,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="No" <?php echo (isset($qusAns3) && $qusAns3->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1239,7 +1248,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1268,7 +1277,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1___][]" value="Yes" <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1276,7 +1285,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1___][]" value="No" <?php echo (isset($qusAns4) && $qusAns4->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1287,7 +1296,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1318,7 +1327,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1____][]" value="Yes" <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1326,7 +1335,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1____][]" value="No" <?php echo (isset($qusAns5) && $qusAns5->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1337,7 +1346,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1372,14 +1381,22 @@
               $quest_data3= $resQuestionData->where('qa_question_id',91)->where('qa_type',"3__");
 
 
-
               $qusAns2 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
                     $qusAns3 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
+
+//echo "<pre>";
+                    // print_r($qusAns);
+
+                    // print_r($qusAns2);
+                    // print_r($qusAns3);
+
              ?>
+
+
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
@@ -1397,7 +1414,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'1001';?>',this,<?php echo $i.$i.'1001';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1418,9 +1435,9 @@
                 <label class="form-label">Cornices</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1429,7 +1446,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'2002';?>',this,<?php echo $i.$i.'2002';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1451,9 +1468,9 @@
                 <label class="form-label">Skirting boards</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                         <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1462,7 +1479,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.$i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1495,6 +1512,28 @@
                     $qusAns3 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
+                    $qusAns4 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+                    ->first();
+                    $qusAns5 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
+                    ->first();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
@@ -1514,42 +1553,42 @@
                 <label class="form-label">Cupboards</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Sinks</label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Taps</label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
              <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Splashback </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11_][]">
                         <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1573,6 +1612,27 @@
                     $qusAns3 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
+                    $qusAns4= DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+                    ->first(); 
+                    $qusAns5 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
+                    ->first();
+                    $qusAns6 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
+                    ->first();
+
+
+
+
+
+
+
+
+
+
+
+
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
@@ -1592,53 +1652,53 @@
                 <label class="form-label">Shower</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Vanity</label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Ventilation </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Bath </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
              <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Toilet  </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11__][]">
                         <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1660,6 +1720,11 @@
                     $qusAns3 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
+                    $qusAns4 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+                    ->first();
+
+
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
@@ -1679,31 +1744,31 @@
                 <label class="form-label">Tubs</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Tiles </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Ventilation </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1725,9 +1790,35 @@
               $qusAns2 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
-                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
-                    ->first();
+                $qusAns3 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
+                ->first();
+                $qusAns4 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+                ->first();
+                $qusAns5 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
+                ->first();
+                $qusAns6 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
+                ->first();
+                $qusAns7 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
+                ->first();
+                $qusAns8 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_']])
+                ->first();
+                $qusAns9 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12__']])
+                ->first();
+                $qusAns10 = DB::table('cs_ques_ans')
+                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12___']])
+                ->first();
+
+
+
+
+
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
@@ -1747,9 +1838,9 @@
                 <label class="form-label">Doors and Windows</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1757,11 +1848,11 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Patios attached to house </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1769,33 +1860,33 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Stand alone timber structures </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Stand alone steel structures </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Chimneys  </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1803,44 +1894,44 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Stairs </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Balconies  </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][12_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Decks  </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][12__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
              <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                <label class="form-label">Balustrades   </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
+                <label class="form-label">Balustrades</label>
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][12___][]">
                         <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns10) && $qusAns10->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns10) && $qusAns10->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns10) && $qusAns10->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1848,26 +1939,42 @@
                  
         <?php }?>
 
-
-
         <?php if($question->question_id==96){
               $quest_data= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3");
               $quest_data2= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3_");
               $quest_data3= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3__");
 
-
-
-              $qusAns2 = DB::table('cs_ques_ans')
+                    $qusAns2 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
                     $qusAns3 = DB::table('cs_ques_ans')
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
+                    $qusAns4 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+                    ->first();
+                    $qusAns5 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11']])
+                    ->first();
+                    $qusAns6 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
+                    ->first();
+                    $qusAns7 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
+                    ->first();
+                    $qusAns8 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
+                    ->first();
+                    $qusAns9 = DB::table('cs_ques_ans')
+                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12']])
+                    ->first();
+              
+
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                <label class="form-label">Garages </label>
+                <label class="form-label">Garages</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1][]">
                     <option value="">Select</option>
                         <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
@@ -1882,9 +1989,9 @@
                 <label class="form-label">Carports </label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1892,11 +1999,11 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Sheds </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1904,33 +2011,33 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Retaining walls</label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Pathways </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Driveway   </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11_][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1938,33 +2045,33 @@
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Steps  </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11__][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Fencing   </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11___][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                 <label class="form-label">Drainage   </label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][1_][]">
+                    <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][12][]">
                     <option value="">Select</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
-                        <option <?php echo (isset($qusAns) && $qusAns->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Average')?'selected="selected"':''?> value="Average">Average</option>
+                        <option <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Poor')?'selected="selected"':''?> value="Poor">Poor</option>
                     </select>
                 </div>
             </div>
@@ -1979,17 +2086,6 @@
         $qusAns2 = DB::table('cs_ques_ans')
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
-              $qusAns3 = DB::table('cs_ques_ans')
-              ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
-              ->first();
-              $qusAns4 = DB::table('cs_ques_ans')
-              ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
-              ->first();
-
-            //  print_r($qusAns2);
-
-//              print_r($qusAns3);
-
 
        ?>
    <div class="wide-block pt-2 pb-2">
@@ -2001,7 +2097,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -2009,7 +2105,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -2027,7 +2123,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -2035,7 +2131,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -2062,9 +2158,7 @@
             $qusAns3 = DB::table('cs_ques_ans')
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
             ->first();
-            $qusAns4 = DB::table('cs_ques_ans')
-            ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
-            ->first();
+           
 
           //  print_r($qusAns2);
 
@@ -2081,7 +2175,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2089,7 +2183,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2105,7 +2199,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2113,7 +2207,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2131,7 +2225,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2139,7 +2233,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2182,7 +2276,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2190,7 +2284,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2207,7 +2301,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2215,7 +2309,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2258,7 +2352,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2266,7 +2360,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2283,7 +2377,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2291,7 +2385,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2310,20 +2404,48 @@
       
       <?php if($question->question_id==101){
       
-      $qusAns2 = DB::table('cs_ques_ans')
-            ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
-            ->first();
-            $qusAns3 = DB::table('cs_ques_ans')
-            ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
-            ->first();
-            $qusAns4 = DB::table('cs_ques_ans')
-            ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
-            ->first();
-
-          //  print_r($qusAns2);
-
-//              print_r($qusAns3);
-
+        $qusAns2 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
+        ->first();
+        $qusAns3 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
+        ->first();
+        $qusAns4 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
+        ->first();
+        $qusAns5 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11']])
+        ->first();
+        $qusAns6 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
+        ->first();
+        $qusAns7 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
+        ->first();
+        $qusAns8 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
+        ->first();
+        $qusAns9 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11____']])
+        ->first();
+        $qusAns10 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_____']])
+        ->first();
+        $qusAns11 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_']])
+        ->first();
+        $qusAns12 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12__']])
+        ->first();
+        $qusAns13 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12___']])
+        ->first();
+        $qusAns14 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12____']])
+        ->first();
+        $qusAns15 = DB::table('cs_ques_ans')
+        ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_____']])
+        ->first();
 
      ?>
  <div class="wide-block pt-2 pb-2">
@@ -2335,7 +2457,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2343,7 +2465,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2351,7 +2473,6 @@
       </ul>
           </div>
     </div>
-            
     </div>
     <div class="form-group boxed mb-1">
         <div class="input-wrapper">
@@ -2361,7 +2482,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="Yes" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2369,7 +2490,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1_][]" value="No" <?php echo (isset($qusAns2) && $qusAns2->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2387,7 +2508,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="Yes" <?php echo (isset($qusAns3) && $qusAns3->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2395,7 +2516,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1__][]" value="No" <?php echo (isset($qusAns3) && $qusAns3->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2413,7 +2534,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1___][]" value="Yes" <?php echo (isset($qusAns4) && $qusAns4->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2421,7 +2542,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1___][]" value="No" <?php echo (isset($qusAns4) && $qusAns4->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2440,7 +2561,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11][]" value="Yes" <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2448,7 +2569,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11][]" value="No" <?php echo (isset($qusAns5) && $qusAns5->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2467,7 +2588,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11_][]" value="Yes" <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2475,7 +2596,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11_][]" value="No" <?php echo (isset($qusAns6) && $qusAns6->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2494,7 +2615,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11__][]" value="Yes" <?php echo (isset($qusAns7) && $qusAns7->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2502,7 +2623,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11__][]" value="No" <?php echo (isset($qusAns7) && $qusAns7->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2521,7 +2642,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11___][]" value="Yes" <?php echo (isset($qusAns8) && $qusAns8->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2529,7 +2650,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11___][]" value="No" <?php echo (isset($qusAns8) && $qusAns8->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2548,7 +2669,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11____][]" value="Yes" <?php echo (isset($qusAns9) && $qusAns9->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2556,7 +2677,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11____][]" value="No" <?php echo (isset($qusAns9) && $qusAns9->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2575,7 +2696,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11_____][]" value="Yes" <?php echo (isset($qusAns10) && $qusAns10->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2583,7 +2704,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][11_____][]" value="No" <?php echo (isset($qusAns10) && $qusAns10->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2602,7 +2723,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12_][]" value="Yes" <?php echo (isset($qusAns11) && $qusAns11->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2610,7 +2731,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12_][]" value="No" <?php echo (isset($qusAns11) && $qusAns11->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2629,7 +2750,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12__][]" value="Yes" <?php echo (isset($qusAns12) && $qusAns12->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2637,7 +2758,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12__][]" value="No" <?php echo (isset($qusAns12) && $qusAns12->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2657,7 +2778,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12___][]" value="Yes" <?php echo (isset($qusAns13) && $qusAns13->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2665,7 +2786,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12___][]" value="No" <?php echo (isset($qusAns13) && $qusAns13->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2684,7 +2805,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12____][]" value="Yes" <?php echo (isset($qusAns14) && $qusAns14->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2692,7 +2813,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12____][]" value="No" <?php echo (isset($qusAns14) && $qusAns14->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2711,7 +2832,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">Yes 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12_____][]" value="Yes" <?php echo (isset($qusAns15) && $qusAns15->qa_value=='Yes')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>
@@ -2719,7 +2840,7 @@
                   <li>
                       <div class="wqtype-type">
                           <label class="container-radio">No 
-                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                              <input type="radio" name="qa_value[<?php echo $question->question_id?>][12_____][]" value="No" <?php echo (isset($qusAns15) && $qusAns15->qa_value=='No')?'checked="checked"':''?>>
                               <span class="checkmark"></span>
                           </label>
                       </div>

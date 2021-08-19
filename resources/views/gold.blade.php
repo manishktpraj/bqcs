@@ -8,7 +8,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -28,21 +28,21 @@
         </div>
         <?php }?>
         <?php if($question->question_id==43){
-        $quest_data= $resQuestionData->where('qa_question_id',43)->where('qa_type',1);
+        $quest_data= $resQuestionData->where('qa_question_id',43)->where('qa_type',"1__")->first();
      
             ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
                     <label class="form-label" for="address5">Year</label>
-                    <input type="text" class="form-control" id="composition_disabled" name="qa_value[<?php echo $question->question_id?>][1][]" value="<?php echo isset($qusAns)?$qusAns->qa_value:''?>">
+                    <input type="text" class="form-control" id="composition_disabled" name="qa_value[<?php echo $question->question_id?>][1][]" value="<?php echo isset($qusAns)?$qusAns->qa_value:''?>" <?php echo (isset($quest_data) && $quest_data['qa_value']=="Can't Determine")?' style="background:#f5f5f5" readonly="readonly"':''?>> 
                 
                     
                     </div>
             </div>
             <div class="wqtype-type">
                           <label class="container-checkbox"> 
-                              <input onclick="checkstatus($(this))" type="checkbox" name="qa_value[<?php echo $question->question_id?>][1][]" value="0" <?php echo (isset($qusAns) && $qusAns->qa_value=="0")?'checked="checked"':''?>>
+                          <input onclick="checkstatus($(this))" type="checkbox" name="qa_value[<?php echo $question->question_id?>][1__][]" value="Can't Determine" <?php echo (isset($quest_data) && $quest_data['qa_value']=="Can't Determine")?'checked="checked"':''?>  >
                               Can't Determine
                               <span class="checkmark"></span>
                           </label>
@@ -68,7 +68,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -107,7 +107,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -145,7 +145,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -183,7 +183,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -211,7 +211,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -249,7 +249,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -288,7 +288,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -338,7 +338,7 @@
                <li>
                    <div class="wqtype-type">
                    <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1001';?>',this,<?php echo $i.'1001';?>,<?php echo $question->question_id?>)">
-                   <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"></ion-icon>Add Pic</a></div>                                 
+                   <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                </li>         
            </ul>
        </div>
@@ -370,7 +370,7 @@
                <li>
                    <div class="wqtype-type">
                    <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1002';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1002';?>',this,<?php echo $i.'1002';?>,<?php echo $question->question_id?>)">
-                   <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1002';?>)"></ion-icon>Add Pic</a></div>                                 
+                   <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i.'1002';?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                </li>         
            </ul>
        </div>
@@ -404,7 +404,7 @@
                <li>
                    <div class="wqtype-type">
                    <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                   <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                   <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                </li>         
            </ul>
        </div>
@@ -446,7 +446,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -482,7 +482,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -503,6 +503,8 @@
         <?php }?>
         <?php if($question->question_id==70){
         $quest_data= $resQuestionData->where('qa_question_id',70)->where('qa_type',3);
+//print_r($qusAns);
+
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -510,7 +512,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -518,7 +520,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -529,7 +531,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -560,7 +562,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -568,7 +570,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -579,7 +581,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -622,7 +624,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -664,7 +666,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -729,7 +731,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1001';?>',this,<?php echo $i.'1001';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -761,7 +763,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1002';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1002';?>',this,<?php echo $i.'1002';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1002';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1002';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -795,7 +797,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -831,7 +833,7 @@
               <li>
                   <div class="wqtype-type">
                   <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1003';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1003';?>',this,<?php echo $i.'1003';?>,<?php echo $question->question_id?>)">
-                  <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i.'1003';?>)"></ion-icon>Add Pic</a></div>                                 
+                  <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1003';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
               </li>         
           </ul>
       </div>
@@ -873,7 +875,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -911,7 +913,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -951,7 +953,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -990,7 +992,7 @@
                     <li>
                         <div class="wqtype-type">
                         <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"><ion-icon name="camera-outline" class="tx-24" onclick="imageOpen($(this),<?php echo $i;?>)"></ion-icon>Add Pic</a></div>                                 
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
@@ -1018,7 +1020,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Yes 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Yes" <?php echo (isset($qusAns) && $qusAns->qa_value=='Yes')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1026,7 +1028,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">No 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="No" <?php echo (isset($qusAns) && $qusAns->qa_value=='No')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1046,7 +1048,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Spray 
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="0" <?php echo (isset($qusAns) && $qusAns->qa_value=='0')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Spray" <?php echo (isset($qusAns) && $qusAns->qa_value=='Spray')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -1054,7 +1056,7 @@
                     <li>
                         <div class="wqtype-type">
                             <label class="container-radio">Batt
-                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="1" <?php echo (isset($qusAns) && $qusAns->qa_value=='1')?'checked="checked"':''?>>
+                                <input type="radio" name="qa_value[<?php echo $question->question_id?>][1][]" value="Batt" <?php echo (isset($qusAns) && $qusAns->qa_value=='Batt')?'checked="checked"':''?>>
                                 <span class="checkmark"></span>
                             </label>
                         </div>

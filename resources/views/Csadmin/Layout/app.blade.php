@@ -26,10 +26,7 @@
 <i data-feather="x"></i>
 </a>
 </div>
-<?php 
-echo $title;
-//print_r($resthemeData);
-?>
+
 <div class="aside-body">
 <div class="aside-loggedin">
 <div class="d-flex align-items-center justify-content-start">

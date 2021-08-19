@@ -6389,7 +6389,7 @@ width:100%;
 position:relative;
 }
 .imgboxlist ul{
-margin:-5px -2px;
+margin:-5px -5px;
 padding:0;
 list-style:none;
 white-space:nowrap;
@@ -6398,7 +6398,8 @@ overflow-y: hidden;
 }
 .imgboxlist ul li{
 display:inline-block;
-margin:5px 2px;
+margin:5px 5px;
+position: relative;
 width:60px;
 }
 .imgboxlist ul li a{
@@ -6414,6 +6415,18 @@ overflow:hidden;
 .imgbox img{
 width:60px;
 height:60px;
+}
+.remove-img{
+	position:absolute;
+top: -7px;
+right: -7px;
+	 transform: rotate(-45deg);
+	 z-index: 99999;
+color: red;
+background: #fff;
+border-radius: 50%;
+line-height: 0;
+font-size: 20px;
 }
 /*=====================================*/
 .wqtype{
