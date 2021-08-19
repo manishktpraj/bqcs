@@ -103,21 +103,27 @@ $quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->wher
 </tr>
 <?php if($quest_data->count()>0){?>
 <tr>
-<td colspan="2" style="border:0px;padding:10px 0px">
-<div class="imgboxlist">
-<ul id="showImage">
-<?php foreach($quest_data as $img_name){?>
-<li><a href="#">
-<div class="imgbox">
-<img src="<?php echo $img_name->qa_value;?>"  style="width:300px;height:300px">
-</div>
-</a>
-</li>
-<?php } ?>                         
-</ul>
-</div>
+ 
+<?php
+$cnt =0;
+$strHtml = count($quest_data);
+ foreach($quest_data as $img_name){
+	
+	if($cnt%2==0 && $cnt!=1 && $cnt!=0)
+	{
+		$strHtml=$strHtml-$cnt;
+		echo '</tr><tr>';
+		
+	}
+	?>
+ <td <?php if($strHtml==1){ ?>colspan="2"<?php } ?> style="padding:10px">
 
-</td>
+<img src="<?php echo $img_name->qa_value;?>"  style="width:300px;">
+ </td>
+<?php  $cnt++; } ?>                         
+ 
+
+
 </tr>
 <?php }?>
 <!-----------------14-------------->

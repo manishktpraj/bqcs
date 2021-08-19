@@ -3141,8 +3141,6 @@ font-weight: 500; }
 
 textarea,
 .form-control {
-background-clip: padding-box;
-background-image: linear-gradient(transparent, transparent);
 -webkit-appearance: none;
 -moz-appearance: none;
 appearance: none; }
@@ -3225,7 +3223,6 @@ opacity: 1; }
 margin: 0;
 padding: 8px 0; }
 .form-group.boxed .form-control {
-background: #fff;
 box-shadow: none;
 height: 42px;
 border-radius: 6px;

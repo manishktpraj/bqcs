@@ -1,6 +1,6 @@
 
 <?php if($question->question_id==46){
-          $quest_data= $resQuestionData->where('qa_question_id',46)->where('qa_type',3);
+          $quest_data= $resQuestionData->where('qa_question_id',46)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         
             <div class="wide-block pt-2 pb-2">
@@ -35,7 +35,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==47){
-        $quest_data= $resQuestionData->where('qa_question_id',47)->where('qa_type',"1__")->first();
+        $quest_data= $resQuestionData->where('qa_question_id',47)->where('qa_tech_id','=',$technicianId)->where('qa_type',"1__")->first();
      //print_r($quest_data);
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -57,7 +57,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==48){
-        $quest_data= $resQuestionData->where('qa_question_id',48)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',48)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -74,20 +74,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?></ul>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
         <?php }?>
 
         <?php if($question->question_id==49){
-        $quest_data= $resQuestionData->where('qa_question_id',49)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',49)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -113,20 +113,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?></ul>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
         <?php }?>
 
         <?php if($question->question_id==50){
-              $quest_data= $resQuestionData->where('qa_question_id',50)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',50)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
          <div class="wide-block pt-2 pb-2">
@@ -153,19 +153,19 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                           <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
-                           <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>">
+                           <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
                             </div>
                         </a>
                          </li>
@@ -176,7 +176,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==51){
-              $quest_data= $resQuestionData->where('qa_question_id',51)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',51)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
               ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -193,15 +193,15 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                         <li>
                         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
@@ -214,7 +214,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==52){
-              $quest_data= $resQuestionData->where('qa_question_id',52)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',52)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
              
              ?>
         <div class="wide-block pt-2 pb-2">
@@ -222,21 +222,21 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name)
                         {
                             ?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">    
-                        <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                        <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==53){
-              $quest_data= $resQuestionData->where('qa_question_id',53)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',53)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
               ?>
          <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -261,19 +261,19 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
             <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>
                        </ul>
                     </div>
@@ -282,7 +282,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==55){
-              $quest_data= $resQuestionData->where('qa_question_id',55)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',55)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
               ?>
          <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -299,20 +299,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -320,16 +320,16 @@
         </div>
         <?php }?>
         <?php if($question->question_id==56){
-              $quest_data= $resQuestionData->where('qa_question_id',56)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',56)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',56)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',56)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',56)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',56)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
              ?>
@@ -349,19 +349,19 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'1001';?>',this,<?php echo $i.$i.'1001';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1001';?>',this,<?php echo $i.'1001';?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i.'2001';?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i.'2001';?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i.'2001';?>">
+                        <ul id="showImage<?php echo $i.'2001';?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -381,20 +381,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'2002';?>',this,<?php echo $i.$i.'2002';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.'2002';?>',this,<?php echo $i.'2002';?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i.'2002';?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i.'2002';?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i.'2002';?>">
+                        <ul id="showImage<?php echo $i.'2002';?>">
                         <?php foreach($quest_data2 as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3_][]" value="<?php echo $img_name->qa_value;?>">        
     
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -414,20 +414,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data3 as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3__][]" value="<?php echo $img_name->qa_value;?>">        
                            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -435,7 +435,7 @@
         </div>      
         <?php }?>
         <?php if($question->question_id==59){
-              $quest_data= $resQuestionData->where('qa_question_id',59)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',59)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
               ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -453,20 +453,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-                    <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+                    <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                         <div class="col-12">
                             <div class="imgboxlist">
-                                <ul id="showImage<?php echo $i.$i;?>">
+                                <ul id="showImage<?php echo $i;?>">
                                 <?php foreach($quest_data as $img_name){?>
                                     
                                 <li>
                                 <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">            
-                                <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                                <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                                 <?php } ?>  
 								</ul>
                             </div>
@@ -477,7 +477,7 @@
         <?php }?>
         <?php if($question->question_id==60){
             
-            $quest_data= $resQuestionData->where('qa_question_id',60)->where('qa_type',3);
+            $quest_data= $resQuestionData->where('qa_question_id',60)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
             
             
             ?>
@@ -491,20 +491,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
                         
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?> </ul>
                     </div>
                 </div>
@@ -512,7 +512,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==62){
-              $quest_data= $resQuestionData->where('qa_question_id',62)->where('qa_type',3);
+              $quest_data= $resQuestionData->where('qa_question_id',62)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
               ?>
          <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -538,20 +538,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?></ul>
                     </div>
                 </div>
@@ -562,7 +562,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==63){
-            $quest_data= $resQuestionData->where('qa_question_id',63)->where('qa_type',3);
+            $quest_data= $resQuestionData->where('qa_question_id',63)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
          <div class="wide-block pt-2 pb-2">
@@ -589,15 +589,15 @@
                         <ul>
                             <li>
                                 <div class="wqtype-type">
-                                <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                                <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                                <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                                <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                             </li>         
                         </ul>
                     </div>
-                    <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+                    <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                         <div class="col-12">
                             <div class="imgboxlist">
-                                <ul id="showImage<?php echo $i.$i;?>">
+                                <ul id="showImage<?php echo $i;?>">
                                 <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
@@ -619,7 +619,7 @@
 
 
         <?php if($question->question_id==64){
-        $quest_data= $resQuestionData->where('qa_question_id',64)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',64)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -662,7 +662,7 @@
         <?php }?>
 
         <?php if($question->question_id==66){
-        $quest_data= $resQuestionData->where('qa_question_id',66)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',66)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -705,20 +705,20 @@
 
 
         <?php if($question->question_id==83){
-        $quest_data= $resQuestionData->where('qa_question_id',83)->where('qa_type',"5");
-        $quest_data2= $resQuestionData->where('qa_question_id',83)->where('qa_type',"5_");
-        $quest_data3= $resQuestionData->where('qa_question_id',83)->where('qa_type',"5__");
-        $quest_data4= $resQuestionData->where('qa_question_id',83)->where('qa_type',"5___");
+        $quest_data= $resQuestionData->where('qa_question_id',83)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5");
+        $quest_data2= $resQuestionData->where('qa_question_id',83)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5_");
+        $quest_data3= $resQuestionData->where('qa_question_id',83)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5__");
+        $quest_data4= $resQuestionData->where('qa_question_id',83)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5___");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
-              $qusAns3 = DB::table('cs_ques_ans')
+              $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
               ->first();
-              $qusAns4 = DB::table('cs_ques_ans')
+              $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
               ->first();
 
@@ -871,7 +871,7 @@
 
 
         <?php if($question->question_id==84){
-        $quest_data= $resQuestionData->where('qa_question_id',84)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',84)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -911,7 +911,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==85){
-        $quest_data= $resQuestionData->where('qa_question_id',85)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',85)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -950,7 +950,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==86){
-        $quest_data= $resQuestionData->where('qa_question_id',86)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',86)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -989,7 +989,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==87){
-        $quest_data= $resQuestionData->where('qa_question_id',87)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',87)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -1028,7 +1028,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==88){
-        $quest_data= $resQuestionData->where('qa_question_id',88)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',88)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
             ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -1056,7 +1056,7 @@
         <?php }?>
 
         <?php if($question->question_id==89){
-        $quest_data= $resQuestionData->where('qa_question_id',88)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',88)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -1088,29 +1088,29 @@
 
 
 <?php if($question->question_id==90){
-        $quest_data= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5");
-        $quest_data2= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5_");
-        $quest_data3= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5__");
-        $quest_data4= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5___");
+        $quest_data= $resQuestionData->where('qa_question_id',90)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5");
+        $quest_data2= $resQuestionData->where('qa_question_id',90)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5_");
+        $quest_data3= $resQuestionData->where('qa_question_id',90)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5__");
+        $quest_data4= $resQuestionData->where('qa_question_id',90)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5___");
 
 
 
-        $quest_data4= $resQuestionData->where('qa_question_id',90)->where('qa_type',"5___");
+        $quest_data4= $resQuestionData->where('qa_question_id',90)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5___");
 
 
 
 
 
-        $qusAns2 = DB::table('cs_ques_ans')
+        $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
-              $qusAns3 = DB::table('cs_ques_ans')
+              $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
               ->first();
-              $qusAns4 = DB::table('cs_ques_ans')
+              $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
               ->first();
-              $qusAns5 = DB::table('cs_ques_ans')
+              $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1____']])
               ->first();
 
@@ -1376,23 +1376,17 @@
 
 
         <?php if($question->question_id==91){
-              $quest_data= $resQuestionData->where('qa_question_id',91)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',91)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',91)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',91)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',91)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',91)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
-
-//echo "<pre>";
-                    // print_r($qusAns);
-
-                    // print_r($qusAns2);
-                    // print_r($qusAns3);
 
              ?>
 
@@ -1413,19 +1407,19 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'1001';?>',this,<?php echo $i.$i.'1001';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'1001';?>" hidden onchange="showPreview('qa_image<?php echo $i.'1001';?>',this,<?php echo $i.'1001';?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.'1001';?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i.'2001';?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i.'2001';?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i.'2001';?>">
+                        <ul id="showImage<?php echo $i.'2001';?>">
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -1445,20 +1439,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.$i.'2002';?>',this,<?php echo $i.$i.'2002';?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i.$i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.'2002';?>" hidden onchange="showPreview('qa_image<?php echo $i.'2002';?>',this,<?php echo $i.'2002';?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;"  onclick="imageOpen($(this),<?php echo $i.'2002';?>)"><ion-icon name="camera-outline" class="tx-24"></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i.'2002';?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i.'2002';?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i.'2002';?>">
+                        <ul id="showImage<?php echo $i.'2002';?>">
                         <?php foreach($quest_data2 as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3_][]" value="<?php echo $img_name->qa_value;?>">        
     
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -1478,20 +1472,20 @@
                 <ul>
                     <li>
                         <div class="wqtype-type">
-                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i.$i;?>" hidden onchange="showPreview('qa_image<?php echo $i.$i;?>',this,<?php echo $i.$i;?>,<?php echo $question->question_id?>)">
-                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i.$i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
+                        <input type="file" name="qa_image_[]" multiple="multiple" id="fileChoose<?php echo $i;?>" hidden onchange="showPreview('qa_image<?php echo $i;?>',this,<?php echo $i;?>,<?php echo $question->question_id?>)">
+                        <a href="javascript:;" onclick="imageOpen($(this),<?php echo $i;?>)"><ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic</a></div>                                 
                     </li>         
                 </ul>
             </div>
-            <div class="row" id="imageDivHidden<?php echo $i.$i;?>" style="display:none'">
+            <div class="row" id="imageDivHidden<?php echo $i;?>" style="display:none'">
                 <div class="col-12">
                     <div class="imgboxlist">
-                        <ul id="showImage<?php echo $i.$i;?>">
+                        <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data3 as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3__][]" value="<?php echo $img_name->qa_value;?>">        
                            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i.$i;?>"></div></a></li>
+                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -1500,38 +1494,24 @@
         <?php }?>
         
         <?php if($question->question_id==92){
-              $quest_data= $resQuestionData->where('qa_question_id',92)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',92)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',92)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',92)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',92)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',92)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
-                    $qusAns4 = DB::table('cs_ques_ans')
+                    $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
                     ->first();
-                    $qusAns5 = DB::table('cs_ques_ans')
+                    $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
                     ->first();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
              ?>
@@ -1600,38 +1580,27 @@
 
 
         <?php if($question->question_id==93){
-              $quest_data= $resQuestionData->where('qa_question_id',93)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',93)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',93)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',93)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',93)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',93)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
-                    $qusAns4= DB::table('cs_ques_ans')
+                    $qusAns4= DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
                     ->first(); 
-                    $qusAns5 = DB::table('cs_ques_ans')
+                    $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
                     ->first();
-                    $qusAns6 = DB::table('cs_ques_ans')
+                    $qusAns6 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
                     ->first();
-
-
-
-
-
-
-
-
-
-
-
 
              ?>
         <div class="wide-block pt-2 pb-2">
@@ -1708,19 +1677,19 @@
 
 
         <?php if($question->question_id==94){
-              $quest_data= $resQuestionData->where('qa_question_id',94)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',94)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',94)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',94)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',94)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',94)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
-                    $qusAns4 = DB::table('cs_ques_ans')
+                    $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
                     ->first();
 
@@ -1781,43 +1750,39 @@
 
 
         <?php if($question->question_id==95){
-              $quest_data= $resQuestionData->where('qa_question_id',95)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',95)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',95)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',95)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',95)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',95)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
 
 
-              $qusAns2 = DB::table('cs_ques_ans')
+              $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                $qusAns3 = DB::table('cs_ques_ans')
+                $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                 ->first();
-                $qusAns4 = DB::table('cs_ques_ans')
+                $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
                 ->first();
-                $qusAns5 = DB::table('cs_ques_ans')
+                $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
                 ->first();
-                $qusAns6 = DB::table('cs_ques_ans')
+                $qusAns6 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
                 ->first();
-                $qusAns7 = DB::table('cs_ques_ans')
+                $qusAns7 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
                 ->first();
-                $qusAns8 = DB::table('cs_ques_ans')
+                $qusAns8 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_']])
                 ->first();
-                $qusAns9 = DB::table('cs_ques_ans')
+                $qusAns9 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12__']])
                 ->first();
-                $qusAns10 = DB::table('cs_ques_ans')
+                $qusAns10 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                 ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12___']])
                 ->first();
-
-
-
-
 
              ?>
         <div class="wide-block pt-2 pb-2">
@@ -1940,36 +1905,35 @@
         <?php }?>
 
         <?php if($question->question_id==96){
-              $quest_data= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3");
-              $quest_data2= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3_");
-              $quest_data3= $resQuestionData->where('qa_question_id',96)->where('qa_type',"3__");
+              $quest_data= $resQuestionData->where('qa_question_id',96)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3");
+              $quest_data2= $resQuestionData->where('qa_question_id',96)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3_");
+              $quest_data3= $resQuestionData->where('qa_question_id',96)->where('qa_tech_id','=',$technicianId)->where('qa_type',"3__");
 
-                    $qusAns2 = DB::table('cs_ques_ans')
+                    $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                     ->first();
-                    $qusAns3 = DB::table('cs_ques_ans')
+                    $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                     ->first();
-                    $qusAns4 = DB::table('cs_ques_ans')
+                    $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
                     ->first();
-                    $qusAns5 = DB::table('cs_ques_ans')
+                    $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11']])
                     ->first();
-                    $qusAns6 = DB::table('cs_ques_ans')
+                    $qusAns6 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
                     ->first();
-                    $qusAns7 = DB::table('cs_ques_ans')
+                    $qusAns7 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
                     ->first();
-                    $qusAns8 = DB::table('cs_ques_ans')
+                    $qusAns8 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
                     ->first();
-                    $qusAns9 = DB::table('cs_ques_ans')
+                    $qusAns9 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12']])
                     ->first();
               
-
              ?>
         <div class="wide-block pt-2 pb-2">
              <div class="form-group boxed mb-1">
@@ -2021,7 +1985,7 @@
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                <label class="form-label">Pathways </label>
+                <label class="form-label">Pathways</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11][]">
                     <option value="">Select</option>
                         <option <?php echo (isset($qusAns5) && $qusAns5->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
@@ -2032,7 +1996,7 @@
             </div>
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                <label class="form-label">Driveway   </label>
+                <label class="form-label">Driveway</label>
                     <select class="form-control form-select" name="qa_value[<?php echo $question->question_id?>][11_][]">
                     <option value="">Select</option>
                         <option <?php echo (isset($qusAns6) && $qusAns6->qa_value=='Above average')?'selected="selected"':''?> value="Above average">Above average</option>
@@ -2083,7 +2047,7 @@
 
         <?php if($question->question_id==97){
       
-        $qusAns2 = DB::table('cs_ques_ans')
+        $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
 
@@ -2152,10 +2116,10 @@
 
         <?php if($question->question_id==98){
       
-      $qusAns2 = DB::table('cs_ques_ans')
+      $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
             ->first();
-            $qusAns3 = DB::table('cs_ques_ans')
+            $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
             ->first();
            
@@ -2251,13 +2215,13 @@
 
       <?php if($question->question_id==99){
       
-      $qusAns2 = DB::table('cs_ques_ans')
+      $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
             ->first();
-            $qusAns3 = DB::table('cs_ques_ans')
+            $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
             ->first();
-            $qusAns4 = DB::table('cs_ques_ans')
+            $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
             ->first();
 
@@ -2327,13 +2291,13 @@
 
       <?php if($question->question_id==100){
       
-      $qusAns2 = DB::table('cs_ques_ans')
+      $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
             ->first();
-            $qusAns3 = DB::table('cs_ques_ans')
+            $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
             ->first();
-            $qusAns4 = DB::table('cs_ques_ans')
+            $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
             ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
             ->first();
 
@@ -2404,46 +2368,46 @@
       
       <?php if($question->question_id==101){
       
-        $qusAns2 = DB::table('cs_ques_ans')
+        $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
         ->first();
-        $qusAns3 = DB::table('cs_ques_ans')
+        $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
         ->first();
-        $qusAns4 = DB::table('cs_ques_ans')
+        $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
         ->first();
-        $qusAns5 = DB::table('cs_ques_ans')
+        $qusAns5 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11']])
         ->first();
-        $qusAns6 = DB::table('cs_ques_ans')
+        $qusAns6 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_']])
         ->first();
-        $qusAns7 = DB::table('cs_ques_ans')
+        $qusAns7 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11__']])
         ->first();
-        $qusAns8 = DB::table('cs_ques_ans')
+        $qusAns8 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11___']])
         ->first();
-        $qusAns9 = DB::table('cs_ques_ans')
+        $qusAns9 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11____']])
         ->first();
-        $qusAns10 = DB::table('cs_ques_ans')
+        $qusAns10 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','11_____']])
         ->first();
-        $qusAns11 = DB::table('cs_ques_ans')
+        $qusAns11 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_']])
         ->first();
-        $qusAns12 = DB::table('cs_ques_ans')
+        $qusAns12 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12__']])
         ->first();
-        $qusAns13 = DB::table('cs_ques_ans')
+        $qusAns13 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12___']])
         ->first();
-        $qusAns14 = DB::table('cs_ques_ans')
+        $qusAns14 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12____']])
         ->first();
-        $qusAns15 = DB::table('cs_ques_ans')
+        $qusAns15 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
         ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','12_____']])
         ->first();
 

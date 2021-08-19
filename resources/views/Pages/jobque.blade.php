@@ -34,7 +34,7 @@ $serData = implode(" + ",$ser);
                 <li>
                     <a href="#">
                         <span class="snumber"><?php echo $i++;?></span>
-                        <span class="sname"><?php echo $question->question_name;?></span>
+                        <span class="sname"><?php echo $question->question_name;?> <?php echo $question->question_id;?></span>
                         <ion-icon name="chevron-down-outline" class="ml-auto tx-18"></ion-icon>
                     </a>
                 </li>
@@ -134,17 +134,17 @@ function showPreview(t, input, i,id)
                 }
                 if(id==56)
                 {   
-                    if(t=='qa_image11111002')
+                    if(t=='qa_image112002')
                     {
-                        $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
-                    }else if(t=='qa_image1111')
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image11')
                     {
-                        $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
                     }else{
-                        $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
                     }
                 }else{
-                    $('#showImage'+i+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
                 }
                 if(id==67)
                 {   
@@ -177,6 +177,89 @@ function showPreview(t, input, i,id)
                     $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
 
                 }
+
+                if(id==74)
+                {   if(t=='qa_image181003')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5___][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image181002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image18')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5__][]" value="'+jsondata.url+'">');
+                    }else{
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
+                    }
+                }else{
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
+
+                }
+
+
+                if(id==83)
+                {   if(t=='qa_image181003')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5___][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image181002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image18')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5__][]" value="'+jsondata.url+'">');
+                    }else{
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
+                    }
+                }else{
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][5][]" value="'+jsondata.url+'">');
+
+                }
+
+
+
+                if(id==91)
+                {   
+                    if(t=='qa_image262002')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3_][]" value="'+jsondata.url+'">');
+                    }else if(t=='qa_image11')
+                    {
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3__][]" value="'+jsondata.url+'">');
+                    }else{
+                        $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                    }
+                }else{
+                    $('#showImage'+i).append('<input type="hidden" name="qa_value['+id+'][3][]" value="'+jsondata.url+'">');
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
             }else{
                 $('#image-error').removeClass('hide');
             }

@@ -1,5 +1,5 @@
 <?php if($question->question_id==42){
-                $quest_data= $resQuestionData->where('qa_question_id',42)->where('qa_type',3);
+                $quest_data= $resQuestionData->where('qa_question_id',42)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
                                 ?>
         
         <div class="wide-block pt-2 pb-2">
@@ -28,7 +28,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==43){
-        $quest_data= $resQuestionData->where('qa_question_id',43)->where('qa_type',"1__")->first();
+        $quest_data= $resQuestionData->where('qa_question_id',43)->where('qa_tech_id','=',$technicianId)->where('qa_type',"1__")->first();
      
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -50,7 +50,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==44){
-        $quest_data= $resQuestionData->where('qa_question_id',44)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',44)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -89,7 +89,7 @@
         <?php }?>
 
         <?php if($question->question_id==45){
-        $quest_data= $resQuestionData->where('qa_question_id',45)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',45)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -127,7 +127,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==54){
-        $quest_data= $resQuestionData->where('qa_question_id',54)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',54)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -165,7 +165,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==57){
-        $quest_data= $resQuestionData->where('qa_question_id',57)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',57)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -203,7 +203,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==58){
-        $quest_data= $resQuestionData->where('qa_question_id',58)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',58)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
         <div class="wqtype">
@@ -231,7 +231,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==61){
-        $quest_data= $resQuestionData->where('qa_question_id',61)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',61)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -269,7 +269,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==65){
-        $quest_data= $resQuestionData->where('qa_question_id',65)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',65)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -308,16 +308,16 @@
         </div>
         <?php }?>
         <?php if($question->question_id==67){
-         $quest_data= $resQuestionData->where('qa_question_id',67)->where('qa_type',"4");
-         $quest_data2= $resQuestionData->where('qa_question_id',67)->where('qa_type',"4_");
-         $quest_data3= $resQuestionData->where('qa_question_id',67)->where('qa_type',"4__");
+         $quest_data= $resQuestionData->where('qa_question_id',67)->where('qa_tech_id','=',$technicianId)->where('qa_type',"4");
+         $quest_data2= $resQuestionData->where('qa_question_id',67)->where('qa_tech_id','=',$technicianId)->where('qa_type',"4_");
+         $quest_data3= $resQuestionData->where('qa_question_id',67)->where('qa_tech_id','=',$technicianId)->where('qa_type',"4__");
 
 
 
-         $qusAns2 = DB::table('cs_ques_ans')
+         $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
                ->first();
-               $qusAns3 = DB::table('cs_ques_ans')
+               $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
                ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
                ->first();
         ?>
@@ -427,7 +427,7 @@
    </div>
         <?php }?>
         <?php if($question->question_id==68){
-        $quest_data= $resQuestionData->where('qa_question_id',68)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',68)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -468,7 +468,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==69){
-        $quest_data= $resQuestionData->where('qa_question_id',69)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',69)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -502,7 +502,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==70){
-        $quest_data= $resQuestionData->where('qa_question_id',70)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',70)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 //print_r($qusAns);
 
         ?>
@@ -554,7 +554,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==71){
-        $quest_data= $resQuestionData->where('qa_question_id',71)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',71)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -604,7 +604,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==72){
-        $quest_data= $resQuestionData->where('qa_question_id',72)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',72)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -647,7 +647,7 @@
         <?php }?>
 
         <?php if($question->question_id==73){
-        $quest_data= $resQuestionData->where('qa_question_id',73)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',73)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -690,20 +690,20 @@
 
 
         <?php if($question->question_id==74){
-        $quest_data= $resQuestionData->where('qa_question_id',74)->where('qa_type',"5");
-        $quest_data2= $resQuestionData->where('qa_question_id',74)->where('qa_type',"5_");
-        $quest_data3= $resQuestionData->where('qa_question_id',74)->where('qa_type',"5__");
-        $quest_data4= $resQuestionData->where('qa_question_id',74)->where('qa_type',"5___");
+        $quest_data= $resQuestionData->where('qa_question_id',74)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5");
+        $quest_data2= $resQuestionData->where('qa_question_id',74)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5_");
+        $quest_data3= $resQuestionData->where('qa_question_id',74)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5__");
+        $quest_data4= $resQuestionData->where('qa_question_id',74)->where('qa_tech_id','=',$technicianId)->where('qa_type',"5___");
 
 
 
-        $qusAns2 = DB::table('cs_ques_ans')
+        $qusAns2 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1_']])
               ->first();
-              $qusAns3 = DB::table('cs_ques_ans')
+              $qusAns3 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1__']])
               ->first();
-              $qusAns4 = DB::table('cs_ques_ans')
+              $qusAns4 = DB::table('cs_ques_ans')->where('qa_tech_id','=',$technicianId)
               ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_question_id','=', $question->question_id],['qa_type','=','1___']])
               ->first();
 
@@ -856,7 +856,7 @@
 
 
         <?php if($question->question_id==75){
-        $quest_data= $resQuestionData->where('qa_question_id',75)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',75)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -895,7 +895,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==76){
-        $quest_data= $resQuestionData->where('qa_question_id',76)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',76)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="form-group boxed mb-1">
@@ -934,7 +934,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==77){
-        $quest_data= $resQuestionData->where('qa_question_id',77)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',77)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -973,7 +973,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==78){
-        $quest_data= $resQuestionData->where('qa_question_id',78)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',78)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
 
             ?>
         <div class="wide-block pt-2 pb-2">
@@ -1012,7 +1012,7 @@
         </div>
         <?php }?>
         <?php if($question->question_id==79){
-        $quest_data= $resQuestionData->where('qa_question_id',79)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',79)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
             ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
@@ -1040,7 +1040,7 @@
         <?php }?>
 
         <?php if($question->question_id==80){
-        $quest_data= $resQuestionData->where('qa_question_id',80)->where('qa_type',3);
+        $quest_data= $resQuestionData->where('qa_question_id',80)->where('qa_tech_id','=',$technicianId)->where('qa_type',3);
         ?>
         <div class="wide-block pt-2 pb-2">
             <div class="wqtype">
