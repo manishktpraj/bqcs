@@ -30,6 +30,9 @@ Route::any('/uploadfiles', 'PagesController@uploadfiles')->name('uploadfiles');
 Route::any('/calendar', 'PagesController@calendar')->name('calendar');
 Route::any('/profile', 'PagesController@profile')->name('profile');
 Route::any('/createPDF/{id}', 'PagesController@createPDF')->name('createPDF');
+Route::any('/deleteimg', 'PagesController@deleteimg')->name('deleteimg');
+
+
 
 
 /*************************** login logout***************************/

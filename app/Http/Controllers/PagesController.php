@@ -14,7 +14,11 @@ use PDF;
 class PagesController extends Controller
 {
     public function job(Request $request)
-    {
+     {
+//         $technicianId = Session::get("ADMIN")->faculty_id;
+// print_r($technicianId);
+// // echo $technicianId;
+
         if($request->session()->has('ADMIN'))
         {
             $technicianId = Session::get("ADMIN")->faculty_id;
@@ -64,12 +68,12 @@ class PagesController extends Controller
     function questionsSubmitRequest(Request $request)
     {
         $aryPostData = $request->all();
-// print_r($aryPostData);die;
+ ////echo '<pre>';;print_r($aryPostData);die;
         
         $technicianId = Session::get("ADMIN")->faculty_id;
         if ($request->isMethod('post')) 
         {
-            CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->delete();
+            CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->where('qa_tech_id',$technicianId)->delete();
             foreach($aryPostData['qa_value'] as $key=>$label)
             {
                 if(!empty($label))
@@ -138,14 +142,22 @@ class PagesController extends Controller
             ->whereIn('service_id',explode(",",$data->ca_service))
             ->get();
         $resQuestionData = CsQusAns::get(); 
-      return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
+ ///     return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
         // share data to view
-        /* $data['data'] = $data;
+         $data['data'] = $data;
         $data['resQuestionDataa'] = $resQuestionDataa;
         $data['resQuestionData'] = $resQuestionData;
         view()->share('pages.pdf_html',$data);
       $pdf = PDF::loadView('pdf.pdf_view', $data);
         // download PDF file with download method
-     return $pdf->download('pdf_file.pdf'); */
+     return $pdf->download('pdf_file.pdf');  
+      }
+
+
+
+
+      function deleteimg(Request $request){
+        $aryPostData = $request->all();
+        CsQusAns::where('qa_id', $aryPostData['ques_id'])->delete();
       }
 }

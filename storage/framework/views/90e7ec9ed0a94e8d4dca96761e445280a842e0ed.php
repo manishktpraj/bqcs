@@ -19,7 +19,7 @@
                         <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
                         <li>
-							<a href="#" class="remove-img"><ion-icon name="add-circle"></ion-icon></a>
+							<a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a>
                             <div class="imgbox">
                             <img src="<?php echo $img_name->qa_value;?>"  id="qa_image<?php echo $i;?>">
                             <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
@@ -85,12 +85,13 @@
                     <div class="imgboxlist">
                         <ul id="showImage<?php echo $i;?>">
                         <?php foreach($quest_data as $img_name){?>
-                         <li><a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
+                         <li><a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a>
+                         <div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
 
                            <!--- 3 for image --->
                            <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
                              
-                        </div></a></li>
+                        </div></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -129,7 +130,7 @@
                         <li>
                         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
      
-                        <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                        <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>   
                         </ul>
                     </div>
@@ -168,9 +169,8 @@
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                           <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
-                           <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
+                          <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
                             </div>
-                        </a>
                          </li>
                         <?php } ?>   </ul>
                     </div>
@@ -208,8 +208,8 @@
                         <?php foreach($quest_data as $img_name){?>
                         <li>
                         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">
-                            <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
-                        </div></a></li>
+                        <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
+                        </div></li>
                         <?php } ?> </ul>
                     </div>
                 </div>
@@ -239,10 +239,9 @@
                             ?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">    
- <a href="#">
-     <div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
+ 
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>">
     </div>
-</a>
 </li>
 <?php } ?>  
  </ul>
@@ -281,7 +280,7 @@
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>
                        </ul>
                     </div>
@@ -320,7 +319,7 @@
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -369,7 +368,7 @@
                         <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -402,7 +401,7 @@
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3_][]" value="<?php echo $img_name->qa_value;?>">        
     
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -435,7 +434,7 @@
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3__][]" value="<?php echo $img_name->qa_value;?>">        
                            
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"  name="<?php echo $i.$question->question_id;?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?>   </ul>
                     </div>
                 </div>
@@ -473,15 +472,16 @@
                                     
                                 <li>
                                 <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">            
-                                <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
-                                <?php } ?>   </ul>
+                                <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>" ><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div>
+								</li>
+                                <?php } ?>  
+								</ul>
                             </div>
                         </div>
                     </div>                              
-                    </li>         
-                </ul>
+                   
             </div>
-        </div>
+        
         <?php }?>
         <?php if($question->question_id==22){
             
@@ -512,7 +512,7 @@
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
                         
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?> </ul>
                     </div>
                 </div>
@@ -559,7 +559,7 @@
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
 
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?></ul>
                     </div>
                 </div>
@@ -609,7 +609,7 @@
                                 <?php foreach($quest_data as $img_name){?>
                          <li>
                          <input type="hidden" name="qa_value[<?php echo $question->question_id?>][3][]" value="<?php echo $img_name->qa_value;?>">        
-                         <a href="#"><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></a></li>
+                         <a href="#" class="remove-img"  data-val="<?php echo $img_name->qa_id?>"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="<?php echo $img_name->qa_value;?>" id="qa_image<?php echo $i;?>"></div></li>
                         <?php } ?></ul>
                             </div>
                         </div>
