@@ -17,6 +17,8 @@ $serData = implode(" + ",$ser);
                 <div class="flex-class"><span  class="tx-16 mr-5"><ion-icon name="calendar-clear-outline"></ion-icon></span> <span  class="tx-13">{{ date("d M",strtotime($rowAppointmentsData->ca_date))}}, {{ date("D",strtotime($rowAppointmentsData->ca_date))}} {{$rowAppointmentsData->ca_time}}-{{$rowAppointmentsData->ca_end_time}}</span></div>
             </div>
         </div>
+        <input type="file" name="qa_image" multiple="multiple" id="fileChoose" hidden onchange="showPreviewNew(this)">
+
         <form method="post" id="questionForm" action="{{route('questionsSubmitRequest')}}" enctype="multipart/form-data">
         @csrf  
         <input type="hidden" name="qa_ca_id" value="{{$rowAppointmentsData->ca_id}}">
@@ -24,10 +26,8 @@ $serData = implode(" + ",$ser);
         $i=1;
         foreach($resQuestionDataa as $question)
         {
-            $qusAns = DB::table('cs_ques_ans')
-                    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_tech_id','=', $technicianId],['qa_question_id','=', $question->question_id]])
-                    ->first();
-            //print_r($qusAns);die;
+
+ 
         ?>
         <div class="lisbox">
             <ul>
@@ -42,27 +42,191 @@ $serData = implode(" + ",$ser);
         </div>
 
       
-<!-------------------- Silver Package ------------------->
- @include('silver')
-<!-------------------- Silver Package ------------------->
 
-<!-------------------- Gold Package ------------------->
-@include('gold')
-<!-------------------- Gold Package ------------------->
+<?php foreach($question->questionmultiple as $data)
+{  
+    
+    $qusAnssss = DB::table('cs_ques_ans')
+    ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_tech_id','=', $technicianId],['qa_question_id','=', $data->qm_question_id],['qa_type',$data->qm_slug]])->get(); 
+ 
+     ?>
+    
+<?php   if($data->qm_type==2)
+{
+     $quest_data =array();
+?>
+<div class="wide-block pt-2 pb-2">
+<div class="wqtype">
+<ul>
+<li>
+<div class="wqtype-type">
+<a href="javascript:;" onclick="imageopennew('<?php echo $data->qm_slug;?>',<?php echo $data->qm_question_id;?>)">
+    <ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic
+</a>
+</div>                                 
+</li>         
+</ul>
+</div>
+<div class="row" id="imageDivHidden<?php echo $data->qm_slug;?><?php echo $data->qm_question_id;?>" style="display:none'">
+<div class="col-12">
+<div class="imgboxlist">
+    <ul id="showImage<?php echo $data->qm_slug;?><?php echo $data->qm_question_id;?>">
+    <?php foreach( $qusAnssss as $img_name){
+      ?>
+      <li>
+        <a href="#" class="remove-img"  data-val="<?php echo $data->qm_slug;?>"><ion-icon name="add-circle"></ion-icon></a>
+        <div class="imgbox"> 
+        <img src="<?php echo $img_name->qa_value;?>"  id="qa_image<?php echo $data->qm_slug;?>">
+        <input type="hidden" name="qa_value[<?php echo $question->question_id?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $img_name->qa_value;?>">
+        </div>
+    </li>
+    <?php } ?>                         
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<?php } ?>
 
-<!----------------------------------- Diamond Package  ----------------------------->
-@include('diamond')
-<!----------------------------------- Diamond Package  ----------------------------->
+<?php   if($data->qm_type==1)
+{
+ ?>
+<div class="wide-block pt-2 pb-2">
+            <div class="form-group boxed mb-1">
+                <div class="input-wrapper">
+                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
+                    <input type="text" class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
+                    value="<?php echo isset($qusAnssss[0]->qa_value)?$qusAnssss[0]->qa_value:''; ?>"> 
 
-<!---------------------------------- Termite Package  ----------------------------->
-@include('termite_standard')
-<!----------------------------------- Termite Package  ----------------------------->
+                    
+                </div>
+            </div>
+          
+        </div>
+ <?php  }  ?>
+
+ <?php   if($data->qm_type==3)
+{
+ ?>
+<div class="wide-block pt-2 pb-2">
+            <div class="form-group boxed mb-1">
+                <div class="input-wrapper">
+                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
+                    <textarea class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
+                    value=""><?php echo isset($qusAnssss[0]->qa_value)?$qusAnssss[0]->qa_value:''; ?></textarea>
+
+                    
+                </div>
+            </div>
+          
+        </div>
+ <?php  }  ?>
+
+ <?php   if($data->qm_type==4)
+{
+
+    $strExplode = explode(',',$data->qm_option);
+ ?>
+<div class="wide-block pt-2 pb-2">
+            <div class="form-group boxed mb-1">
+                <div class="input-wrapper">
+                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
+                    <select class="form-control form-select" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]">
+                        <option value="">Select</option>
+                        <?php foreach($strExplode as $key=>$label)
+                        { ?>
+                        <option <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'selected':''; ?> value="<?php echo $label;?>"><?php echo $label;?></option>
+                        <?php } ?>
+                       
+                    </select>
+
+                    
+                </div>
+            </div>
+          
+        </div>
+ <?php  }  ?>
+
+
+ <?php   if($data->qm_type==5)
+{
+
+    $strExplode = explode(',',$data->qm_option);
+ ?>
+<div class="wide-block pt-2 pb-2">
+            <div class="form-group boxed mb-1">
+                <div class="wqtype">
+                      
+                    <ul>
+                   
+                          
+              
+                
+                <?php foreach($strExplode as $key=>$label)
+                        { ?>
+                         <li>
+                        <div class="wqtype-type">
+                            <label class="container-checkbox"><?php echo $label;?> 
+                                <input type="checkbox" <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?> name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </li>
+                         <?php } ?>
+                       
+                        </ul>
+
+                    
+                </div>
+            </div>
+          
+        </div>
+ <?php  }  ?>
+
+ <?php   if($data->qm_type==6)
+{
+
+    $strExplode = explode(',',$data->qm_option);
+ ?>
+<div class="wide-block pt-2 pb-2">
+            <div class="form-group boxed mb-1">
+                <div class="wqtype">
+                      
+                    <ul>
+                   
+                          
+              
+                
+                <?php foreach($strExplode as $key=>$label)
+                        { ?>
+                         <li>
+                        <div class="wqtype-type">
+                            <label class="container-radio"><?php echo $label;?> 
+                                <input type="radio" <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?>  name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </li>
+                         <?php } ?>
+                       
+                        </ul>
+
+                    
+                </div>
+            </div>
+          
+        </div>
+ <?php  }  ?>
+
+<?php } ?>
 
 
 
 
         <div class="spacer"></div>
         <?php } ?>
+
+        
         </form>
     </div>
 </div>
@@ -71,6 +235,79 @@ $serData = implode(" + ",$ser);
     <a href="javascript:;" class="btn btn-success btn-lg btn-block" onclick="return checkValidation($(this))" style="margin:10px;background: #333 !important;border-color: #333 !important;">Submit</a>
 </div>
 <script>var token = '<?php echo csrf_token(); ?>';</script>
+
+<!---------------New Scripts  --------------------->
+<script>
+  var currentid = '';  
+  var questionidnew ='';
+  var slugnew ='';
+
+function imageopennew(slug,questionid)
+{
+    $("#fileChoose").click();
+    currentid = slug+''+questionid;
+    questionidnew = questionid;
+    slugnew  = slug;
+}
+
+function showPreviewNew(input) 
+{
+    if (input.files && input.files[0]) 
+    {
+        var form_data = new FormData();
+        form_data.append('qa_image_',input.files[0]);
+        form_data.append('_token',token);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imageDivHidden'+currentid).show();
+            $('#showImage'+currentid).append('<li><a href="#" class="remove-img"><ion-icon name="add-circle"></ion-icon></a><div class="imgbox"><img src="'+e.target.result+'"></div></li>');
+        };
+        reader.readAsDataURL(input.files[0]);
+        $.ajax({
+            url: base_url+'uploadfiles/', // point to server-side PHP script 
+            dataType: 'text',  
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,                         
+            type: 'post',
+            success: function(php_script_response){
+            var jsondata = JSON.parse(php_script_response);
+            if(jsondata.message=='ok')
+            {
+
+                    $('#showImage'+currentid).append('<input type="hidden" name="qa_value['+questionidnew+']['+slugnew+'][]" value="'+jsondata.url+'">');
+
+            }else{
+                $('#image-error').removeClass('hide');
+            }
+            }
+        });     
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---------------New Scripts  --------------------->
+<!---------------OLD Scripts  --------------------->
+
+
+
 <script>
     var base_url='<?php echo SITE_URL?>';
 function checkValidation(obj)

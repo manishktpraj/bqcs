@@ -8,6 +8,8 @@ use App\Http\Model\CsAdmin;
 use App\Http\Model\CsAppointments;
 use App\Http\Model\CsQuestion;
 use App\Http\Model\CsQusAns;
+use App\Http\Model\CsQuestionMultiple;
+
 use Validator;
 use PDF;
 
@@ -52,8 +54,7 @@ class PagesController extends Controller
             $services = DB::table('cs_services')
             ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
             ->get();
-            $resQuestionDataa = DB::table('cs_question')
-            ->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
+            $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
             ->get();
 
             $title=$rowAppointmentsData->customerAddress->customer_address;
@@ -76,22 +77,32 @@ class PagesController extends Controller
             CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->where('qa_tech_id',$technicianId)->delete();
             foreach($aryPostData['qa_value'] as $key=>$label)
             {
-                if(!empty($label))
-                {
-                    
+               
                     foreach($label as $keyee=>$labele){
 
+                        if(!empty($labele) && is_array($labele))
+                        {
+                            
                         foreach($labele as $keyeee=>$labelee){
                         $postobj = new CsQusAns;
-                        $postobj->qa_question_id = str_replace('__','',str_replace('_','',$key));
+                        $postobj->qa_question_id = $key;
                         $postobj->qa_type = $keyee;
                         $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
                         $postobj->qa_value = $labelee;
                         $postobj->qa_tech_id = $technicianId;
                         $postobj->save();
                         }
+                      }else{
+                        $postobj = new CsQusAns;
+                        $postobj->qa_question_id = $key;
+                        $postobj->qa_type = $keyee;
+                        $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
+                        $postobj->qa_value = $labele;
+                        $postobj->qa_tech_id = $technicianId;
+                        $postobj->save();
+                        }
                     }
-                }
+              
             }
             CsAppointments::where(array('ca_id' => $aryPostData['qa_ca_id']))->update(  array('ca_report_submit' => 1));
           //  echo '<pre>'; print_r($aryPostData);die;

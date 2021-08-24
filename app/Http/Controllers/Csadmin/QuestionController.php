@@ -11,7 +11,9 @@ use App\Http\Model\CsPermission;
 use App\Http\Model\CsRolePermissions;
 use App\Http\Model\CsQuestion;
 use App\Http\Model\CsFacultyRole;
+use Illuminate\Support\Str;
 
+use App\Http\Model\CsQuestionMultiple;
 
 use Validator;
 
@@ -151,9 +153,31 @@ if(isset($label->children) && $intLevel!=2)
     
     if($postobj->save())    
         {
-            return redirect()->route('question',$aryPostData['service_id'])->with('status', 'Entry Saved Successfully.');   
+            $intQuestionId = $postobj->question_id;
+            CsQuestionMultiple::where('qm_question_id',$intQuestionId)->delete();
+            foreach($aryPostData['qm_type'] as $key=>$label)
+            {
+                if($label!='')
+                {
+
+                
+                $postobjM = new CsQuestionMultiple;
+                $postobjM->qm_question_id = $intQuestionId;
+                $postobjM->qm_type = $label;
+                $postobjM->qm_label =$aryPostData['qm_label'][$key];
+                $strSlug = Str::slug($aryPostData['qm_label'][$key], "_");
+                $postobjM->qm_slug = $strSlug;
+                $postobjM->qm_madatory =$aryPostData['qm_madatory'][$key];
+                $postobjM->qm_option = $aryPostData['qm_option'][$key];
+                $postobjM->save();
+            }
+            }
+          ///  
+
+            
+            return redirect()->route('add-new-question',[$aryPostData['service_id'],$intQuestionId])->with('status', 'Entry Saved Successfully.');   
         }else{
-            return redirect()->route('question',$aryPostData['service_id'])->with('error', 'Server Not Responed');
+            return redirect()->route('add-new-question',[$aryPostData['service_id'],$intQuestionId])->with('error', 'Server Not Responed');
         }
     }
      
