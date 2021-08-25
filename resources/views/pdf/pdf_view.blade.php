@@ -93,7 +93,7 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 				<?php foreach($quest_data as $img_name)
 				{ ?>
 					 
-						<p style="margin:0px;"><?php echo isset($aryData[$img_name->qa_value])?$aryData[$img_name->qa_value]:$img_name->qa_value;?> </p>
+					<?php echo isset($aryData[$img_name->qa_value])?$aryData[$img_name->qa_value]:$img_name->qa_value;?>
  				<?php }
 				?>
 			</td>
@@ -114,7 +114,7 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 						echo '</tr><tr>';
 					}
 				?>
-				<td <?php if($strHtml==1){ ?>colspan="2"<?php } ?> style="padding:10px">
+				<td <?php if($strHtml==1){ ?>colspan="2"<?php } ?> style="padding:10px 0px;border:0px; vertical-align:top;">
 					<img src="<?php echo $img_name->qa_value;?>"  style="width:100%;">
 				</td>
 				<?php  $cnt++; } ?>                         
