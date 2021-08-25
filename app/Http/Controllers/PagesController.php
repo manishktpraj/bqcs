@@ -79,7 +79,7 @@ class PagesController extends Controller
             {
                
                     foreach($label as $keyee=>$labele){
-
+                        $rowQusMulData = CsQuestionMultiple::where([['qm_question_id' ,'=', $key],['qm_slug' ,'=', $keyee]])->first();
                         if(!empty($labele) && is_array($labele))
                         {
                             
@@ -90,6 +90,7 @@ class PagesController extends Controller
                         $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
                         $postobj->qa_value = $labelee;
                         $postobj->qa_tech_id = $technicianId;
+                        $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
                         $postobj->save();
                         }
                       }else{
@@ -99,6 +100,7 @@ class PagesController extends Controller
                         $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
                         $postobj->qa_value = $labele;
                         $postobj->qa_tech_id = $technicianId;
+                        $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
                         $postobj->save();
                         }
                     }
@@ -153,7 +155,7 @@ class PagesController extends Controller
             ->whereIn('service_id',explode(",",$data->ca_service))
             ->get();
         $resQuestionData = CsQusAns::get(); 
- ///     return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
+     ////  return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
         // share data to view
          $data['data'] = $data;
         $data['resQuestionDataa'] = $resQuestionDataa;
@@ -162,6 +164,16 @@ class PagesController extends Controller
       $pdf = PDF::loadView('pdf.pdf_view', $data);
         // download PDF file with download method
      return $pdf->download('pdf_file.pdf');  
+      }
+
+    public function viewPDF($id) {
+        $data = CsAppointments::where('ca_id',$id)->first();
+        $resQuestionDataa = DB::table('cs_question')
+            ->whereIn('service_id',explode(",",$data->ca_service))
+            ->get();
+        $resQuestionData = CsQusAns::get(); 
+        return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
+           
       }
 
 
