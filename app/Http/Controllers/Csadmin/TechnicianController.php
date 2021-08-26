@@ -11,6 +11,8 @@ use App\Http\Model\CsPermission;
 use App\Http\Model\CsRolePermissions;
 use App\Http\Model\CsQuestion;
 use App\Http\Model\CsFacultyRole;
+use App\Http\Model\CsTechnicianGroup;
+
 use Validator;
 
 class TechnicianController extends Controller
@@ -79,6 +81,8 @@ Technician Section
                     $resfacultyData = CsFaculty::where('faculty_institute','=',$user->user_id)->paginate(20);
                 }
             }   
+
+
     $title='Manage Technician';
     return view('Csadmin.Technician.index',compact('title','resfacultyData'));
   }
@@ -98,9 +102,10 @@ Technician Section
     }else{
       $resfacultyData = CsFaculty::where('faculty_id','=',$intfacultyId)->where('faculty_institute','=',$user->user_id)->first();
          }}
+         $resServices =CsServices::where('role_parent','!=','0')->get();
 
     $title='Add New Technician';
-    return view('Csadmin.Technician.addNewTechnician' ,compact('title','resfacultyData','resroleData'));
+    return view('Csadmin.Technician.addNewTechnician' ,compact('title','resfacultyData','resroleData','resServices'));
   }
   
   /*************************************************************************************************************************************************************************/
@@ -139,6 +144,9 @@ function technicianProccess(Request $request)
         $postobj->faculty_email = $aryPostData['faculty_email'];
         $postobj->faculty_about = $aryPostData['faculty_about'];
         $postobj->faculty_phone = $aryPostData['faculty_phone'];
+
+        
+        $postobj->faculty_services = implode(',',$aryPostData['faculty_services']);
 
        if(isset($aryPostData['faculty_new_password']) && isset($aryPostData['faculty_confirm_password']) && $aryPostData['faculty_confirm_password']==$aryPostData['faculty_new_password']){
            $postobj->faculty_password = $aryPostData['faculty_new_password'];
@@ -345,13 +353,49 @@ Role Section
 Group Section
  ***************************************************************************/
   
-public function techniciangroup()
+public function techniciangroup($id=0,Request $request)
 {
-    $resTech = CsFaculty::get();
-    $title='Technician Group';
-    return view('Csadmin.Technician.techniciangroup' ,compact('title','resTech')); 
-}
 
+    if($_SERVER['REQUEST_METHOD']=='POST')
+    {
+         $aryPostData = $request->all();
+        if(isset($aryPostData['group_id']) && $aryPostData['group_id']>0)
+        {
+           $postobj = CsTechnicianGroup::where('group_id',$aryPostData['group_id'])->first();
+        }else{
+            $postobj = new CsTechnicianGroup;
+        }   
+         $postobj->group_name = $aryPostData['group_name'];  
+
+         if(isset($aryPostData['ca_service_parent']) && count($aryPostData['ca_service_parent'])>0)
+         {
+
+         }
+         $resFacultyName = CsFaculty::whereIn();
+
+         
+        if($postobj->save())    
+        {
+            return redirect()->route('technician-group')->with('status', 'Entry Saved Successfully.');   
+        }else{
+            return redirect()->route('technician-group')->with('error', 'Server Not Responed');
+        }
+    }
+
+    $resTechId = CsTechnicianGroup::where('group_id',$id)->first();
+
+
+    $resfacultyData = CsFaculty::get();
+
+    $resTech = CsTechnicianGroup::get();
+    $title='Technician Group';
+    return view('Csadmin.Technician.techniciangroup' ,compact('title','resTech','resTechId','resfacultyData')); 
+}
+public function techniciangroupdelete($intCategoryId)
+{
+    CsTechnicianGroup::where('group_id', $intCategoryId)->delete();
+    return redirect()->route('technician-group')->with('status', 'Entry Deleted Successfully');
+}
 
   /*************************************************************************
 Group Section

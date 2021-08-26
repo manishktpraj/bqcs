@@ -165,6 +165,7 @@ if(isset($label->children) && $intLevel!=2)
                 $postobjM->qm_question_id = $intQuestionId;
                 $postobjM->qm_type = $label;
                 $postobjM->qm_label =$aryPostData['qm_label'][$key];
+                $postobjM->qm_labelvisiblity =$aryPostData['qm_labelvisiblity'][$key];
                 $strSlug = Str::slug($aryPostData['qm_label'][$key], "_");
                 $postobjM->qm_slug = $strSlug;
                 $postobjM->qm_madatory =$aryPostData['qm_madatory'][$key];

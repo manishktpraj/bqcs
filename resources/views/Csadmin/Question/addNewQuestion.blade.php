@@ -71,15 +71,25 @@ foreach($rowCategoryData->questionmultiple as $key=>$label)
 <label>Mandatory:</label>
 <select class="form-control" name="qm_madatory[]" id="que_type"  >
 <option >Select</option>
-<option value="1" <?php echo (isset($label->qm_madatory) && $label->qm_madatory==1)?"selected":''?>>Yes</option>
-<option value="3" <?php echo (isset($label->qm_madatory) && $label->qm_madatory==3)?"selected":''?>>No</option> 
+<option value="Yes" <?php echo (isset($label->qm_madatory) && $label->qm_madatory=='Yes')?"selected":''?>>Yes</option>
+<option value="No" <?php echo (isset($label->qm_madatory) && $label->qm_madatory=='No')?"selected":''?>>No</option> 
 
 </select>
 </div> 
 </div>
 
 
+<div class="col-lg-2">
+<div class="form-group">
+<label>Label Visiblity:</label>
+<select class="form-control" name="qm_labelvisiblity[]" id="que_type" >
+<option >Select</option>
+<option value="Yes" <?php echo (isset($label->qm_labelvisiblity) && $label->qm_labelvisiblity=='Yes')?"selected":''?>>Yes</option>
+<option value="No" <?php echo (isset($label->qm_labelvisiblity) && $label->qm_labelvisiblity=='No')?"selected":''?>>No</option> 
 
+</select>
+</div> 
+</div>
 
 
 </div>
@@ -132,8 +142,21 @@ foreach($rowCategoryData->questionmultiple as $key=>$label)
 <label>Mandatory:</label>
 <select class="form-control" name="qm_madatory[]" id="que_type" >
 <option >Select</option>
-<option value="1" >Yes</option>
-<option value="3" >No</option> 
+<option value="Yes" >Yes</option>
+<option value="No" >No</option> 
+
+</select>
+</div> 
+</div>
+
+
+<div class="col-lg-2">
+<div class="form-group">
+<label>Label Visiblity:</label>
+<select class="form-control" name="qm_labelvisiblity[]" id="que_type" >
+<option >Select</option>
+<option value="Yes" >Yes</option>
+<option value="No" >No</option> 
 
 </select>
 </div> 

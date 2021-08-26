@@ -74,7 +74,26 @@
 <input type="password" class="form-control" name="faculty_confirm_password" id="txtConfirmPassword" value="">
 </div>
 </div>
+<div class="col-lg-12">
+<div class="form-group" style="margin-bottom:15px">
+<label>Services:</label>
+<select class="custom-select select2" multiple name="faculty_services[]" required="">
+<option value="">Select Services</option>
+
+<?php 
+
+$aryData = (isset($resfacultyData->faculty_services))?explode(',',$resfacultyData->faculty_services):'';
+foreach($resServices as $role){?>
+<option value="<?php echo $role->role_id;?>" <?php echo (in_array($role->role_id,$aryData))?'selected':''; ?>><?php echo $role->role_name;?></option>
+<?php } ?>
+</select> 
 </div>
+</div>
+</div>
+
+
+
+
 </div>
 </div>
 <div class="card mg-b-15">

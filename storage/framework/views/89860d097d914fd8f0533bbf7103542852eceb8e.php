@@ -22,17 +22,17 @@
 </div>
 <form method="post" action="" enctype="multipart/form-data">
 <?php echo csrf_field(); ?>
-<input type="hidden" name="group_id" value="<?php echo isset($rowCategoryData->group_id)?$rowCategoryData->group_id:'0'?>">
+<input type="hidden" name="group_id" value="<?php echo isset($resTechId->group_id)?$resTechId->group_id:'0'?>">
 <div class="card-body">
 <div class="form-group">
 <label>Group Name / Title: <span style="color:red">*</span></label>
-<input type="text" class="form-control" name="group_name" required="" value="<?php echo isset($rowCategoryData->group_name)?$rowCategoryData->group_name:''?>">
+<input type="text" class="form-control" name="group_name" required="" value="<?php echo isset($resTechId->group_name)?$resTechId->group_name:''?>">
 <span class="tx-color-03" style="font-size: 11px;">This name is appears on your site</span>
 </div>
 <div class="form-group">
-<select class="form-control select2" name="ca_service_parent[]" id="test" multiple="multiple" style="width: 100%;" onchange="getServiceChild(this.value)">
-<?php foreach($resTech as $value){?>
-<option value="<?php $value->faculty_id;?>"><?php echo $value->faculty_first_name." ".$value->faculty_last_name; ?></option>
+<select class="form-control select2 " name="ca_service_parent[]" id="test" multiple="multiple" >
+<?php foreach($resfacultyData as $value){?>
+<option value="<?php  echo $value->faculty_id;?>"><?php echo $value->faculty_first_name." ".$value->faculty_last_name; ?></option>
 <?php }?>
 </select>
 </div>
@@ -57,13 +57,27 @@
 <tr>
 <th style="width:5%;text-align:center;width:10px;"><input type="checkbox" id="selectAll" style="vertical-align: middle;"></th>
 <th scope="col" style="width:400px;">Group Name</th>
-<th scope="col">Status</th>
-<th scope="col" style="text-align:center">Count</th>
-<th scope="col" style="text-align:center; width:100px">Action</th>
+ <th scope="col" style="text-align:center; width:100px">Action</th>
 </tr>
 </thead>
 <tbody>
+<?php foreach($resTech as $rowTech)
+{ ?>
+<tr>
+<td><input type="checkbox"></td>
+<td><?php echo $rowTech->group_name; ?></td>
+  
+<td>
+<div class="d-flex align-self-center justify-content-center">
+<nav class="nav nav-icon-only">
+<a href="<?php echo e(route('technician-group',$rowTech->group_id )); ?>" class="btn btn-primary btn-icon mg-r-5" title="Edit" style="padding:0px 5px;"><i class="fas fa-pencil-alt" style="font-size:11px;"></i></a>
+<a href="<?php echo e(route('techniciangroupDelete',$rowTech->group_id )); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-icon mg-r-5" title="Delete" style="padding:0px 5px;"><i class="fas fa-trash-alt" style="font-size:11px;"></i></a>
+</nav>
+</div>
 
+</td>
+</tr>
+<?php } ?>
 
 </tbody>
 </table>

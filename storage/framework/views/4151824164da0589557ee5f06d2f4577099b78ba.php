@@ -139,6 +139,7 @@
         var datastring = 'ca_id='+id+'&_token='+token;
         $.post(base_url+'appointment/editAppointmentAjex',datastring,function(response){
             $('#editAppointment').html(response);
+            $('.select2').select2();
         });
     }
 </script>

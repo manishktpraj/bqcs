@@ -11,6 +11,8 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
     return $output;
     }
 ?>
+<?php if(!isset($rowAppointment))
+{ ?>
 <div class="modal fade" id="modaladdapponiment" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered wd-sm-400" role="document">
         <div class="modal-content">
@@ -26,6 +28,7 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
                 <form method="post" action="{{route('addAppointmentProccess')}}" enctype="multipart/form-data">  
                 @csrf 
                 <div id="editAppointment">
+                    <?php } ?>
                     <div class="form-group">
                         <select class="custom-select" name="ca_app_type">
                             <option value="">Select</option>
@@ -62,17 +65,17 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
                         </select>
                     </div>
                     <div class="row row-xs">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                <select class="custom-select" name="ca_technician_id">
-                                    <option value="" selected="selected">Select Technician</option>
+                                <select class="custom-select select2" multiple="multiple" style="width: 100%;" name="ca_technician_id[]">
+                                    <option >Select Technician</option>
                                     <?php foreach($resTechnicianData as $value){?>
                                         <option value="<?php echo $value->faculty_id?>"><?php echo $value->faculty_first_name." ".$value->faculty_last_name?></option>
                                     <?php }?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <select class="custom-select" name="ca_job_type">
                                     <option value="">Job Type</option>
@@ -137,47 +140,13 @@ function get_times($ty = "", $default = '00:00', $interval = '+30 minutes',$type
                         <textarea class="form-control" rows="5" placeholder="Job Notes" name="ca_notes"></textarea>
                     </div>
                     <button class="btn btn-primary btn-block">Save</button>
+
+                    <?php if(!isset($rowAppointment))
+{ ?>
                 </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>var token = '<?php echo csrf_token(); ?>';</script>
-<script>
-    var base_url = '<?php echo ADMIN_URL?>';
-    function getCustomerAddress(value)
-    {
-        var datastring = 'customer_id='+value+'&_token='+token;
-        $.post(base_url+'appointment/getCustomerAddressAjex',datastring,function(response){
-            $('#address_hide').show();
-            $('#addressData').html(response);
-        });
-    }
-    function getServiceChild(value)
-    {
-        var service = $('#service_category').val();
-        var datastring = 'service_id='+service+'&_token='+token;
-        $.post(base_url+'appointment/serviceCatProccessAjex',datastring,function(response){
-            $('#childService').html(response);
-        });
-    }
-    function setDate(value){
-       $('input[name="ca_end_date"]').val(value); 
-       //localStorage.setItem("eventime",value);
-    }
-    function setTime(value){  
-        var va = value;
-        if(va){
-            var h = parseInt(va.split(':')[0]);
-            var m = (va.split(':')[1]).split(' ')[0];
-            var ampm;
-            if(h>=12){ampm = 'PM';}else{ampm = 'AM';}
-            var HG = h+1;
-            if(HG<10){HG = '0'+HG;}
-            var newt = HG+':'+m+' '+ampm;
-            $('#ca_end_time').val(newt).trigger('change'); 
-        }
-     }
-     
-</script>
+<?php } ?>

@@ -9,6 +9,7 @@ use App\Http\Model\CsAppointments;
 use App\Http\Model\CsQuestion;
 use App\Http\Model\CsQusAns;
 use App\Http\Model\CsQuestionMultiple;
+use App\Http\Model\CsFaculty;
 
 use Validator;
 use PDF;
@@ -49,13 +50,27 @@ class PagesController extends Controller
         if(session()->has('ADMIN'))
         {
             $technicianId = Session::get("ADMIN")->faculty_id;
+            $rowTechnicianInfo  = CsFaculty::where('faculty_id',$technicianId)->first();
+
+             
             $rowAppointmentsData = CsAppointments::where('ca_id',$id)->first();
             $resQuestionData = CsQusAns::get(); 
-            $services = DB::table('cs_services')
-            ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
-            ->get();
-            $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
-            ->get();
+            if( $rowTechnicianInfo->faculty_services!='')
+            {
+                $services = DB::table('cs_services')
+                ->whereIn('role_id',explode(",",$rowTechnicianInfo->faculty_services))
+                ->get();
+                $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowTechnicianInfo->faculty_services))
+                ->get();
+            }else{
+                $services = DB::table('cs_services')
+                ->whereIn('role_id',0)
+                ->get();
+                $resQuestionDataa =CsQuestion::whereIn('service_id',0)
+                ->get();   
+            }
+         
+          
 
             $title=$rowAppointmentsData->customerAddress->customer_address;
 

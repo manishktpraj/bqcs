@@ -74,7 +74,8 @@ Route::group(['prefix'=>'csadmin', 'namespace'=>'Csadmin'], function(){
         Route::any('/view-technician/{id?}', 'TechnicianController@viewtechnician')->name('view-technician');
         Route::any('/technicianStatus/{id}', 'TechnicianController@technicianStatus')->name('technicianStatus');
         Route::any('/technicianProccess', 'TechnicianController@technicianProccess')->name('technicianProccess');
-        Route::any('/technician-group', 'TechnicianController@techniciangroup')->name('technician-group');
+        Route::any('/technician-group/{id?}', 'TechnicianController@techniciangroup')->name('technician-group');
+        Route::any('/technician-groupdelete/{id?}', 'TechnicianController@techniciangroupdelete')->name('techniciangroupDelete');
         Route::any('/technician-role/{id?}', 'TechnicianController@techrole')->name('technician-role');
         Route::any('/roleproccess', 'TechnicianController@roleproccess')->name('roleproccess');
         Route::any('/roleStatus/{id}', 'TechnicianController@roleStatus')->name('roleStatus');

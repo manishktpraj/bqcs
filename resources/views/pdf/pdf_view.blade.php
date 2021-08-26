@@ -114,7 +114,8 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 						echo '</tr><tr>';
 					}
 				?>
-				<td <?php if($strHtml==1){ ?>colspan="2"<?php } ?> style="padding:10px 0px;border:0px; vertical-align:top;">
+						<?php if($strHtml==1){ ?><td  style="padding:10px 0px;border:0px; vertical-align:top;"></td><?php } ?>
+         		<td  style="padding:10px 10px;border:0px; vertical-align:top;">
 					<img src="<?php echo $img_name->qa_value;?>"  style="width:100%;">
 				</td>
 				<?php  $cnt++; } ?>                         

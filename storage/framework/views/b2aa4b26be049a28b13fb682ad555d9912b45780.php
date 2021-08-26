@@ -90,7 +90,7 @@
 	<ul>
 		<li class="<?php echo (isset($title) && $title == 'Manage Technician'  || $title == 'View Technician')?'active':''; ?>"><a href="<?php echo e(route('technician')); ?>" >Manage Technician</a></li>
 		<li class="<?php echo (isset($title) && $title == 'Add New Technician')?'active':''; ?>"><a href="<?php echo e(route('add-new-technician')); ?>" >Add New Technician</a></li>
-		<li class="<?php echo (isset($title) && $title=='Technician Group')?'active':''; ?>"><a href="<?php echo e(route('technician-group')); ?>" >Technician Group</a></li>
+	<!--	<li class="<?php echo (isset($title) && $title=='Technician Group')?'active':''; ?>"><a href="<?php echo e(route('technician-group')); ?>" >Technician Group</a></li>-->
 		<li class="<?php echo (isset($title) && $title == 'Manage Roles'|| $title == 'Permission')?'active':''; ?>"><a href="<?php echo e(route('technician-role')); ?>" >Roles</a></li>
 	</ul>
 </li>
@@ -243,7 +243,44 @@ maximumSelectionLength: 2
 });
 </script>
 
-
+<script>var token = '<?php echo csrf_token(); ?>';</script>
+<script>
+    var base_url = '<?php echo ADMIN_URL?>';
+    function getCustomerAddress(value)
+    {
+        var datastring = 'customer_id='+value+'&_token='+token;
+        $.post(base_url+'appointment/getCustomerAddressAjex',datastring,function(response){
+            $('#address_hide').show();
+            $('#addressData').html(response);
+        });
+    }
+    function getServiceChild(value)
+    {
+        var service = $('#service_category').val();
+        var datastring = 'service_id='+service+'&_token='+token;
+        $.post(base_url+'appointment/serviceCatProccessAjex',datastring,function(response){
+            $('#childService').html(response);
+        });
+    }
+    function setDate(value){
+       $('input[name="ca_end_date"]').val(value); 
+       //localStorage.setItem("eventime",value);
+    }
+    function setTime(value){  
+        var va = value;
+        if(va){
+            var h = parseInt(va.split(':')[0]);
+            var m = (va.split(':')[1]).split(' ')[0];
+            var ampm;
+            if(h>=12){ampm = 'PM';}else{ampm = 'AM';}
+            var HG = h+1;
+            if(HG<10){HG = '0'+HG;}
+            var newt = HG+':'+m+' '+ampm;
+            $('#ca_end_time').val(newt).trigger('change'); 
+        }
+     }
+     
+</script>
 
 </body>
 </html>
