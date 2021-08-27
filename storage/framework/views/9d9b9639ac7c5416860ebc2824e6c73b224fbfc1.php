@@ -197,8 +197,26 @@ id="darkmodesidebar">
 setTimeout(() => {
 notification('notification-welcome', 5000);
 }, 2000);
+
+
 </script>
 
+<script>
+
+$('.imgbox').click(function(response){
+    if(!$(this).hasClass('selectedimagebox'))
+    {
+        $(this).parents('li').addClass('selectedimagebox');
+ var iddata =  $(this).attr("data-id");
+ $('.data'+iddata).remove();
+
+ $(this).append('<input type="hidden" name="selected_image[]" class="data'+iddata+'"  value="'+iddata+'">');
+}
+});
+  
+
+
+</script>
 </body>
 
 </html><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Layout/app.blade.php ENDPATH**/ ?>

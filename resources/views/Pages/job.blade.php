@@ -24,8 +24,9 @@
                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
                 <?php if($value->ca_report_submit==1)
                 {?>
-                <a href="{{route('createPDF',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Report</a>
-                <a href="{{route('job-question-new',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Edit Inspection</a>
+               <!-- <a href="{{route('createPDF',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Report</a>-->
+               <a href="{{route('reportselector',[$value->ca_id,1])}}" class="btn btn-secondary btn-sm me-1">Report</a>
+      <a href="{{route('job-question-new',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Edit Inspection</a>
                <?php  }else{ ?>
                 <a href="{{route('job-question-new',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Start Inspection</a>
                <?php } ?>

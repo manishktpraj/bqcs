@@ -1,5 +1,34 @@
 @extends('Layout.app')
 @section ('content')
+<style>
+.selectedimagebox
+{
+ }
+.selectedimagebox .remove-img
+{
+    display:none;
+}
+.selectedimagebox .tick-img
+{
+    display:block !important;
+}
+.tick-img
+{
+    background:green;
+    border-radius:50%;
+}
+.tick-img {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+     z-index: 99999;
+    color: green;
+    background: #fff;
+    border-radius: 50%;
+    line-height: 0;
+    font-size: 20px;
+}
+</style>
 <?php
 $ser = array();
 foreach($services as $valuee){
@@ -74,8 +103,12 @@ $serData = implode(" + ",$ser);
     <?php foreach( $qusAnssss as $img_name){
       ?>
       <li>
+      <?php if($type==0)
+{ ?>
         <a href="#" class="remove-img"  data-val="<?php echo $data->qm_slug;?>"><ion-icon name="add-circle"></ion-icon></a>
-        <div class="imgbox"> 
+        <?php } ?> 
+        <a href="#" class="tick-img"  style="display:none" data-val="<?php echo $data->qm_slug;?>"><ion-icon name="checkmark-circle" ></ion-icon></a>
+      <div class="imgbox" data-id="<?php echo $img_name->qa_id;?>"> 
         <img src="<?php echo $img_name->qa_value;?>"  id="qa_image<?php echo $data->qm_slug;?>">
         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $img_name->qa_value;?>">
         </div>
@@ -232,7 +265,14 @@ $serData = implode(" + ",$ser);
 </div>
 <div style="height: 100px;"></div>
 <div class="appBottomMenu">
-    <a href="javascript:;" class="btn btn-success btn-lg btn-block" onclick="return checkValidation($(this))" style="margin:10px;background: #333 !important;border-color: #333 !important;">Submit</a>
+    
+<?php if($type==0)
+{ ?>
+<a href="javascript:;" class="btn btn-success btn-lg btn-block" onclick="return checkValidation($(this))" style="margin:10px;background: #333 !important;border-color: #333 !important;">Submit</a>
+<?php }else{ ?> 
+<a href="javascript:;" class="btn btn-success btn-lg btn-block" onclick="return checkValidationfrpdfgenerate($(this))" style="margin:10px;background: #333 !important;border-color: #333 !important;">Generate Report</a>
+<?php } ?> 
+
 </div>
 <script>var token = '<?php echo csrf_token(); ?>';</script>
 
@@ -285,8 +325,17 @@ function showPreviewNew(input)
         });     
     }
 }
-</script>
 
+function checkValidation(obj)
+{
+    $('#questionForm').submit();
+}
+
+function checkValidationfrpdfgenerate(obj)
+{
+    $('#questionForm').submit();
+}
+</script>
 
 
 
@@ -310,10 +359,7 @@ function showPreviewNew(input)
 
 <script>
     var base_url='<?php echo SITE_URL?>';
-function checkValidation(obj)
-{
-    $('#questionForm').submit();
-}
+
 function imageOpen(obj,id)
 {
     $("#fileChoose"+id).click();

@@ -44,7 +44,14 @@ $qusAns = DB::table('cs_ques_ans')
 ->first();
 ?>
 <?php
-$quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+if(isset($dataset))
+{
+	$quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
+
+}else{
+	$quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+
+}
 ?>
 <?php foreach($quest_data as $img_name){?>
 <img src="<?php echo $img_name->qa_value;?>" style="width:100%;" >
@@ -99,15 +106,22 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 			</td>
 		</tr>
 		<?php } 
-		 				$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+ 		if(isset($dataset))
+		{
+			$quest_datas= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
 
-		if($quest_data->count()>0){
+		}else{
+			$quest_datas= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+		
+		}
+  
+		if($quest_datas->count()>0){
 			?>
 			<tr>
 				<?php
 					$cnt =0;
-					$strHtml = count($quest_data);
-					foreach($quest_data as $img_name){
+					$strHtml = count($quest_datas);
+					foreach($quest_datas as $img_name){
 					if($cnt%2==0 && $cnt!=1 && $cnt!=0)
 					{
 						$strHtml=$strHtml-$cnt;
@@ -121,7 +135,8 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 				<?php  $cnt++; } ?>                         
 			</tr>
 		<?php }?>
-	<?php }} ?>
+	<?php }}		 
+ ?>
 </table>
 </div>
 <?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/pdf/pdf_view.blade.php ENDPATH**/ ?>

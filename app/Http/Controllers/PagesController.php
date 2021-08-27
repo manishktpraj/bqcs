@@ -44,7 +44,7 @@ class PagesController extends Controller
         }
     }
 
-    public function jobque($id)
+    public function jobque($id,$type=0)
     {
 
         if(session()->has('ADMIN'))
@@ -75,7 +75,7 @@ class PagesController extends Controller
             $title=$rowAppointmentsData->customerAddress->customer_address;
 
           //  $title='Booking ID: '.$rowAppointmentsData->ca_id;
-            return view('Pages.jobque',compact('title','technicianId','resQuestionData','rowAppointmentsData','resQuestionDataa','services','resQuestionData','id'));
+            return view('Pages.jobque',compact('title','technicianId','resQuestionData','rowAppointmentsData','resQuestionDataa','services','resQuestionData','id','type'));
         }else{
             return redirect()->route('index');
         }
@@ -89,42 +89,71 @@ class PagesController extends Controller
         $technicianId = Session::get("ADMIN")->faculty_id;
         if ($request->isMethod('post')) 
         {
-            CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->where('qa_tech_id',$technicianId)->delete();
-            foreach($aryPostData['qa_value'] as $key=>$label)
-            {
-               
-                    foreach($label as $keyee=>$labele){
-                        $rowQusMulData = CsQuestionMultiple::where([['qm_question_id' ,'=', $key],['qm_slug' ,'=', $keyee]])->first();
-                        if(!empty($labele) && is_array($labele))
-                        {
-                            
-                        foreach($labele as $keyeee=>$labelee){
-                        $postobj = new CsQusAns;
-                        $postobj->qa_question_id = $key;
-                        $postobj->qa_type = $keyee;
-                        $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
-                        $postobj->qa_value = $labelee;
-                        $postobj->qa_tech_id = $technicianId;
-                        $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
-                        $postobj->save();
-                        }
-                      }else{
-                        $postobj = new CsQusAns;
-                        $postobj->qa_question_id = $key;
-                        $postobj->qa_type = $keyee;
-                        $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
-                        $postobj->qa_value = $labele;
-                        $postobj->qa_tech_id = $technicianId;
-                        $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
-                        $postobj->save();
-                        }
-                    }
-              
-            }
+           
             CsAppointments::where(array('ca_id' => $aryPostData['qa_ca_id']))->update(  array('ca_report_submit' => 1));
           //  echo '<pre>'; print_r($aryPostData);die;
+            if(isset($_POST['selected_image']) && count($_POST['selected_image']))
+            {
+               ///   self::createPDFnew( $aryPostData['qa_ca_id'],$_POST['selected_image']) ;
+               $id =  $aryPostData['qa_ca_id'];
+               $aryAllowImage = $_POST['selected_image'];
+                $data = CsAppointments::where('ca_id',$id)->first();
+               $resQuestionDataa = DB::table('cs_question')
+                   ->whereIn('service_id',explode(",",$data->ca_service))
+                   ->get();
+               $resQuestionData = CsQusAns::get(); 
+            ////  return view('Pages.pdf_html',compact('data','resQuestionDataa','resQuestionData'));
+               // share data to view
+                $data['data'] = $data;
+               $data['resQuestionDataa'] = $resQuestionDataa;
+               $data['resQuestionData'] = $resQuestionData;
+               $data['dataset'] = $aryAllowImage;
+               view()->share('pages.pdf_html',$data);
+             $pdf = PDF::loadView('pdf.pdf_view', $data);
+               // download PDF file with download method
+             return  $pdf->download('pdf_file.pdf');  
 
-            return redirect(route('job'))->with('status', 'Entry Saved Successfully.');
+            ///   return redirect(route('job'))->with('status', 'Entry Saved Successfully.');
+
+            }else{
+                CsQusAns::where('qa_ca_id', $aryPostData['qa_ca_id'])->where('qa_tech_id',$technicianId)->delete();
+                foreach($aryPostData['qa_value'] as $key=>$label)
+                {
+                   
+                        foreach($label as $keyee=>$labele){
+                            $rowQusMulData = CsQuestionMultiple::where([['qm_question_id' ,'=', $key],['qm_slug' ,'=', $keyee]])->first();
+                            if(!empty($labele) && is_array($labele))
+                            {
+                                
+                            foreach($labele as $keyeee=>$labelee){
+                            $postobj = new CsQusAns;
+                            $postobj->qa_question_id = $key;
+                            $postobj->qa_type = $keyee;
+                            $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
+                            $postobj->qa_value = $labelee;
+                            $postobj->qa_tech_id = $technicianId;
+                            $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
+                            $postobj->save();
+                            }
+                          }else{
+                            $postobj = new CsQusAns;
+                            $postobj->qa_question_id = $key;
+                            $postobj->qa_type = $keyee;
+                            $postobj->qa_ca_id = $aryPostData['qa_ca_id'];
+                            $postobj->qa_value = $labele;
+                            $postobj->qa_tech_id = $technicianId;
+                            $postobj->qa_field_type = isset($rowQusMulData->qm_id)?$rowQusMulData->qm_type:'';
+                            $postobj->save();
+                            }
+                        }
+                  
+                }
+                return redirect(route('job'))->with('status', 'Entry Saved Successfully.');
+
+            }
+
+
+
         }else{
             return redirect()->back()->with('error', 'Server Not Responed');
         }
@@ -179,6 +208,12 @@ class PagesController extends Controller
       $pdf = PDF::loadView('pdf.pdf_view', $data);
         // download PDF file with download method
      return $pdf->download('pdf_file.pdf');  
+      }
+
+      public function createPDFnew($id,$aryAllowImage) {
+        // retreive all records from db
+        
+      
       }
 
     public function viewPDF($id) {
