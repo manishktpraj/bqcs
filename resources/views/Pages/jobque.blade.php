@@ -63,7 +63,7 @@ $serData = implode(" + ",$ser);
                 <li>
                     <a href="#">
                         <span class="snumber"><?php echo $i++;?></span>
-                        <span class="sname"><?php echo $question->question_name;?> <?php echo $question->question_id;?></span>
+                        <span class="sname"><?php echo $question->question_name;?></span>
                         <ion-icon name="chevron-down-outline" class="ml-auto tx-18"></ion-icon>
                     </a>
                 </li>
