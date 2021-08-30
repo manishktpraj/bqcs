@@ -6418,7 +6418,7 @@ height:60px;
 top: -7px;
 right: -7px;
 	 transform: rotate(-45deg);
-	 z-index: 99999;
+	 z-index: 99;
 color: red;
 background: #fff;
 border-radius: 50%;
@@ -6429,7 +6429,7 @@ font-size: 20px;
 .wqtype{
 width:100%;
 position:relative;
-margin:5px 0px 10px;
+margin:5px 0px 5px;
 }
 .wqtype ul{
 margin:-5px -10px;
@@ -6599,6 +6599,75 @@ color: #4F5050;
 	height: 8px;
 	border-radius: 50%;
 	background: white;
+}
+/*======================================*/
+.container-checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  font-size:16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.container-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius:2px;
+}
+
+/* On mouse-over, add a grey background color */
+.container-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-checkbox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-checkbox .checkmark:after {
+  left:7px;
+  top:4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 /*======================================*/
 .booking-details{

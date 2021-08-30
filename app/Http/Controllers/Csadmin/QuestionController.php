@@ -155,6 +155,7 @@ if(isset($label->children) && $intLevel!=2)
         {
             $intQuestionId = $postobj->question_id;
             CsQuestionMultiple::where('qm_question_id',$intQuestionId)->delete();
+            $aryNewIdds =[];
             foreach($aryPostData['qm_type'] as $key=>$label)
             {
                 if($label!='')
@@ -170,8 +171,18 @@ if(isset($label->children) && $intLevel!=2)
                 $postobjM->qm_slug = $strSlug;
                 $postobjM->qm_madatory =$aryPostData['qm_madatory'][$key];
                 $postobjM->qm_option = $aryPostData['qm_option'][$key];
+                $postobjM->qm_type_condition = isset($aryPostData['qm_type_condition'][$key])?$aryPostData['qm_type_condition'][$key]:'';
+                $a =explode('###',isset($aryPostData['qm_condition_id'][$key])?$aryPostData['qm_condition_id'][$key]:'');
+                print_r($a);
+                $postobjM->qm_type_value = isset($a[0])?$a[0]:'';
+                $postobjM->qm_condition_question = (isset($a[1]) && isset($aryNewIdds[$a[1]]))?$aryNewIdds[$a[1]]:0;
                 $postobjM->save();
-            }
+                if(isset($aryPostData['old_qm_id'][$key]))
+                {
+                    $aryNewIdds[$aryPostData['old_qm_id'][$key]] =  $postobjM->qm_id;
+
+                }
+             }
             }
           ///  
 

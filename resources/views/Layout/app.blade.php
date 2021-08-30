@@ -204,14 +204,17 @@ notification('notification-welcome', 5000);
 <script>
 
 $('.imgbox').click(function(response){
+    var type = $(this).attr("data-type");
+    if(type==1){
     if(!$(this).hasClass('selectedimagebox'))
     {
         $(this).parents('li').addClass('selectedimagebox');
- var iddata =  $(this).attr("data-id");
- $('.data'+iddata).remove();
+        var iddata =  $(this).attr("data-id");
+        $('.data'+iddata).remove();
 
- $(this).append('<input type="hidden" name="selected_image[]" class="data'+iddata+'"  value="'+iddata+'">');
-}
+        $(this).append('<input type="hidden" name="selected_image[]" class="data'+iddata+'"  value="'+iddata+'">');
+    }
+    }
 });
   
 

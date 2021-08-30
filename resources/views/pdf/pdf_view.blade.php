@@ -92,27 +92,86 @@ if(isset($dataset))
 	if($value->question_id!=11)
 	{
  
-		$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type','!=',2)?>
-		<?php if($value->question_id!=20){?>
+		$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type','!=',2);
+		
+		?>
+		<?php if($value->question_id==20){
+			$quest_datass = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type','=',4);
+			?>
+			<tr>
+				<th style="text-align:left;" colspan="2"><?php echo $value->question_name?></th>
+			</tr>
+			<?php foreach($quest_datass as $img_name)
+			{ 
+				
+				if($img_name->qa_value!=""){
+ 					?>
+			<tr>
+				<th style="text-align:left;"><?php echo ucfirst($img_name->qa_type)?></th>
+				<td>
+					<?php echo isset($aryData[$img_name->qa_value])?$aryData[$img_name->qa_value]:$img_name->qa_value;?>
+				</td>
+			</tr>
+			<?php
+			if(isset($dataset))
+			{
+				if($img_name->qa_type=='deformed'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','deformed_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
+				}elseif($img_name->qa_type=='cracked'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','cracked_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
+				}elseif($img_name->qa_type=='sagging'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','sagging_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
+				}
+				
+			}else{
+				if($img_name->qa_type=='deformed'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','deformed_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+				}elseif($img_name->qa_type=='cracked'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','cracked_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+				}elseif($img_name->qa_type=='sagging'){
+					$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_type','=','sagging_pic')->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+				}
+				//$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
+			}
+			if($quest_datas->count()>0){
+				?>
+				<tr>
+					<?php
+						$cnt =0;
+						$strHtml = count($quest_datas);
+						foreach($quest_datas as $img_name){
+						if($cnt%2==0 && $cnt!=1 && $cnt!=0)
+						{
+							$strHtml=$strHtml-$cnt;
+							echo '</tr><tr>';
+						}
+					?>
+							<?php if($strHtml==1){ ?><td  style="padding:10px 0px;border:0px; vertical-align:top;"></td><?php } ?>
+					<td  style="padding:10px 10px;border:0px; vertical-align:top;">
+						<img src="<?php echo $img_name->qa_value;?>"  style="width:100%;">
+					</td>
+					<?php  $cnt++; } ?>                         
+				</tr>
+			<?php }?>
+			<?php }} ?>
+			
+		<?php }else{?>
 		<tr>
 			<th style="text-align:left;"><?php echo $value->question_name?></th>
 			<td> 
 				<?php foreach($quest_data as $img_name)
 				{ ?>
-					 
 					<?php echo isset($aryData[$img_name->qa_value])?$aryData[$img_name->qa_value]:$img_name->qa_value;?>
  				<?php }
 				?>
 			</td>
 		</tr>
-		<?php } 
+		<?php
  		if(isset($dataset))
 		{
-			$quest_datas= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
-
+			$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2)->whereIn('qa_id',$dataset);
 		}else{
-			$quest_datas= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
-		
+			$quest_datas = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type',2);
 		}
   
 		if($quest_datas->count()>0){
@@ -135,7 +194,8 @@ if(isset($dataset))
 				<?php  $cnt++; } ?>                         
 			</tr>
 		<?php }?>
-	<?php }}		 
- ?>
+		<?php }?>
+		
+	<?php }} ?>
 </table>
 </div>

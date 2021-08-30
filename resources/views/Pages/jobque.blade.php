@@ -79,18 +79,20 @@ $serData = implode(" + ",$ser);
     ->where([['qa_ca_id','=', $rowAppointmentsData->ca_id],['qa_tech_id','=', $technicianId],['qa_question_id','=', $data->qm_question_id],['qa_type',$data->qm_slug]])->get(); 
  
      ?>
-    
-<?php   if($data->qm_type==2)
+<?php if($data->qm_type==2)
 {
      $quest_data =array();
 ?>
-<div class="wide-block pt-2 pb-2">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
 <div class="wqtype">
 <ul>
 <li>
 <div class="wqtype-type">
+    
 <a href="javascript:;" onclick="imageopennew('<?php echo $data->qm_slug;?>',<?php echo $data->qm_question_id;?>)">
-    <ion-icon name="camera-outline" class="tx-24" ></ion-icon>Add Pic
+    <ion-icon name="camera-outline" class="tx-24" ></ion-icon>
+    <?php /// echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?>
+    Add Pic
 </a>
 </div>                                 
 </li>         
@@ -108,7 +110,7 @@ $serData = implode(" + ",$ser);
         <a href="#" class="remove-img"  data-val="<?php echo $data->qm_slug;?>"><ion-icon name="add-circle"></ion-icon></a>
         <?php } ?> 
         <a href="#" class="tick-img"  style="display:none" data-val="<?php echo $data->qm_slug;?>"><ion-icon name="checkmark-circle" ></ion-icon></a>
-      <div class="imgbox" data-id="<?php echo $img_name->qa_id;?>"> 
+      <div class="imgbox" data-id="<?php echo $img_name->qa_id;?>" data-type="<?php echo $type;?>"> 
         <img src="<?php echo $img_name->qa_value;?>"  id="qa_image<?php echo $data->qm_slug;?>">
         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $img_name->qa_value;?>">
         </div>
@@ -124,10 +126,10 @@ $serData = implode(" + ",$ser);
 <?php   if($data->qm_type==1)
 {
  ?>
-<div class="wide-block pt-2 pb-2">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
+                    <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
                     <input type="text" class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
                     value="<?php echo isset($qusAnssss[0]->qa_value)?$qusAnssss[0]->qa_value:''; ?>"> 
 
@@ -141,10 +143,10 @@ $serData = implode(" + ",$ser);
  <?php   if($data->qm_type==3)
 {
  ?>
-<div class="wide-block pt-2 pb-2">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
+                    <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
                     <textarea class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
                     value=""><?php echo isset($qusAnssss[0]->qa_value)?$qusAnssss[0]->qa_value:''; ?></textarea>
 
@@ -160,11 +162,11 @@ $serData = implode(" + ",$ser);
 
     $strExplode = explode(',',$data->qm_option);
  ?>
-<div class="wide-block pt-2 pb-2">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
             <div class="form-group boxed mb-1">
                 <div class="input-wrapper">
-                    <label class="form-label" for="address5"><?php echo $data->qm_label;?></label>
-                    <select class="form-control form-select" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]">
+                    <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
+                    <select class="form-control form-select clsmainloop" data-type="<?php echo $data->qm_type; ?>" onclick="showhidedatafromserver($(this),<?php echo $data->qm_id?>,4)" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]">
                         <option value="">Select</option>
                         <?php foreach($strExplode as $key=>$label)
                         { ?>
@@ -186,10 +188,11 @@ $serData = implode(" + ",$ser);
 
     $strExplode = explode(',',$data->qm_option);
  ?>
-<div class="wide-block pt-2 pb-2">
-            <div class="form-group boxed mb-1">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
+            <div class="form-group boxed">
                 <div class="wqtype">
-                      
+                <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
+          
                     <ul>
                    
                           
@@ -200,7 +203,7 @@ $serData = implode(" + ",$ser);
                          <li>
                         <div class="wqtype-type">
                             <label class="container-checkbox"><?php echo $label;?> 
-                                <input type="checkbox" <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?> name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
+                                <input type="checkbox"  onclick="showhidedatafromserver($(this),<?php echo $data->qm_id?>,5)" <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?> name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -221,10 +224,11 @@ $serData = implode(" + ",$ser);
 
     $strExplode = explode(',',$data->qm_option);
  ?>
-<div class="wide-block pt-2 pb-2">
-            <div class="form-group boxed mb-1">
+<div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
+            <div class="form-group boxed-">
                 <div class="wqtype">
-                      
+                <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
+         
                     <ul>
                    
                           
@@ -234,8 +238,8 @@ $serData = implode(" + ",$ser);
                         { ?>
                          <li>
                         <div class="wqtype-type">
-                            <label class="container-radio"><?php echo $label;?> 
-                                <input type="radio" <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?>  name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
+                            <label class="container-radio" ><?php echo $label;?> 
+                                <input type="radio" onclick="showhidedatafromserver($(this),<?php echo $data->qm_id?>,6)"  <?php echo (isset($qusAnssss[0]->qa_value) && $qusAnssss[0]->qa_value==$label)?'checked':''; ?>  name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $label;?>">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -522,6 +526,45 @@ $.post(base_url+"deleteimg", datastring,function(response){
 
 });
 });
+
+
+function showhidedatafromserver(obj,qm_id,type)
+{
+    $('.hideshow'+qm_id).each(function(){
+        if(type==5)
+        {
+            if($(this).attr('data-set-val')==obj.val() && obj.prop('checked'))
+        {
+                ////alert($(this).attr('data-set-val'));
+           $(this).show();
+        }else{
+            $(this).hide();
+     
+        }
+        }else if(type==4)
+        { 
+            if($(this).attr('data-set-val')==obj.val())
+        {
+                ////alert($(this).attr('data-set-val'));
+           $(this).show();
+        }else{
+            $(this).hide();
+     
+        }
+        }else     if(type==6)
+        {
+            if($(this).attr('data-set-val')==obj.val() && obj.prop('checked'))
+        {
+                ////alert($(this).attr('data-set-val'));
+           $(this).show();
+        }else{
+            $(this).hide();
+     
+        }
+        }
+    
+    });
+}
 </script>
 
 

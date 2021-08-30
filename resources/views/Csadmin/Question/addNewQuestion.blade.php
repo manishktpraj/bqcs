@@ -34,13 +34,13 @@
 </div>
 
 
-<?php if(count($rowCategoryData->questionmultiple)>0)
+<?php if(isset($rowCategoryData->questionmultiple) && count($rowCategoryData->questionmultiple)>0)
 { 
 
 foreach($rowCategoryData->questionmultiple as $key=>$label)
 { ?>
 <div class="addmorerow">
-<div class="row">
+<div class="row row-xs">
 <div class="col-lg-2">
 <div class="form-group">
 <label>Question Type:</label>
@@ -58,7 +58,7 @@ foreach($rowCategoryData->questionmultiple as $key=>$label)
 </select>
 </div>
 </div>
-<div class="col-lg-3">
+<div class="col-lg-2">
 <div class="form-group">
 <label>Label:</label>
 <input type="text" class="form-control" name="qm_label[]"  value="<?php echo isset($label->qm_label)?$label->qm_label:''?>">
@@ -87,6 +87,48 @@ foreach($rowCategoryData->questionmultiple as $key=>$label)
 <option value="Yes" <?php echo (isset($label->qm_labelvisiblity) && $label->qm_labelvisiblity=='Yes')?"selected":''?>>Yes</option>
 <option value="No" <?php echo (isset($label->qm_labelvisiblity) && $label->qm_labelvisiblity=='No')?"selected":''?>>No</option> 
 
+</select>
+</div> 
+</div>
+
+
+
+<div class="col-lg-2">
+<div class="form-group">
+<label>Conditions Type:</label>
+<select class="form-control" name="qm_type_condition[]" id="que_type" >
+<option  value="">Select</option>
+<option value="select" <?php echo (isset($label->qm_type_condition) && $label->qm_type_condition=='select')?"selected":''?>>On Select</option>
+</select>
+</div> 
+</div>
+<input type="hidden" name="old_qm_id[]" value="<?php echo $label->qm_id; ?>">
+<div class="col-lg-2">
+<div class="form-group">
+<label>Value Conditions:</label>
+<select class="form-control" name="qm_condition_id[]" id="que_type" >
+<option value="">Select</option>
+<?php foreach($rowCategoryData->questionmultiple as $keys=>$labeldata)
+{  
+
+    if((isset($labeldata->qm_type) && in_array($labeldata->qm_type,array(4,5,6))))
+    {
+   $arExplodedataa =explode(',',$labeldata->qm_option);  
+   foreach($arExplodedataa as $a=>$b)
+  {
+      echo trim($b).'##W';
+      
+      echo $label->qm_type_value;
+      
+      echo $labeldata->qm_id;
+      echo $label->qm_condition_question;
+    ?>
+<option value="<?php echo trim($b).'###'.$labeldata->qm_id;?>" <?php echo (trim($b)==$label->qm_type_value && $labeldata->qm_id==$label->qm_condition_question)?"selected":''?>>
+<?php echo 'If select option '.$b.' in '.$labeldata->qm_label;?></option>
+<?php }
+} 
+} ?> 
+ 
 </select>
 </div> 
 </div>

@@ -60,7 +60,8 @@ class PagesController extends Controller
                 $services = DB::table('cs_services')
                 ->whereIn('role_id',explode(",",$rowTechnicianInfo->faculty_services))
                 ->get();
-                $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowTechnicianInfo->faculty_services))
+                
+                $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowTechnicianInfo->faculty_services))->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
                 ->get();
             }else{
                 $services = DB::table('cs_services')
@@ -167,10 +168,18 @@ class PagesController extends Controller
         if($request->hasFile('qa_image_'))
         {
             $image = $request->file('qa_image_');
-            $filename = time().'.'.$image->getClientOriginalExtension();
+             
+            $filename = time().'test.'.$image->getClientOriginalExtension();
             $destinationPath = SITE_UPLOAD_PATH.SITE_QUESTIONS_IMAGE_PATH;
             $image->move($destinationPath, $filename);
             $strData = SITE_UPLOAD_URL.SITE_QUESTIONS_IMAGE_PATH.$filename;
+
+            /************  Compress image **************/
+            //$quality = 60;
+            //echo $_FILES['qa_image_']['tmp_name'];die;
+            //self::compressImage($request->file('qa_image_')->getPathName(), $strData, $quality);
+            /*******************************************/
+
             $aryResponse['message']='ok';
             $aryResponse['notification']='Image Upload Successfully';
             $aryResponse['url']	 = $strData;
@@ -179,6 +188,28 @@ class PagesController extends Controller
         echo json_encode($aryResponse);
         exit();
     }    
+
+    function compressImage($source, $destination, $quality) {
+        
+        $info = getimagesize($source);
+        
+        if ($info['mime'] == 'image/jpeg')
+            $image = imagecreatefromjpeg($source);
+
+            elseif ($info['mime'] == 'image/jpg')
+            $image = imagecreatefromjpg($source);
+
+            elseif ($info['mime'] == 'image/gif')
+            $image = imagecreatefromgif($source);
+            
+            elseif ($info['mime'] == 'image/png')
+            $image = imagecreatefrompng($source);
+             
+        ///    $image = imagerotate($image, 90, 0);
+            
+           imagejpeg($image, $destination, $quality);
+           
+     }
 
     public function profile(Request $request)
     {
