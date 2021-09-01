@@ -12,7 +12,7 @@
     <?php if(count($resAppointmentsData)>0){ 
         foreach($resAppointmentsData as $value)
         {
-            if($value->ca_report_submit==1)
+            if($value->ca_report_submit<=0)
                 {
             $services = DB::table('cs_services')
                         ->whereIn('role_id',explode(",",$value->ca_service))
@@ -32,6 +32,7 @@
             <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13"><?php echo e(isset($value->customerAddress)?$value->customerAddress->customer_address:''); ?></span></div>
             
             <div class="mt-2">
+
                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
                 <?php if($value->ca_report_submit==1)
                 {?>
@@ -76,7 +77,7 @@
             <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13"><?php echo e(isset($value->customerAddress)?$value->customerAddress->customer_address:''); ?></span></div>
             
             <div class="mt-2">
-                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
+                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1" >View</a>
                 <?php if($value->ca_report_submit==1)
                 {?>
                 <!-- <a href="<?php echo e(route('createPDF',$value->ca_id)); ?>" class="btn btn-secondary btn-sm me-1">Report</a>-->
@@ -108,6 +109,31 @@
 <div class="booking-details">
 <ul>
 <li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="calendar"></ion-icon></span><span>01 Sep, Wed 12:00-13:00PM</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="clipboard"></ion-icon></span><span>Dead Rat Removal + Baiting</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="cash"></ion-icon></span><span>250+GST = $275</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Brendan Cox</span></li>
+</ul>
+</div>
+<h4 class="mt-2">Customer Details</h4>
+<div class="booking-details">
+<ul>
+<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Isabella Carr</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="call"></ion-icon></span><span>0435022913</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="mail"></ion-icon></span><span>bella.claire1997@gmail.com</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
+</ul>
+</div>
+<h4 class="mt-2">Job Notes</h4>
+<div style="background:#ffc107 !important;padding:4px !important; font-weight:700;display:inline-block">No Notes</div>
+<h4 class="mt-2">Job History</h4>
+<div class="booking-details">
+<ul>
+<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="calendar"></ion-icon></span><span>01 Sep, Wed 12:00-13:00PM</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="clipboard"></ion-icon></span><span>Dead Rat Removal + Baiting</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="cash"></ion-icon></span><span>250+GST = $275</span></li>
+<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Brendan Cox</span></li>
 </ul>
 </div>
 </div>
@@ -116,5 +142,30 @@
 </div>
 <!-- * Modal Form -->
 <?php $__env->stopSection(); ?>
+
+
+<script id="source" language="javascript" type="text/javascript">
+function popup(){
+$(function() 
+{
+    
+  $.ajax({                    
+  url: 'content/get.php',     
+  type: 'post', // performing a POST request
+  data : {
+    data1 : 'value' // will be accessible in $_POST['data1']
+  },
+  dataType: 'json',                   
+  success: function(data)         
+  {
+    // etc...
+  } 
+
+});
+});
+}
+
+</script>
+
 
 <?php echo $__env->make('Layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Pages/job.blade.php ENDPATH**/ ?>

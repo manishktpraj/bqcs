@@ -24,9 +24,9 @@ class PagesController extends Controller
 
         if($request->session()->has('ADMIN'))
         {
-            $technicianId = Session::get("ADMIN")->faculty_id;
+             $technicianId = Session::get("ADMIN")->faculty_id; 
             $resAppointmentsData = CsAppointments::where('ca_technician_id',$technicianId)->orderBy('ca_id','DESC')->get();
-            $title='Bookings';
+             $title='Bookings';
             return view('Pages.job',compact('title','resAppointmentsData'));
         }else{
             return redirect()->route('index');
@@ -171,13 +171,13 @@ class PagesController extends Controller
              
             $filename = time().'test.'.$image->getClientOriginalExtension();
             $destinationPath = SITE_UPLOAD_PATH.SITE_QUESTIONS_IMAGE_PATH;
-            $image->move($destinationPath, $filename);
+           /// $image->move($destinationPath, $filename);
             $strData = SITE_UPLOAD_URL.SITE_QUESTIONS_IMAGE_PATH.$filename;
 
             /************  Compress image **************/
-            //$quality = 60;
-            //echo $_FILES['qa_image_']['tmp_name'];die;
-            //self::compressImage($request->file('qa_image_')->getPathName(), $strData, $quality);
+             $quality = 60;
+             //echo $_FILES['qa_image_']['tmp_name'];die;
+            self::compressImage($image->getPathName(), $destinationPath.$filename, $quality);
             /*******************************************/
 
             $aryResponse['message']='ok';
@@ -204,7 +204,8 @@ class PagesController extends Controller
             
             elseif ($info['mime'] == 'image/png')
             $image = imagecreatefrompng($source);
-             
+            imagejpeg($image, $destination, $quality);
+
         ///    $image = imagerotate($image, 90, 0);
             
            imagejpeg($image, $destination, $quality);

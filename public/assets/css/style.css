@@ -6682,6 +6682,7 @@ color: #4F5050;
 .booking-details ul li{
 	display:flex;
 	align-items:center;
+	line-height:28px;
 }
 
 

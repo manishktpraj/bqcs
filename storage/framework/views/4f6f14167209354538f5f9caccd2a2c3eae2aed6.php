@@ -53,15 +53,16 @@ $serData = implode(" + ",$ser);
         <input type="hidden" name="qa_ca_id" value="<?php echo e($rowAppointmentsData->ca_id); ?>">
         <?php 
         $i=1;
+		$cntdataset=0;
         foreach($resQuestionDataa as $question)
         {
 
- 
+			$cntdataset++;
         ?>
         <div class="lisbox">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="javascript:void(0);" onclick="showhidetoggle(<?php echo $question->question_id; ?>)">
                         <span class="snumber"><?php echo $i++;?></span>
                         <span class="sname"><?php echo $question->question_name;?></span>
                         <ion-icon name="chevron-down-outline" class="ml-auto tx-18"></ion-icon>
@@ -70,7 +71,7 @@ $serData = implode(" + ",$ser);
             </ul>
         </div>
 
-      
+      <div class=" clscommonmain mainquestionrepeat<?php echo $question->question_id; ?> counterclass<?php echo $cntdataset; ?>" id="counterclass<?php echo $cntdataset; ?>" style="<?php echo ($cntdataset!=1)?'display:none':''; ?>">
 
 <?php foreach($question->questionmultiple as $data)
 {  
@@ -87,15 +88,15 @@ $serData = implode(" + ",$ser);
 <div class="wqtype">
 <ul>
 <li>
-<div class="wqtype-type">
-    
+<div class="wqtype-type">   
 <a href="javascript:;" onclick="imageopennew('<?php echo $data->qm_slug;?>',<?php echo $data->qm_question_id;?>)">
     <ion-icon name="camera-outline" class="tx-24" ></ion-icon>
     <?php /// echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?>
     Add Pic
 </a>
 </div>                                 
-</li>         
+</li>   
+
 </ul>
 </div>
 <div class="row" id="imageDivHidden<?php echo $data->qm_slug;?><?php echo $data->qm_question_id;?>" style="display:none'">
@@ -127,7 +128,7 @@ $serData = implode(" + ",$ser);
 {
  ?>
 <div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
-            <div class="form-group boxed mb-1">
+            <div class="form-group boxed ">
                 <div class="input-wrapper">
                     <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
                     <input type="text" class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
@@ -144,7 +145,8 @@ $serData = implode(" + ",$ser);
 {
  ?>
 <div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
-            <div class="form-group boxed mb-1">
+       
+	   <div class="form-group boxed ">
                 <div class="input-wrapper">
                     <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
                     <textarea class="form-control" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]" 
@@ -163,7 +165,7 @@ $serData = implode(" + ",$ser);
     $strExplode = explode(',',$data->qm_option);
  ?>
 <div class="wide-block pt-2 pb-2 hideshow<?php echo $data->qm_condition_question?>" data-set-val="<?php echo $data->qm_type_value; ?>" style="display:<?php echo (isset($data->qm_type_condition) && $data->qm_type_condition!='')?'none':'block'?>">
-            <div class="form-group boxed mb-1">
+            <div class="form-group boxed ">
                 <div class="input-wrapper">
                     <label class="form-label" for="address5">    <?php echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?></label>
                     <select class="form-control form-select clsmainloop" data-type="<?php echo $data->qm_type; ?>" onclick="showhidedatafromserver($(this),<?php echo $data->qm_id?>,4)" name="qa_value[<?php echo $data->qm_question_id;?>][<?php echo $data->qm_slug;?>]">
@@ -256,14 +258,22 @@ $serData = implode(" + ",$ser);
  <?php  }  ?>
 
 <?php } ?>
+<?php if($resQuestionDataa->count()>$cntdataset)
+{?>
+<div class="question-footer" style="margin:10px;">
 
-
+        <a href="javascript:;" class="btn btn-success  btn-block" onclick="sendtonewquestion(<?php echo $cntdataset+1; ?>)" style="background: #333 !important;border-color: #333 !important;">SAVE & NEXT</a>
+</div>
+<?php } ?>
+</div>
 
 
         <div class="spacer"></div>
+		
+		
         <?php } ?>
 
-        
+
         </form>
     </div>
 </div>
@@ -339,28 +349,36 @@ function checkValidationfrpdfgenerate(obj)
 {
     $('#questionForm').submit();
 }
+
+function showhidetoggle(id)
+{
+	$('.clscommonmain').hide();
+	$('.mainquestionrepeat'+id).show();
+}
+ function sendtonewquestion(cntrclass)
+{
+	
+	$('.clscommonmain').hide();
+	$('.counterclass'+cntrclass).show();
+
+    var cnt = parseInt(cntrclass);
+     $('html, body').animate({
+        scrollTop: $('#counterclass'+cnt).offset().top
+    }, 200);
+
+	 
+}
+
+function submitbyajax()
+{
+	
+	
+}
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!---------------New Scripts  --------------------->
+
+
 <!---------------OLD Scripts  --------------------->
-
-
-
 <script>
     var base_url='<?php echo SITE_URL?>';
 
@@ -567,8 +585,5 @@ function showhidedatafromserver(obj,qm_id,type)
 }
 </script>
 
-
-
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('Layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\php\xamp\htdocs\bpi\resources\views/Pages/jobque.blade.php ENDPATH**/ ?>
