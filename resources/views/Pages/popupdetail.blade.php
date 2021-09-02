@@ -23,7 +23,7 @@ if(count($popup)>0){
 }}
 
 
-    
+$serData1 ='';
         if($resta->ca_report_submit==0)
             {
         $services1 = DB::table('cs_services')
