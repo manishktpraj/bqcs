@@ -59,7 +59,7 @@ var calendarEvents = {
       title: 'Booking ID: {{ $value->ca_id}} | {{$serData}}',
       description: '{{ isset($value->customerAddress)?$value->customerAddress->customer_address:''}}',
       url:'{{ SITE_URL.'job-question/'.$value->ca_id}}'
-    }
+    },
     <?php } ?> 
   ]
 };
