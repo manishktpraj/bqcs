@@ -33,12 +33,62 @@ class PagesController extends Controller
         }
     }
 
+    function getpopupdata($id)
+    {
+
+        $resAppointmentsData = CsAppointments::leftJoin('cs_customer_address', function($join) {
+            $join->on('cs_appointments.ca_customer_id', '=', 'cs_customer_address.customer_id');
+            })
+            ->leftJoin('cs_customer', function($join) {
+                $join->on('cs_customer_address.customer_id', '=', 'cs_customer.customer_id');
+                })
+            ->leftJoin('cs_technician', function($join) {
+                    $join->on('cs_appointments.ca_technician_id', '=', 'cs_technician.faculty_id');
+                    })
+             ->where('ca_id',$id)->orderBy('ca_id','DESC')->get();
+
+             $popup=json_decode($resAppointmentsData);  
+
+
+             $resta = CsAppointments::leftJoin('cs_customer_address', function($join) {
+                $join->on('cs_appointments.ca_customer_id', '=', 'cs_customer_address.customer_id');
+                })
+                ->leftJoin('cs_customer', function($join) {
+                    $join->on('cs_customer_address.customer_id', '=', 'cs_customer.customer_id');
+                    })
+                ->leftJoin('cs_technician', function($join) {
+                        $join->on('cs_appointments.ca_technician_id', '=', 'cs_technician.faculty_id');
+                        })
+                 ->where('ca_customer_id',$popup[0]->ca_customer_id)
+                 ->where('ca_id','!=',$id)
+                 ->orderBy('ca_id','DESC')->first();
+
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+        //$resAppointmentsData = CsAppointments::where('ca_id',$id)->orderBy('ca_id','DESC')->get();
+        $title='Bookings';
+        return view('Pages.popupdetail',compact('title','popup','resta'));
+    }
     public function calendar(Request $request)
     {
         if($request->session()->has('ADMIN'))
         {
+            $technicianId = Session::get("ADMIN")->faculty_id; 
+            $resAppointmentsData = CsAppointments::where('ca_technician_id',$technicianId)->orderBy('ca_id','DESC')->get();
+            
             $title='Calendar';
-            return view('Pages.calendar',compact('title'));
+            return view('Pages.calendar',compact('title','resAppointmentsData'));
         }else{
             return redirect()->route('index');
         }
@@ -55,13 +105,15 @@ class PagesController extends Controller
              
             $rowAppointmentsData = CsAppointments::where('ca_id',$id)->first();
             $resQuestionData = CsQusAns::get(); 
-            if( $rowTechnicianInfo->faculty_services!='')
+            if( $rowTechnicianInfo->faculty_services!='' && $rowAppointmentsData->ca_service)
             {
                 $services = DB::table('cs_services')
                 ->whereIn('role_id',explode(",",$rowTechnicianInfo->faculty_services))
-                ->get();
+                ->whereIn('role_id',explode(",",$rowAppointmentsData->ca_service))
+                       ->get();
                 
-                $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowTechnicianInfo->faculty_services))->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
+                $resQuestionDataa =CsQuestion::whereIn('service_id',explode(",",$rowTechnicianInfo->faculty_services))
+                ->whereIn('service_id',explode(",",$rowAppointmentsData->ca_service))
                 ->get();
             }else{
                 $services = DB::table('cs_services')

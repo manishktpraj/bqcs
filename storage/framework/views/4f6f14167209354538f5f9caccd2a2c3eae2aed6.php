@@ -28,6 +28,11 @@
     line-height: 0;
     font-size: 20px;
 }
+.active
+{
+    background:green;
+    color:#fff;
+}
 </style>
 <?php
 $ser = array();
@@ -54,15 +59,33 @@ $serData = implode(" + ",$ser);
         <?php 
         $i=1;
 		$cntdataset=0;
+        $intServiceID = '0';
         foreach($resQuestionDataa as $question)
         {
-
+if($intServiceID==0)
+{
+    $intServiceID = $question->service_id;
+}
 			$cntdataset++;
         ?>
-        <div class="lisbox">
+
+        <?php if($intServiceID!=$question->service_id)
+        {
+            $intServiceID = $question->service_id;
+            $servicesDataSet = DB::table('cs_services')
+            ->where('role_id',$question->service_id)
+            ->first();
+            ?>
+                    <div class="stage-title">
+                      <?php echo $servicesDataSet->role_name; ?>
+                    </div>
+                    <div class="spacer"></div>
+       <?php  } ?>
+        <div id="counterclass<?php echo $cntdataset; ?>"></div>
+        <div class="lisbox" >
             <ul>
                 <li>
-                    <a href="javascript:void(0);" onclick="showhidetoggle(<?php echo $question->question_id; ?>)">
+                    <a href="javascript:void(0);" class="counterclasssetolor<?php echo $cntdataset; ?>" onclick="showhidetoggle(<?php echo $question->question_id; ?>)">
                         <span class="snumber"><?php echo $i++;?></span>
                         <span class="sname"><?php echo $question->question_name;?></span>
                         <ion-icon name="chevron-down-outline" class="ml-auto tx-18"></ion-icon>
@@ -71,7 +94,7 @@ $serData = implode(" + ",$ser);
             </ul>
         </div>
 
-      <div class=" clscommonmain mainquestionrepeat<?php echo $question->question_id; ?> counterclass<?php echo $cntdataset; ?>" id="counterclass<?php echo $cntdataset; ?>" style="<?php echo ($cntdataset!=1)?'display:none':''; ?>">
+      <div class=" clscommonmain mainquestionrepeat<?php echo $question->question_id; ?> counterclass<?php echo $cntdataset; ?>"   style="<?php echo ($cntdataset!=1)?'display:none':''; ?>">
 
 <?php foreach($question->questionmultiple as $data)
 {  
@@ -360,10 +383,10 @@ function showhidetoggle(id)
 	
 	$('.clscommonmain').hide();
 	$('.counterclass'+cntrclass).show();
-
-    var cnt = parseInt(cntrclass);
+     $('.counterclasssetolor'+(cntrclass-1)).addClass('active');
+     var cnt = parseInt(cntrclass);
      $('html, body').animate({
-        scrollTop: $('#counterclass'+cnt).offset().top
+        scrollTop: $('#counterclass'+cnt).offset().top-70
     }, 200);
 
 	 

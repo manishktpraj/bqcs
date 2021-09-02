@@ -33,7 +33,7 @@
             
             <div class="mt-2">
 
-                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1">View</a>
+                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" onclick="getpopdata(<?php echo $value->ca_id;?>)" class="btn btn-success btn-sm me-1">View</a>
                 <?php if($value->ca_report_submit==1)
                 {?>
                 <!-- <a href="{{route('createPDF',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Report</a>-->
@@ -105,37 +105,8 @@
 <h5 class="modal-title">Booking (Id: 456)</h5>
 <a href="#" id="ModalCommentdismiss" data-bs-dismiss="modal">Close</a>
 </div>
-<div class="modal-body">
-<div class="booking-details">
-<ul>
-<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="calendar"></ion-icon></span><span>01 Sep, Wed 12:00-13:00PM</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="clipboard"></ion-icon></span><span>Dead Rat Removal + Baiting</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="cash"></ion-icon></span><span>250+GST = $275</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Brendan Cox</span></li>
-</ul>
-</div>
-<h4 class="mt-2">Customer Details</h4>
-<div class="booking-details">
-<ul>
-<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Isabella Carr</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="call"></ion-icon></span><span>0435022913</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="mail"></ion-icon></span><span>bella.claire1997@gmail.com</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
-</ul>
-</div>
-<h4 class="mt-2">Job Notes</h4>
-<div style="background:#ffc107 !important;padding:4px !important; font-weight:700;display:inline-block">No Notes</div>
-<h4 class="mt-2">Job History</h4>
-<div class="booking-details">
-<ul>
-<li class="tx-14"><span class="mr-10"><ion-icon name="map"></ion-icon></span><span>113 Stoneham Road, Attadale WA</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="calendar"></ion-icon></span><span>01 Sep, Wed 12:00-13:00PM</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="clipboard"></ion-icon></span><span>Dead Rat Removal + Baiting</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="cash"></ion-icon></span><span>250+GST = $275</span></li>
-<li class="tx-14"><span class="mr-10"><ion-icon name="person"></ion-icon></span><span>Brendan Cox</span></li>
-</ul>
-</div>
+<div class="modal-body clsmodalbody">
+ 
 </div>
 </div>
 </div>
@@ -145,25 +116,12 @@
 
 
 <script id="source" language="javascript" type="text/javascript">
-function popup(){
-$(function() 
+
+function getpopdata(id)
 {
-    
-  $.ajax({                    
-  url: 'content/get.php',     
-  type: 'post', // performing a POST request
-  data : {
-    data1 : 'value' // will be accessible in $_POST['data1']
-  },
-  dataType: 'json',                   
-  success: function(data)         
-  {
-    // etc...
-  } 
-
-});
-});
+	$.get('<?php echo SITE_URL; ?>getpopupdata/'+id,function(response){
+		$('.clsmodalbody').html(response);
+	});
 }
-
 </script>
 

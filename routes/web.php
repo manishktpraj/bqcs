@@ -32,6 +32,7 @@ Route::any('/calendar', 'PagesController@calendar')->name('calendar');
 Route::any('/profile', 'PagesController@profile')->name('profile');
 Route::any('/createPDF/{id}', 'PagesController@createPDF')->name('createPDF');
 Route::any('/deleteimg', 'PagesController@deleteimg')->name('deleteimg');
+Route::any('/getpopupdata/{id}', 'PagesController@getpopupdata')->name('getpopupdata');
 
 
 

@@ -22,6 +22,8 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo SITE_ASSETS_URL?>css/dashforge.calendar.css">
+<script src="<?php echo SITE_ASSETS_URL?>js/lib/moment/min/moment.min.js"></script>
+
 </head>
 <body>
 <!-- loader -->
@@ -188,9 +190,7 @@ id="darkmodesidebar">
 <script src="<?php echo SITE_ASSETS_URL?>js/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo SITE_ASSETS_URL?>js/lib/feather-icons/feather.min.js"></script>
 <script src="<?php echo SITE_ASSETS_URL?>js/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="<?php echo SITE_ASSETS_URL?>js/lib/moment/min/moment.min.js"></script>
 <script src="<?php echo SITE_ASSETS_URL?>js/lib/fullcalendar/fullcalendar.min.js"></script>
-<script src="<?php echo SITE_ASSETS_URL?>js/calendar-events.js"></script>
 <script src="<?php echo SITE_ASSETS_URL?>js/dashforge.calendar.js"></script>
 <script>
 // Trigger welcome notification after 5 seconds

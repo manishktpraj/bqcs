@@ -117,7 +117,8 @@ $(function(){
   // Display calendar event modal
   calendar.on('eventClick', function(calEvent, jsEvent, view){
 
-    var modal = $('#modalCalendarEvent');
+    
+    /*var modal = $('#modalCalendarEvent');
 
     modal.modal('show');
     modal.find('.event-title').text(calEvent.title);
@@ -134,7 +135,7 @@ $(function(){
     modal.find('.event-end-date').text(moment(calEvent.end).format('LLL'));
 
     //styling
-    modal.find('.modal-header').css('backgroundColor', (calEvent.source.borderColor)? calEvent.source.borderColor : calEvent.borderColor);
+    modal.find('.modal-header').css('backgroundColor', (calEvent.source.borderColor)? calEvent.source.borderColor : calEvent.borderColor);*/
   });
 
   // display current date
