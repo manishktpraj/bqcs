@@ -6355,7 +6355,7 @@ bottom: 0;
 height: 1px;
 background: #E1E1E1;
 }
-.lisbox ul li.active{
+.lisbox ul li a.active{
 background:#a4cf27 !important;
 }
 
