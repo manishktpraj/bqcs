@@ -5,7 +5,7 @@ $value = Session::get('ADMIN');
 <!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport"
 content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -17,7 +17,6 @@ content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, 
 <link rel="icon" type="image/png" href="<?php echo SITE_ASSETS_URL?>img/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon/192x192.png">
 <link rel="stylesheet" href="<?php echo SITE_ASSETS_URL?>css/style.css">
-<link rel="manifest" href="<?php echo SITE_URL;?>__manifest.json">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 <link href="<?php echo SITE_ASSETS_URL?>js/lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
@@ -174,7 +173,64 @@ id="darkmodesidebar">
 
 <!-- ============== Js Files ==============  -->
 <!-- Bootstrap -->
+<script>
+if(calendarEvents==undefined)
+{
+    var curYear = moment().format('YYYY');
+var curMonth = moment().format('MM');
+
+// Calendar Event Source
+var calendarEvents = {
+  id: 1,
+  backgroundColor: '#d9e8ff',
+  borderColor: '#0168fa',
+  events: [
+    
+  ]
+};
+
+// Birthday Events Source
+var birthdayEvents = {
+  id: 2,
+  backgroundColor: '#c3edd5',
+  borderColor: '#10b759',
+  events: []
+};
+
+
+var holidayEvents = {
+  id: 3,
+  backgroundColor: '#fcbfdc',
+  borderColor: '#f10075',
+  events: []
+};
+
+var discoveredEvents = {
+  id: 4,
+  backgroundColor: '#bff2f2',
+  borderColor: '#00cccc',
+  events: []
+};
+
+var meetupEvents = {
+  id: 5,
+  backgroundColor: '#dedafe',
+  borderColor: '#5b47fb',
+  events: []
+};
+
+
+var otherEvents = {
+  id: 6,
+  backgroundColor: '#ffdec4',
+  borderColor: '#fd7e14',
+  events: []
+};
+}
+</script>
 <script src="<?php echo SITE_ASSETS_URL;?>js/lib/bootstrap.min.js"></script>
+ 
+
 <!-- Ionicons -->
 <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 <!-- Splide -->
@@ -216,6 +272,14 @@ $('.imgbox').click(function(response){
     }
     }
 });
+$('.imgbox').click(function(){
+  $('#modalimagedataset').attr('src',$(this).attr("data-val"));
+  $('#bookingtitledataset').html('src',$(this).attr("data-booking"));
+
+  
+$('#ModalImage').modal();
+});
+
   
 
 

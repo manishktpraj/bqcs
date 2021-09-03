@@ -86,15 +86,36 @@ if(isset($dataset))
 <img src="<?php echo SITE_URL?>public/img/headderr.png" style="width:100%;">
 <div style="margin-top:25px">
 <table width="100%">
-<?php foreach($resQuestionDataa as $value)
+<?php 
+ $intServiceID = '0';
+foreach($resQuestionDataa as $value)
 {
 		
 	if($value->question_id!=11)
 	{
+		
+	if($intServiceID==0)
+	{
+		$intServiceID = $value->service_id;
+	}
  
 		$quest_data= $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type','!=',2);
 		
 		?>
+<?php if($intServiceID!=$value->service_id)
+        {
+            $intServiceID = $value->service_id;
+            $servicesDataSet = DB::table('cs_services')
+            ->where('role_id',$value->service_id)
+            ->first();
+            ?>
+         <tr>
+		 <th style="text-align:left;" class="stage-title" colspan="2">    
+         <?php echo $servicesDataSet->role_name; ?>
+		</th>
+		</tr>
+        <?php  } ?>
+
 		<?php if($value->question_id==20){
 			$quest_datass = $resQuestionData->where('qa_question_id',$value->question_id)->where('qa_tech_id','=',$technicianId)->where('qa_field_type','=',4);
 			?>

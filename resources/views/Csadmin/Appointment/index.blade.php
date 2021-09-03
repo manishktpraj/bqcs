@@ -140,6 +140,7 @@
         $.post(base_url+'appointment/editAppointmentAjex',datastring,function(response){
             $('#editAppointment').html(response);
             $('.select2').select2();
+            getServiceChild();
         });
     }
 </script>

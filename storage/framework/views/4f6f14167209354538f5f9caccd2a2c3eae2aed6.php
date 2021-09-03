@@ -27,13 +27,9 @@
     border-radius: 50%;
     line-height: 0;
     font-size: 20px;
-}
-.active
-{
-    background:green;
-    color:#fff;
-}
+} 
 </style>
+ 
 <?php
 $ser = array();
 foreach($services as $valuee){
@@ -112,7 +108,7 @@ if($intServiceID==0)
 <ul>
 <li>
 <div class="wqtype-type">   
-<a href="javascript:;" onclick="imageopennew('<?php echo $data->qm_slug;?>',<?php echo $data->qm_question_id;?>)">
+<a href="javascript:;"  onclick="imageopennew('<?php echo $data->qm_slug;?>',<?php echo $data->qm_question_id;?>)">
     <ion-icon name="camera-outline" class="tx-24" ></ion-icon>
     <?php /// echo ($data->qm_labelvisiblity!='No')?$data->qm_label:'';?>
     Add Pic
@@ -134,7 +130,8 @@ if($intServiceID==0)
         <a href="#" class="remove-img"  data-val="<?php echo $data->qm_slug;?>"><ion-icon name="add-circle"></ion-icon></a>
         <?php } ?> 
         <a href="#" class="tick-img"  style="display:none" data-val="<?php echo $data->qm_slug;?>"><ion-icon name="checkmark-circle" ></ion-icon></a>
-      <div class="imgbox" data-id="<?php echo $img_name->qa_id;?>" data-type="<?php echo $type;?>"> 
+      <div class="imgbox"  data-bs-toggle="modal"  data-bs-target="#ModalImage" data-id="<?php echo $img_name->qa_id;?>"  data-booking="<?php echo e($rowAppointmentsData->ca_id); ?>"
+      data-val="<?php echo $img_name->qa_value;?>" data-type="<?php echo $type;?>"> 
         <img src="<?php echo $img_name->qa_value;?>"  id="qa_image<?php echo $data->qm_slug;?>">
         <input type="hidden" name="qa_value[<?php echo $question->question_id?>][<?php echo $data->qm_slug;?>][]" value="<?php echo $img_name->qa_value;?>">
         </div>
@@ -311,6 +308,27 @@ if($intServiceID==0)
 <?php } ?> 
 
 </div>
+
+
+ 
+
+
+<div class="modal fade modalbox" id="ModalImage" data-bs-backdrop="static" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+<div class="modal-content clsmodalbody">
+<div class="modal-header">
+<h5 class="modal-title">Booking (Id: <span id="bookingtitledataset"></span> )</h5>
+<a href="#" id="ModalCommentdismiss" data-bs-dismiss="modal">Close</a>
+</div>
+<div class="modal-body">
+<div class="booking-details">
+ <img src="" id="modalimagedataset" style="width:100%">
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <script>var token = '<?php echo csrf_token(); ?>';</script>
 
 <!---------------New Scripts  --------------------->

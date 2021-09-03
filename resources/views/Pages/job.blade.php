@@ -77,7 +77,7 @@
             <div class="flex-class mb-1"><span  class="tx-16 mr-5"><ion-icon name="location-outline" style="margin-top: 3px;"></ion-icon></span> <span  class="tx-13">{{ isset($value->customerAddress)?$value->customerAddress->customer_address:''}}</span></div>
             
             <div class="mt-2">
-                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment" class="btn btn-success btn-sm me-1" >View</a>
+                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#ModalComment"  onclick="getpopdata(<?php echo $value->ca_id;?>)"  class="btn btn-success btn-sm me-1" >View</a>
                 <?php if($value->ca_report_submit==1)
                 {?>
                 <!-- <a href="{{route('createPDF',$value->ca_id)}}" class="btn btn-secondary btn-sm me-1">Report</a>-->
@@ -100,14 +100,10 @@
 <!-- Modal Form -->
 <div class="modal fade modalbox" id="ModalComment" data-bs-backdrop="static" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title">Booking (Id: 456)</h5>
-<a href="#" id="ModalCommentdismiss" data-bs-dismiss="modal">Close</a>
-</div>
-<div class="modal-body clsmodalbody">
- 
-</div>
+<div class="modal-content clsmodalbody">
+
+<!-- Content here -->
+
 </div>
 </div>
 </div>

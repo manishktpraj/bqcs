@@ -79,9 +79,33 @@ $quest_data= $resQuestionData->where('qa_question_id',11)->where('qa_tech_id','=
 <img src="<?php echo SITE_URL?>public/img/headderr.png" style="width:100%;">
 <div style="margin-top:25px">
 <table width="100%">
-<?php foreach($resQuestionDataa as $value)
+<?php
+        $intServiceID = '0';
+foreach($resQuestionDataa as $value)
 {
 		
+ 	 
+
+	if($intServiceID==0)
+{
+    $intServiceID = $value->service_id;
+}
+
+?>
+<?php if($intServiceID!=$value->service_id)
+        {
+            $intServiceID = $value->service_id;
+            $servicesDataSet = DB::table('cs_services')
+            ->where('role_id',$value->service_id)
+            ->first();
+            ?>
+                    <div class="stage-title">
+                      <?php echo $servicesDataSet->role_name; ?>
+                    </div>
+                    <div class="spacer"></div>
+       <?php  } ?>
+
+<?php 
 	if($value->question_id!=11)
 	{
  

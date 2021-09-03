@@ -254,10 +254,14 @@ maximumSelectionLength: 2
             $('#addressData').html(response);
         });
     }
-    function getServiceChild(value)
+    if(ca_service==undefined)
+    {
+       var  ca_service ='';
+    }
+    function getServiceChild()
     {
         var service = $('#service_category').val();
-        var datastring = 'service_id='+service+'&_token='+token;
+        var datastring = 'service_id='+service+'&_token='+token+'&ca_service='+ca_service;
         $.post(base_url+'appointment/serviceCatProccessAjex',datastring,function(response){
             $('#childService').html(response);
         });

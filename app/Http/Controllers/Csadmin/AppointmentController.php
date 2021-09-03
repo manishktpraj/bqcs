@@ -95,11 +95,12 @@ class AppointmentController extends Controller
     $aryPostData = $request->all();
     /*  echo "<pre>";
     print_r(explode(',',$aryPostData['service_id']));die;   */
-
+   $aryInSelected = isset($aryPostData['ca_service'])?explode(',',$aryPostData['ca_service']):array();
     $resParentServicesData = CsServices::whereIn('role_parent',explode(',',$aryPostData['service_id']))->get();
     foreach($resParentServicesData as $value)
     {
-        echo '<option value="'.$value->role_id.'">'.$value->role_name.'</option>';
+      $strSelect = in_array($value->role_id,$aryInSelected)?'selected':'';
+        echo '<option '.$strSelect.' value="'.$value->role_id.'">'.$value->role_name.'</option>';
     } 
     exit;
   }

@@ -400,7 +400,7 @@ function notification(target, time) {
     var a = document.getElementById(target);
     closeNotificationBox()
     setTimeout(() => {
-        a.classList.add("show")
+      ///  a.classList.add("show")
     }, 250);
     if (time) {
         time = time + 250;

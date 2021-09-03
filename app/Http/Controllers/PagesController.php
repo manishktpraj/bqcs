@@ -50,7 +50,7 @@ class PagesController extends Controller
              $popup=json_decode($resAppointmentsData);  
 
 
-             $resta = CsAppointments::leftJoin('cs_customer_address', function($join) {
+             $hist = CsAppointments::leftJoin('cs_customer_address', function($join) {
                 $join->on('cs_appointments.ca_customer_id', '=', 'cs_customer_address.customer_id');
                 })
                 ->leftJoin('cs_customer', function($join) {
@@ -60,8 +60,8 @@ class PagesController extends Controller
                         $join->on('cs_appointments.ca_technician_id', '=', 'cs_technician.faculty_id');
                         })
                  ->where('ca_customer_id',$popup[0]->ca_customer_id)
-                 ->where('ca_id','!=',$id)
-                 ->orderBy('ca_id','DESC')->first();
+                ->where('ca_id','!=',$id)
+                ->orderBy('ca_id','DESC')->first();
 
 
 
@@ -78,7 +78,7 @@ class PagesController extends Controller
 
         //$resAppointmentsData = CsAppointments::where('ca_id',$id)->orderBy('ca_id','DESC')->get();
         $title='Bookings';
-        return view('Pages.popupdetail',compact('title','popup','resta'));
+        return view('Pages.popupdetail',compact('title','popup','hist'));
     }
     public function calendar(Request $request)
     {
